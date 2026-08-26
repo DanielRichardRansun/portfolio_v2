@@ -1,0 +1,56 @@
+/* Framer-like Smooth Animations & Blur Reveal Effects */
+
+/* Fade-in & Blur Reveal on Scroll */
+.reveal-blur {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+.reveal-blur.is-visible {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+}
+
+/* Stagger Delay Helper Classes */
+.delay-1 { transition-delay: 100ms; }
+.delay-2 { transition-delay: 200ms; }
+.delay-3 { transition-delay: 300ms; }
+.delay-4 { transition-delay: 400ms; }
+
+/* Subtle Hero Ambient Floating Animation */
+@keyframes ambient-float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+.animate-float {
+  animation: ambient-float 6s ease-in-out infinite;
+}
+
+/* Subtle Shimmer for High-End Cards */
+@keyframes border-shimmer {
+  0% { border-color: rgba(255, 255, 255, 0.08); }
+  50% { border-color: rgba(255, 255, 255, 0.2); }
+  100% { border-color: rgba(255, 255, 255, 0.08); }
+}
+
+.card-shimmer {
+  animation: border-shimmer 4s ease-in-out infinite;
+}
+
+/* Smooth Page Transition */
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+body.page-loaded {
+  opacity: 1;
+}
