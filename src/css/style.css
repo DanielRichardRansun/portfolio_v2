@@ -1,47 +1,48 @@
 :root {
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Primary Light Theme Palette (Default) */
-  --bg-primary: #f4f4f5;
+  /* Primary Light Theme Palette (Clean & Minimalist) */
+  --bg-primary: #f8f8f9;
   --bg-surface: #ffffff;
   --bg-surface-elevated: #ffffff;
   --bg-card: #ffffff;
   --bg-card-hover: #ffffff;
   --bg-pill: #ffffff;
-  --bg-subtle: #eaeaea;
+  --bg-subtle: #f0f0f2;
 
   --text-primary: #09090b;
-  --text-secondary: #52525b;
-  --text-muted: #71717a;
-  --text-dim: #a1a1aa;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-dim: #9ca3af;
 
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --border-light: rgba(0, 0, 0, 0.1);
-  --border-accent: rgba(0, 0, 0, 0.18);
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --border-light: rgba(0, 0, 0, 0.09);
+  --border-accent: rgba(0, 0, 0, 0.16);
 
-  /* Vibrant Coral Orange Accent (from reference) */
+  /* Vibrant Coral Orange Accent (from Framer reference) */
   --accent-orange: #f95721;
   --accent-orange-hover: #e04612;
-  --accent-orange-glow: rgba(249, 87, 33, 0.28);
+  --accent-orange-glow: rgba(249, 87, 33, 0.25);
   --accent-orange-subtle: rgba(249, 87, 33, 0.08);
 
   --accent-green: #10b981;
-  --accent-green-glow: rgba(16, 185, 129, 0.2);
+  --accent-green-glow: rgba(16, 185, 129, 0.18);
 
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
-  --radius-xl: 28px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
 
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-  --shadow-card-hover: 0 16px 36px -6px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
-  --shadow-nav: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-  --shadow-btn: 0 8px 24px -4px rgba(249, 87, 33, 0.35);
-  --shadow-btn-white: 0 2px 8px rgba(0, 0, 0, 0.04);
+  /* Minimalist, subtle, thin shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.015);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.015), 0 4px 16px rgba(0, 0, 0, 0.025);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.03), 0 12px 28px -4px rgba(0, 0, 0, 0.04);
+  --shadow-nav: 0 2px 12px rgba(0, 0, 0, 0.03);
+  --shadow-btn: 0 4px 16px -2px rgba(249, 87, 33, 0.3);
+  --shadow-btn-white: 0 1px 3px rgba(0, 0, 0, 0.03);
 
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -63,20 +64,20 @@
   --text-muted: #71717a;
   --text-dim: #52525b;
 
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.14);
-  --border-accent: rgba(255, 255, 255, 0.25);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-light: rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(255, 255, 255, 0.22);
 
   --accent-orange: #f95721;
   --accent-orange-hover: #ff6838;
   --accent-orange-glow: rgba(249, 87, 33, 0.35);
   --accent-orange-subtle: rgba(249, 87, 33, 0.15);
 
-  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --shadow-card-hover: 0 16px 40px 0 rgba(0, 0, 0, 0.5);
-  --shadow-nav: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-  --shadow-btn: 0 8px 24px -4px rgba(249, 87, 33, 0.45);
-  --shadow-btn-white: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 12px 32px 0 rgba(0, 0, 0, 0.35);
+  --shadow-nav: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
+  --shadow-btn: 0 6px 20px -3px rgba(249, 87, 33, 0.4);
+  --shadow-btn-white: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Base Styles */
@@ -93,6 +94,7 @@ html {
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
 }
 
 body {
@@ -122,9 +124,9 @@ button, input, textarea {
 
 /* Container */
 .container {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 28px;
 }
 
 .container-narrow {
@@ -135,12 +137,15 @@ button, input, textarea {
 
 /* Section Spacing */
 .section {
-  padding: 100px 0;
+  padding: 90px 0;
   position: relative;
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
   .section {
-    padding: 60px 0;
+    padding: 50px 0;
   }
 }

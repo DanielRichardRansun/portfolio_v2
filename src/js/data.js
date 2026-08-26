@@ -18,7 +18,7 @@ export const siteConfig = {
     firstName: "Alex",
     lastName: "Morgan",
     role: "Senior Product Designer & Creative Director",
-    avatar: "./src/assets/images/QsdA548N7Gu3jhrCEHLFgsrs040688.png",
+    avatar: "./src/assets/images/U6LYFUlpwl6DZlVCnizvp0DCT7U95a5.png",
     statusBadge: {
       active: true,
       text: "Available for work"
@@ -39,13 +39,16 @@ export const siteConfig = {
     bookingLink: "https://cal.com"
   },
 
-  // Hero Showcase Strip
+  // Hero Showcase Strip / Infinite Auto-scrolling Marquee
   showcase: [
-    { image: "./src/assets/images/BMIIfm3F6KOhs4e0XbupycuUa8a2.png", title: "Mobile UI" },
-    { image: "./src/assets/images/6226OWEOo2jiofOMMWbqK4BykK00688.png", title: "Display Terminal" },
-    { image: "./src/assets/images/ubWnscZGEwgvwVyAvmkY9kr5k0688.png", title: "Tablet Interface" },
-    { image: "./src/assets/images/XNBUHZ3Fth8RwCKmsWSAsRL8CU0688.png", title: "Editorial ST10 Book" },
-    { image: "./src/assets/images/dSOEoYvaIiU6VtEXiXYZjilZ6MY0688.png", title: "Smart Device" }
+    { image: "./src/assets/images/aoSDWg9weBLWPABMsU7BYU5hB9Uace0.png", title: "Smart Watch UI", projectId: "shopora" },
+    { image: "./src/assets/images/CXxm9IvGczTuqr1cmmjYs99sHQg16b1.png", title: "Vision Interface", projectId: "edunova" },
+    { image: "./src/assets/images/BMIIfm3F6KOhs4e0XbupycuUa8a2.png", title: "Mobile Wallet", projectId: "paynest" },
+    { image: "./src/assets/images/6226OWEOo2jiofOMMWbqK4BykK00688.png", title: "Display Terminal", projectId: "connecto" },
+    { image: "./src/assets/images/ubWnscZGEwgvwVyAvmkY9kr5k0688.png", title: "Tablet Interface", projectId: "connecto" },
+    { image: "./src/assets/images/XNBUHZ3Fth8RwCKmsWSAsRL8CU0688.png", title: "Editorial ST10 Book", projectId: "shopora" },
+    { image: "./src/assets/images/dSOEoYvaIiU6VtEXiXYZjilZ6MY0688.png", title: "Health Device", projectId: "medilink" },
+    { image: "./src/assets/images/r13uC0loylC7UCy1flJYmpOxraY0688.png", title: "Spatial Studio", projectId: "travelio" }
   ],
 
   // Collaborators & Clients

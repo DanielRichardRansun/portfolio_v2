@@ -13,14 +13,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Render Dynamic Content Based on Page
   renderPageContent();
 
-  // 5. Render Global Footer & Floating Badges
+  // 5. Render Global Footer (No floating badges)
   renderFooter();
-  renderFloatingBadges();
 
-  // 6. Initialize Intersection Observers (Framer blur reveal effect)
+  // 6. Initialize Hero Marquee Carousel
+  initHeroMarquee();
+
+  // 7. Initialize Button Flip Rolling Text Interaction
+  initButtonFlipEffects();
+
+  // 8. Initialize Intersection Observers (Framer blur reveal effect)
   initScrollAnimations();
 
-  // 7. Initialize Interactive Elements (FAQ, Form, Theme Toggle)
+  // 9. Initialize Interactive Elements (FAQ, Form, Theme Toggle)
   initInteractions();
 });
 
@@ -86,9 +91,21 @@ function renderNavbar() {
 }
 
 function renderPageContent() {
-  // Render Hero Section (Reference Image 1)
+  // Render Hero Section
   const heroEl = document.getElementById('hero-section');
   if (heroEl) {
+    const showcaseCardsHtml = siteConfig.showcase.map(item => `
+      <a href="project.html?id=${item.projectId || 'connecto'}" class="marquee-card">
+        <div class="marquee-card-img-wrap">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" />
+        </div>
+        <div class="marquee-card-badge">
+          <span>${item.title}</span>
+          <svg class="marquee-card-badge-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+        </div>
+      </a>
+    `).join('');
+
     heroEl.innerHTML = `
       <div class="container">
         <div class="hero-grid">
@@ -97,7 +114,7 @@ function renderPageContent() {
             <h1 class="hero-name">
               <span class="hero-name-row">
                 <span>${siteConfig.profile.firstName}</span>
-                <span class="hero-avatar-badge">
+                <span class="hero-avatar-badge" title="${siteConfig.profile.name}">
                   <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
                 </span>
               </span>
@@ -120,7 +137,7 @@ function renderPageContent() {
             <div class="hero-actions">
               <a href="${siteConfig.profile.ctaPrimary.link}" class="btn-primary">
                 <span>${siteConfig.profile.ctaPrimary.text}</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
               <a href="${siteConfig.profile.ctaSecondary.link}" class="btn-secondary">
                 <span>${siteConfig.profile.ctaSecondary.text}</span>
@@ -129,21 +146,18 @@ function renderPageContent() {
           </div>
         </div>
 
-        <!-- Showcase Gallery Strip (Reference Image 1) -->
-        <div class="hero-showcase-wrap reveal-blur">
-          <div class="hero-showcase-grid">
-            ${siteConfig.showcase.map(item => `
-              <div class="showcase-card">
-                <img src="${item.image}" alt="${item.title}" loading="lazy" />
-              </div>
-            `).join('')}
+        <!-- Edge-to-Edge Hero Showcase Marquee Carousel -->
+        <div class="hero-marquee-wrapper reveal-blur" id="hero-marquee-wrapper">
+          <div class="hero-marquee-track" id="hero-marquee-track">
+            ${showcaseCardsHtml}
+            ${showcaseCardsHtml}
           </div>
         </div>
       </div>
     `;
   }
 
-  // Render Clients & Collaborators Pill Bar (Reference Image 2)
+  // Render Clients & Collaborators Pill Bar
   const clientsEl = document.getElementById('clients-bar-section');
   if (clientsEl) {
     clientsEl.innerHTML = `
@@ -206,7 +220,7 @@ function renderPageContent() {
     `).join('');
   }
 
-  // Render Career Container & Timeline (Reference Image 2)
+  // Render Career Container & Timeline
   const timelineEl = document.getElementById('career-timeline');
   if (timelineEl) {
     timelineEl.innerHTML = `
@@ -266,7 +280,7 @@ function renderPageContent() {
   if (testimonialsEl) {
     testimonialsEl.innerHTML = siteConfig.testimonials.map(t => `
       <div class="testimonial-card reveal-blur">
-        <div class="rating-star-icon" style="font-size: 16px;">★★★★★</div>
+        <div class="rating-star-icon" style="font-size: 15px;">★★★★★</div>
         <p class="testimonial-quote">"${t.quote}"</p>
         <div class="testimonial-author">
           <img src="${t.avatar}" alt="${t.author}" class="testimonial-avatar" />
@@ -311,21 +325,21 @@ function renderProjectDetailPage(container) {
 
   container.innerHTML = `
     <div class="container-narrow">
-      <div class="section-title-wrap reveal-blur" style="text-align: center; align-items: center; gap: 20px; margin-bottom: 40px;">
+      <div class="section-title-wrap reveal-blur" style="text-align: center; align-items: center; gap: 18px; margin-bottom: 36px;">
         <div class="badge">${project.category} · ${project.year}</div>
-        <h1 class="hero-name" style="font-size: clamp(2.5rem, 5vw, 4rem);"><span>${project.title}</span></h1>
-        <p class="hero-tagline" style="max-width: 650px;">${project.subtitle}</p>
-        <a href="${project.liveUrl}" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 10px;">
+        <h1 class="hero-name" style="font-size: clamp(2.5rem, 5vw, 4rem); text-align: center;"><span>${project.title}</span></h1>
+        <p class="hero-tagline" style="max-width: 650px; text-align: center;">${project.subtitle}</p>
+        <a href="${project.liveUrl}" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 8px;">
           <span>Visit Live Site</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
         </a>
       </div>
 
-      <div class="project-thumb reveal-blur" style="height: 520px; border-radius: var(--radius-xl); margin-bottom: 60px;">
+      <div class="project-thumb reveal-blur" style="height: 500px; border-radius: var(--radius-xl); margin-bottom: 50px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);">
         <img src="${project.image}" alt="${project.title}" style="width:100%; height:100%; object-fit: cover;" />
       </div>
 
-      <div class="about-grid reveal-blur" style="margin-bottom: 80px;">
+      <div class="about-grid reveal-blur" style="margin-bottom: 70px;">
         <div class="card-item">
           <span class="card-num">01 / CHALLENGE</span>
           <h2 class="card-title">The Problem</h2>
@@ -338,7 +352,7 @@ function renderProjectDetailPage(container) {
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 60px;">
+      <div style="text-align: center; margin-top: 50px;">
         <a href="all-projects.html" class="btn-secondary">
           <span>← Back to All Projects</span>
         </a>
@@ -353,7 +367,7 @@ function renderFooter() {
       <div class="container">
         <div class="footer-top">
           <div>
-            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">${siteConfig.profile.name}</h3>
+            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">${siteConfig.profile.name}</h3>
             <p style="color: var(--text-muted); font-size: 14px;">${siteConfig.footer.responseGuarantee}</p>
           </div>
           <div class="footer-socials">
@@ -372,18 +386,95 @@ function renderFooter() {
   document.body.insertAdjacentHTML('beforeend', footerHtml);
 }
 
-function renderFloatingBadges() {
-  const badgesHtml = `
-    <div class="floating-badges">
-      <a href="#contact" class="floating-badge-btn">
-        <span>⚡ Get for Free</span>
-      </a>
-      <a href="https://framer.com" target="_blank" rel="noopener" class="floating-badge-btn">
-        <span>❖ Made in Framer</span>
-      </a>
-    </div>
-  `;
-  document.body.insertAdjacentHTML('beforeend', badgesHtml);
+/**
+ * High Performance Auto-Scrolling Hero Marquee
+ * Features smooth physics lerping, continuous loop, and hover slowdown.
+ */
+function initHeroMarquee() {
+  const wrapper = document.getElementById('hero-marquee-wrapper');
+  const track = document.getElementById('hero-marquee-track');
+  if (!wrapper || !track) return;
+
+  let currentPos = 0;
+  let normalSpeed = 1.15;
+  let slowSpeed = 0.25;
+  let targetSpeed = normalSpeed;
+  let currentSpeed = normalSpeed;
+  let isHovered = false;
+  let animationFrameId = null;
+
+  wrapper.addEventListener('mouseenter', () => {
+    isHovered = true;
+    targetSpeed = slowSpeed;
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    isHovered = false;
+    targetSpeed = normalSpeed;
+  });
+
+  function step() {
+    // Smooth lerp speed transition
+    currentSpeed += (targetSpeed - currentSpeed) * 0.08;
+    currentPos += currentSpeed;
+
+    const halfWidth = track.scrollWidth / 2;
+    if (halfWidth > 0 && currentPos >= halfWidth) {
+      currentPos -= halfWidth;
+    }
+
+    track.style.transform = `translate3d(-${currentPos.toFixed(2)}px, 0, 0)`;
+    animationFrameId = requestAnimationFrame(step);
+  }
+
+  animationFrameId = requestAnimationFrame(step);
+
+  window.addEventListener('beforeunload', () => {
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  });
+}
+
+/**
+ * Enhance All Buttons with Vertical Rolling Flip Text Effect
+ */
+function initButtonFlipEffects() {
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link');
+  
+  buttons.forEach(btn => {
+    if (btn.querySelector('.btn-flip-wrapper')) return;
+
+    const span = btn.querySelector('span');
+    const svg = btn.querySelector('svg');
+    const text = span ? span.textContent.trim() : btn.textContent.trim();
+
+    if (!text) return;
+
+    const flipWrapper = document.createElement('span');
+    flipWrapper.className = 'btn-flip-wrapper';
+
+    const flipText = document.createElement('span');
+    flipText.className = 'btn-flip-text';
+
+    const flipFront = document.createElement('span');
+    flipFront.className = 'btn-flip-front';
+    flipFront.textContent = text;
+
+    const flipBack = document.createElement('span');
+    flipBack.className = 'btn-flip-back';
+    flipBack.setAttribute('aria-hidden', 'true');
+    flipBack.textContent = text;
+
+    flipText.appendChild(flipFront);
+    flipText.appendChild(flipBack);
+    flipWrapper.appendChild(flipText);
+
+    if (svg) {
+      flipWrapper.appendChild(svg.cloneNode(true));
+    }
+
+    btn.innerHTML = '';
+    btn.appendChild(flipWrapper);
+  });
 }
 
 function initScrollAnimations() {
@@ -393,7 +484,7 @@ function initScrollAnimations() {
         entry.target.classList.add('is-visible');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
   document.querySelectorAll('.reveal-blur').forEach(el => observer.observe(el));
 }
@@ -425,12 +516,11 @@ function initInteractions() {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = 'Sending...';
+      submitBtn.innerHTML = '<span>Sending...</span>';
       submitBtn.disabled = true;
 
-      // Simulated smooth submission
       setTimeout(() => {
-        submitBtn.innerHTML = '✓ Message Sent Successfully!';
+        submitBtn.innerHTML = '<span>✓ Message Sent Successfully!</span>';
         submitBtn.style.background = 'var(--accent-green)';
         submitBtn.style.color = '#fff';
         contactForm.reset();
@@ -440,6 +530,7 @@ function initInteractions() {
           submitBtn.style.background = '';
           submitBtn.style.color = '';
           submitBtn.disabled = false;
+          initButtonFlipEffects();
         }, 4000);
       }, 1000);
     });
