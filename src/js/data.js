@@ -18,7 +18,7 @@ export const siteConfig = {
     firstName: "Alex",
     lastName: "Morgan",
     role: "Senior Product Designer & Creative Director",
-    avatar: "./src/assets/images/U6LYFUlpwl6DZlVCnizvp0DCT7U95a5.png",
+    avatar: "./src/assets/images/avatar-profile.png",
     statusBadge: {
       active: true,
       text: "Available for work"
@@ -41,14 +41,14 @@ export const siteConfig = {
 
   // Hero Showcase Strip / Infinite Auto-scrolling Marquee
   showcase: [
-    { image: "./src/assets/images/aoSDWg9weBLWPABMsU7BYU5hB9Uace0.png", title: "Smart Watch UI", projectId: "shopora" },
-    { image: "./src/assets/images/CXxm9IvGczTuqr1cmmjYs99sHQg16b1.png", title: "Vision Interface", projectId: "edunova" },
-    { image: "./src/assets/images/BMIIfm3F6KOhs4e0XbupycuUa8a2.png", title: "Mobile Wallet", projectId: "paynest" },
-    { image: "./src/assets/images/6226OWEOo2jiofOMMWbqK4BykK00688.png", title: "Display Terminal", projectId: "connecto" },
-    { image: "./src/assets/images/ubWnscZGEwgvwVyAvmkY9kr5k0688.png", title: "Tablet Interface", projectId: "connecto" },
-    { image: "./src/assets/images/XNBUHZ3Fth8RwCKmsWSAsRL8CU0688.png", title: "Editorial ST10 Book", projectId: "shopora" },
-    { image: "./src/assets/images/dSOEoYvaIiU6VtEXiXYZjilZ6MY0688.png", title: "Health Device", projectId: "medilink" },
-    { image: "./src/assets/images/r13uC0loylC7UCy1flJYmpOxraY0688.png", title: "Spatial Studio", projectId: "travelio" }
+    { image: "./src/assets/images/showcase-watch.png", title: "Smart Watch UI", projectId: "shopora" },
+    { image: "./src/assets/images/showcase-vr.png", title: "Vision Interface", projectId: "edunova" },
+    { image: "./src/assets/images/showcase-phone.png", title: "Mobile Wallet", projectId: "paynest" },
+    { image: "./src/assets/images/project-paynest.png", title: "Display Terminal", projectId: "connecto" },
+    { image: "./src/assets/images/project-connecto.png", title: "Tablet Interface", projectId: "connecto" },
+    { image: "./src/assets/images/project-shopora.png", title: "Editorial ST10 Book", projectId: "shopora" },
+    { image: "./src/assets/images/project-medilink.png", title: "Health Device", projectId: "medilink" },
+    { image: "./src/assets/images/project-travelio.png", title: "Spatial Studio", projectId: "travelio" }
   ],
 
   // Collaborators & Clients
@@ -130,7 +130,7 @@ export const siteConfig = {
       description: "Connecto is a unified workspace app built to eliminate communication silos across distributed teams.",
       challenge: "Connecto needed a redesigned dashboard and workflow interface that reduced cognitive overload, making task updates and team chats intuitive without sacrificing speed.",
       approach: "We streamlined the layout with focus modes, standardized design tokens, and crafted a distraction-free user flow for real-time collaboration.",
-      image: "./src/assets/images/ubWnscZGEwgvwVyAvmkY9kr5k0688.png",
+      image: "./src/assets/images/project-connecto.png",
       featured: true,
       liveUrl: "https://connecto.example.com"
     },
@@ -144,7 +144,7 @@ export const siteConfig = {
       description: "PayNest is a digital wallet app for instant transfers, bill payments, expense tracking, and secure daily transactions.",
       challenge: "PayNest faced friction during multi-step checkout and wallet funding, causing drop-offs among first-time fintech users.",
       approach: "I worked across product design and system refinement, simplifying core user flows, adding clear visual feedback, and implementing biometric quick-pay.",
-      image: "./src/assets/images/6226OWEOo2jiofOMMWbqK4BykK00688.png",
+      image: "./src/assets/images/project-paynest.png",
       featured: true,
       liveUrl: "https://paynest.example.com"
     },
@@ -158,7 +158,7 @@ export const siteConfig = {
       description: "Shopora is a high-growth luxury retail marketplace offering curated fashion and lifestyle collections.",
       challenge: "Catalog browsing was sluggish and checkout abandonment rates were high on mobile devices.",
       approach: "Re-architected the product discovery pages, added instant variant preview modals, and streamlined mobile checkout to 2 steps.",
-      image: "./src/assets/images/XNBUHZ3Fth8RwCKmsWSAsRL8CU0688.png",
+      image: "./src/assets/images/project-shopora.png",
       featured: true,
       liveUrl: "https://shopora.example.com"
     },
@@ -172,7 +172,7 @@ export const siteConfig = {
       description: "EduNova empowers learners worldwide with bite-sized video courses, interactive quizzes, and cohort discussions.",
       challenge: "Learners struggled to keep track of their course milestones and interact with mentors effectively.",
       approach: "Designed a personalized dashboard with progress tracking, streak rewards, and synchronized video note-taking.",
-      image: "./src/assets/images/wWM4O3FUUedeVCL1ZsQrZMNPZ00688.png",
+      image: "./src/assets/images/project-edunova.png",
       featured: true,
       liveUrl: "https://edunova.example.com"
     },
@@ -186,7 +186,7 @@ export const siteConfig = {
       description: "MediLink is a digital healthcare platform providing secure appointment bookings, lab reports, and telehealth.",
       challenge: "Patients found booking consultations complicated and medical history data hard to parse on small screens.",
       approach: "Built an accessible, high-contrast UI with clear doctor rating cards, real-time availability slots, and encrypted records.",
-      image: "./src/assets/images/dSOEoYvaIiU6VtEXiXYZjilZ6MY0688.png",
+      image: "./src/assets/images/project-medilink.png",
       featured: true,
       liveUrl: "https://medilink.example.com"
     },
@@ -200,7 +200,7 @@ export const siteConfig = {
       description: "Travelio is an all-in-one travel companion for discovering hidden gems, booking stays, and sharing custom itineraries.",
       challenge: "Users needed a seamless way to collaborate with friends on trip itineraries and split expenses on the go.",
       approach: "Created a collaborative drag-and-drop itinerary board with integrated map view and instant currency conversion.",
-      image: "./src/assets/images/r13uC0loylC7UCy1flJYmpOxraY0688.png",
+      image: "./src/assets/images/project-travelio.png",
       featured: true,
       liveUrl: "https://travelio.example.com"
     }
@@ -257,21 +257,21 @@ export const siteConfig = {
       quote: "Alex truly understood my vision & turned it into impactful designs, the results went way beyond my expectations!",
       author: "Marcus Rivera",
       role: "Founder at NovaTech",
-      avatar: "./src/assets/images/TsqXxFsRybj1exbSyDk1Qzn4FZA0688.png"
+      avatar: "./src/assets/images/testimonial-marcus.png"
     },
     {
       rating: 4.9,
       quote: "As a small business owner, the entire process felt effortless thanks to Alex’s clear guidance & design excellence.",
       author: "Sophia Laurent",
       role: "CEO at VibeStudio",
-      avatar: "./src/assets/images/IhMKR62TmAYemQnYIXjvnFCxc00688.png"
+      avatar: "./src/assets/images/testimonial-sophia.png"
     },
     {
       rating: 4.8,
       quote: "Running a startup is challenging, but Alex Morgan made this entire product rebranding smooth and completely hassle-free.",
       author: "Daniel Zhang",
       role: "Product Lead at FlowScale",
-      avatar: "./src/assets/images/4ogfJrQenTSc6VnYawhMS1ONo0688.png"
+      avatar: "./src/assets/images/testimonial-daniel.png"
     }
   ],
 
