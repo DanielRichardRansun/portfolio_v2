@@ -126,7 +126,7 @@ button, input, textarea {
 .container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 32px;
 }
 
 .container-narrow {
@@ -135,9 +135,9 @@ button, input, textarea {
   padding: 0 24px;
 }
 
-/* Section Spacing */
+/* Section Spacing - Luxurious Breathing Room */
 .section {
-  padding: 90px 0;
+  padding: 110px 0;
   position: relative;
 }
 
@@ -146,6 +146,6 @@ button, input, textarea {
     padding: 0 20px;
   }
   .section {
-    padding: 50px 0;
+    padding: 64px 0;
   }
 }
