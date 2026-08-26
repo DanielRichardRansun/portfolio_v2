@@ -438,7 +438,7 @@ function initHeroMarquee() {
  * Enhance All Buttons with Vertical Rolling Flip Text Effect
  */
 function initButtonFlipEffects() {
-  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link');
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link');
   
   buttons.forEach(btn => {
     if (btn.querySelector('.btn-flip-wrapper')) return;
