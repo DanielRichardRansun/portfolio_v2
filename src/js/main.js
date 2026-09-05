@@ -40,12 +40,11 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('theme', newTheme);
 
-  const toggleBtn = document.getElementById('theme-toggle-btn');
-  if (toggleBtn) {
-    toggleBtn.innerHTML = newTheme === 'dark'
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.innerHTML = newTheme === 'dark'
       ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`
       : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
-  }
+  });
 }
 
 function renderNavbar() {
@@ -53,7 +52,6 @@ function renderNavbar() {
   const isAbout = currentPath.includes('about');
   const isProjects = currentPath.includes('all-projects');
   const isContact = currentPath.includes('contact');
-  const is404 = currentPath.includes('404');
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
 
   const navHtml = `
@@ -90,31 +88,81 @@ function renderNavbar() {
               <a href="about.html" class="mobile-nav-link ${isAbout ? 'active' : ''}">About</a>
               <a href="all-projects.html" class="mobile-nav-link ${isProjects ? 'active' : ''}">All Projects</a>
               <a href="contact.html" class="mobile-nav-link ${isContact ? 'active' : ''}">Contact</a>
-              <a href="404.html" class="mobile-nav-link ${is404 ? 'active' : ''}">404</a>
             </nav>
+
+            <div class="mobile-menu-bottom">
+              <div class="lang-switcher-wrap">
+                <button type="button" class="lang-toggle-btn" title="Change Language" aria-label="Change language">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/>
+                  </svg>
+                  <span class="lang-code-badge">EN</span>
+                </button>
+                <div class="lang-dropdown">
+                  <button type="button" class="lang-option active" data-lang="en">
+                    <span>English</span>
+                    <span class="lang-check">✓</span>
+                  </button>
+                  <button type="button" class="lang-option" data-lang="id">
+                    <span>Bahasa Indonesia</span>
+                    <span class="lang-check">✓</span>
+                  </button>
+                </div>
+              </div>
+
+              <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
+                ${currentTheme === 'dark' ?
+                  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
+                  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
+                }
+              </button>
+            </div>
           </div>
         </div>
         
         <div class="navbar-right">
-          <a href="${siteConfig.profile.bookingLink}" target="_blank" rel="noopener" class="nav-btn-call">
-            <span>Book a 30 min call</span>
+          <a href="mailto:${siteConfig.profile.email || 'hello@alexmorgan.design'}" class="nav-btn-call" title="Connect with me via email">
+            <span>Connect with me</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
           </a>
-          <a href="contact.html" class="nav-btn-mail" title="Send a message" aria-label="Contact">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </a>
-          <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
-            ${currentTheme === 'dark' ?
-              `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
-              `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
-            }
-          </button>
+
+          <!-- Desktop Language & Theme Controls -->
+          <div class="desktop-only-controls">
+            <div class="lang-switcher-wrap">
+              <button type="button" class="lang-toggle-btn" title="Change Language" aria-label="Change language">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/>
+                </svg>
+                <span class="lang-code-badge">EN</span>
+              </button>
+              <div class="lang-dropdown">
+                <button type="button" class="lang-option active" data-lang="en">
+                  <span>English</span>
+                  <span class="lang-check">✓</span>
+                </button>
+                <button type="button" class="lang-option" data-lang="id">
+                  <span>Bahasa Indonesia</span>
+                  <span class="lang-check">✓</span>
+                </button>
+              </div>
+            </div>
+
+            <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
+              ${currentTheme === 'dark' ?
+                `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
+                `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
+              }
+            </button>
+          </div>
         </div>
       </div>
     </header>
   `;
   document.body.insertAdjacentHTML('afterbegin', navHtml);
   initMobileMenu();
+  initLanguageSwitcher();
 }
 
 function initMobileMenu() {
@@ -171,6 +219,63 @@ function initMobileMenu() {
       closeMenu();
     }
   });
+}
+
+function initLanguageSwitcher() {
+  const wraps = document.querySelectorAll('.lang-switcher-wrap');
+  if (!wraps.length) return;
+
+  const savedLang = localStorage.getItem('site_lang') || 'en';
+  updateAllLangUI(savedLang);
+
+  wraps.forEach(wrap => {
+    const toggleBtn = wrap.querySelector('.lang-toggle-btn');
+    const dropdown = wrap.querySelector('.lang-dropdown');
+    if (!toggleBtn || !dropdown) return;
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const wasVisible = dropdown.classList.contains('is-visible');
+      document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
+      if (!wasVisible) dropdown.classList.add('is-visible');
+    });
+
+    dropdown.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const lang = opt.getAttribute('data-lang');
+        localStorage.setItem('site_lang', lang);
+        updateAllLangUI(lang);
+        document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
+      });
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
+    }
+  });
+
+  function updateAllLangUI(lang) {
+    document.querySelectorAll('.lang-code-badge').forEach(badge => {
+      badge.textContent = lang.toUpperCase();
+    });
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+      btn.setAttribute('title', lang === 'id' ? 'Bahasa: Indonesia' : 'Language: English');
+    });
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      if (opt.getAttribute('data-lang') === lang) {
+        opt.classList.add('active');
+      } else {
+        opt.classList.remove('active');
+      }
+    });
+  }
 }
 
 function renderPageContent() {
@@ -521,7 +626,7 @@ function initHeroMarquee() {
  * Enhance All Buttons with Vertical Rolling Flip Text Effect
  */
 function initButtonFlipEffects() {
-  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link');
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link, .mobile-nav-link');
   
   buttons.forEach(btn => {
     if (btn.querySelector('.btn-flip-wrapper')) return;
@@ -573,11 +678,10 @@ function initScrollAnimations() {
 }
 
 function initInteractions() {
-  // Theme Toggle Button
-  const themeBtn = document.getElementById('theme-toggle-btn');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', toggleTheme);
-  }
+  // Theme Toggle Buttons
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+  });
 
   // FAQ Accordion
   document.querySelectorAll('.faq-question').forEach(btn => {

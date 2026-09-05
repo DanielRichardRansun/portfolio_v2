@@ -36,6 +36,7 @@ export const siteConfig = {
       text: "See Projects",
       link: "#projects"
     },
+    email: "hello@alexmorgan.design",
     bookingLink: "https://cal.com"
   },
 
