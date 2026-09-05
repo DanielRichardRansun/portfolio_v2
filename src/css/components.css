@@ -1,6 +1,93 @@
 /* Component Styles - Portfolica Refined Minimalist Design System */
 
 /* =========================================
+   TOP PROGRESSIVE GRADIENT BLUR (Header Ambient Blur)
+========================================= */
+.header-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 125px;
+  pointer-events: none;
+  z-index: 90;
+  overflow: hidden;
+}
+
+.header-blur-overlay .blur-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform, backdrop-filter;
+}
+
+/* Layer 1: Lowest blur, extends furthest down to create smooth zero-falloff */
+.header-blur-overlay .layer-1 {
+  z-index: 1;
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+}
+
+/* Layer 2 */
+.header-blur-overlay .layer-2 {
+  z-index: 2;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%);
+}
+
+/* Layer 3 */
+.header-blur-overlay .layer-3 {
+  z-index: 3;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 70%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 70%);
+}
+
+/* Layer 4 */
+.header-blur-overlay .layer-4 {
+  z-index: 4;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 55%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 55%);
+}
+
+/* Layer 5 */
+.header-blur-overlay .layer-5 {
+  z-index: 5;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,0,0,0) 40%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,0,0,0) 40%);
+}
+
+/* Layer 6: Maximum blur at top edge behind the floating navigation */
+.header-blur-overlay .layer-6 {
+  z-index: 6;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,0) 25%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,0) 25%);
+}
+
+/* Layer 7: Subtle ambient tint layer - kept transparent so elements behind show through the blur */
+.header-blur-overlay .layer-tint {
+  z-index: 7;
+  background: linear-gradient(to bottom, rgba(248, 248, 249, 0.35) 0%, rgba(248, 248, 249, 0.1) 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+[data-theme="dark"] .header-blur-overlay .layer-tint {
+  background: linear-gradient(to bottom, rgba(9, 9, 11, 0.45) 0%, rgba(9, 9, 11, 0.12) 55%, transparent 100%);
+}
+
+/* =========================================
    1. NAVIGATION BAR (Floating Pill System)
 ========================================= */
 .navbar-wrapper {
@@ -91,6 +178,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0) scale(1);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
 }
 
 .nav-btn-call {
@@ -118,29 +212,26 @@
 
 .nav-btn-call svg {
   color: currentColor;
-  transition: transform var(--transition-fast);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
 }
 
 .nav-btn-call:hover svg {
-  transform: translate(3px, -3px);
+  transform: rotate(45deg);
 }
 
 .desktop-only-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Language Switcher */
-.lang-switcher-wrap {
-  position: relative;
-}
-
+/* Language Switcher Flip Button */
 .lang-toggle-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
   height: 48px;
   padding: 0 16px;
   background: var(--bg-surface);
@@ -150,6 +241,9 @@
   box-shadow: var(--shadow-xs);
   transition: all var(--transition-fast);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
 }
 
 .lang-toggle-btn:hover {
@@ -159,81 +253,28 @@
   box-shadow: var(--shadow-sm);
 }
 
-.lang-code-badge {
-  font-size: 13px;
+.lang-toggle-btn .btn-flip-text {
+  font-size: 13.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--text-primary);
 }
 
-.lang-dropdown {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 175px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(6px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-  z-index: 110;
+.lang-toggle-btn:hover .btn-flip-front,
+.lang-toggle-btn:hover .btn-flip-back {
+  transform: translateY(-100%);
 }
 
-[data-theme="dark"] .lang-dropdown {
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+/* Active Flip Animation on Click */
+.lang-toggle-btn.is-flipping .btn-flip-front,
+.lang-toggle-btn.is-flipping .btn-flip-back {
+  transform: translateY(-100%) !important;
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-.lang-dropdown.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.lang-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 9px 12px;
-  border-radius: 8px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.lang-option:hover {
-  color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme="dark"] .lang-option:hover {
-  background: rgba(255, 255, 255, 0.07);
-}
-
-.lang-option.active {
-  color: var(--accent-orange);
-  font-weight: 600;
-  background: var(--accent-orange-subtle);
-}
-
-.lang-check {
-  font-size: 13px;
-  opacity: 0;
-}
-
-.lang-option.active .lang-check {
-  opacity: 1;
+.lang-toggle-btn.no-transition .btn-flip-front,
+.lang-toggle-btn.no-transition .btn-flip-back {
+  transition: none !important;
 }
 
 .theme-toggle-btn {
@@ -304,10 +345,20 @@
 }
 
 .mobile-morph-menu.is-open {
-  width: 226px;
-  height: 410px;
+  width: 236px;
+  height: 460px;
   border-radius: 28px;
   box-shadow: none;
+}
+
+.navbar-wrapper.has-menu-open .navbar-right {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(-4px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-theme="dark"] .mobile-morph-menu {
@@ -450,27 +501,66 @@
 }
 
 .mobile-menu-bottom {
-  margin-top: 28px;
-  padding-top: 20px;
+  margin-top: 22px;
+  padding-top: 18px;
   border-top: 1px solid var(--border-subtle);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 12px;
 }
 
-.mobile-menu-bottom .lang-toggle-btn,
-.mobile-menu-bottom .theme-toggle-btn {
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  border-radius: 50%;
+.mobile-sidebar-connect {
+  width: 100%;
+  justify-content: center;
+  padding: 11px 18px;
+  font-size: 14.5px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-menu-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mobile-menu-controls .lang-toggle-btn,
+.mobile-menu-controls .theme-toggle-btn {
+  flex: 1;
+  height: 44px;
+  border-radius: var(--radius-full);
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: all var(--transition-fast);
 }
 
-.mobile-menu-bottom .lang-code-badge {
-  display: none;
+.mobile-menu-controls .lang-toggle-btn:hover {
+  color: var(--accent-orange);
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 1px var(--accent-orange-glow);
+}
+
+.mobile-menu-controls .lang-toggle-btn:hover .btn-flip-text {
+  color: var(--accent-orange);
+}
+
+.mobile-menu-controls .lang-toggle-btn:hover svg {
+  color: var(--accent-orange);
+  stroke: var(--accent-orange);
+}
+
+.mobile-menu-controls .theme-toggle-btn:hover {
+  color: var(--accent-orange);
+  border-color: var(--accent-orange);
 }
 
 @media (max-width: 960px) {
@@ -976,29 +1066,28 @@
    5. CLIENTS & COLLABORATORS PILL BAR
 ========================================= */
 .clients-bar-wrap {
-  margin: 54px 0 28px;
+  margin: 60px 0 20px;
 }
 
 .clients-bar {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
-  padding: 24px 44px;
+  padding: 16px 36px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 36px;
+  gap: 32px;
   box-shadow: var(--shadow-card);
-  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {
   .clients-bar {
     border-radius: var(--radius-xl);
-    padding: 22px;
+    padding: 18px 20px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 18px;
+    gap: 14px;
   }
 }
 
@@ -1007,24 +1096,54 @@
   font-weight: 500;
   color: var(--text-secondary);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.clients-logos {
+.clients-slider-container {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 36px;
-  flex-wrap: wrap;
+  mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+}
+
+.clients-track {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: clients-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+
+@keyframes clients-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
 }
 
 .client-logo-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
-  opacity: 0.72;
+  opacity: 0.75;
+  white-space: nowrap;
   transition: opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.client-logo-item:hover {
+  opacity: 1;
 }
 
 .client-logo-item:hover {

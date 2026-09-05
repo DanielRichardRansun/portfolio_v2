@@ -55,6 +55,17 @@ function renderNavbar() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
 
   const navHtml = `
+    <!-- Progressive Top Ambient Blur Overlay behind Header -->
+    <div class="header-blur-overlay" aria-hidden="true">
+      <div class="blur-layer layer-1"></div>
+      <div class="blur-layer layer-2"></div>
+      <div class="blur-layer layer-3"></div>
+      <div class="blur-layer layer-4"></div>
+      <div class="blur-layer layer-5"></div>
+      <div class="blur-layer layer-6"></div>
+      <div class="blur-layer layer-tint"></div>
+    </div>
+
     <!-- Mobile Menu Backdrop -->
     <div id="mobile-menu-backdrop" class="mobile-menu-backdrop" aria-hidden="true"></div>
 
@@ -91,32 +102,32 @@ function renderNavbar() {
             </nav>
 
             <div class="mobile-menu-bottom">
-              <div class="lang-switcher-wrap">
-                <button type="button" class="lang-toggle-btn" title="Change Language" aria-label="Change language">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <a href="mailto:${siteConfig.profile.email || 'hello@alexmorgan.design'}" class="nav-btn-call mobile-sidebar-connect" title="Connect with me via email">
+                <span>Connect with me</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </a>
+
+              <div class="mobile-menu-controls">
+                <button type="button" class="lang-toggle-btn" title="Switch language (EN / ID)" aria-label="Toggle language">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="10"/>
                     <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/>
                   </svg>
-                  <span class="lang-code-badge">EN</span>
+                  <span class="btn-flip-wrapper">
+                    <span class="btn-flip-text">
+                      <span class="btn-flip-front lang-text">EN</span>
+                      <span class="btn-flip-back lang-text" aria-hidden="true">EN</span>
+                    </span>
+                  </span>
                 </button>
-                <div class="lang-dropdown">
-                  <button type="button" class="lang-option active" data-lang="en">
-                    <span>English</span>
-                    <span class="lang-check">✓</span>
-                  </button>
-                  <button type="button" class="lang-option" data-lang="id">
-                    <span>Bahasa Indonesia</span>
-                    <span class="lang-check">✓</span>
-                  </button>
-                </div>
-              </div>
 
-              <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
-                ${currentTheme === 'dark' ?
-                  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
-                  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
-                }
-              </button>
+                <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
+                  ${currentTheme === 'dark' ?
+                    `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
+                    `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
+                  }
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -129,25 +140,18 @@ function renderNavbar() {
 
           <!-- Desktop Language & Theme Controls -->
           <div class="desktop-only-controls">
-            <div class="lang-switcher-wrap">
-              <button type="button" class="lang-toggle-btn" title="Change Language" aria-label="Change language">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/>
-                </svg>
-                <span class="lang-code-badge">EN</span>
-              </button>
-              <div class="lang-dropdown">
-                <button type="button" class="lang-option active" data-lang="en">
-                  <span>English</span>
-                  <span class="lang-check">✓</span>
-                </button>
-                <button type="button" class="lang-option" data-lang="id">
-                  <span>Bahasa Indonesia</span>
-                  <span class="lang-check">✓</span>
-                </button>
-              </div>
-            </div>
+            <button type="button" class="lang-toggle-btn" title="Switch language (EN / ID)" aria-label="Toggle language">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/>
+              </svg>
+              <span class="btn-flip-wrapper">
+                <span class="btn-flip-text">
+                  <span class="btn-flip-front lang-text">EN</span>
+                  <span class="btn-flip-back lang-text" aria-hidden="true">EN</span>
+                </span>
+              </span>
+            </button>
 
             <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
               ${currentTheme === 'dark' ?
@@ -169,18 +173,21 @@ function initMobileMenu() {
   const morphMenu = document.getElementById('mobile-morph-menu');
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const backdrop = document.getElementById('mobile-menu-backdrop');
+  const navWrapper = document.querySelector('.navbar-wrapper');
   if (!morphMenu || !toggleBtn) return;
 
   function openMenu() {
     morphMenu.classList.add('is-open');
     toggleBtn.setAttribute('aria-expanded', 'true');
     if (backdrop) backdrop.classList.add('is-active');
+    if (navWrapper) navWrapper.classList.add('has-menu-open');
   }
 
   function closeMenu() {
     morphMenu.classList.remove('is-open');
     toggleBtn.setAttribute('aria-expanded', 'false');
     if (backdrop) backdrop.classList.remove('is-active');
+    if (navWrapper) navWrapper.classList.remove('has-menu-open');
   }
 
   toggleBtn.addEventListener('click', (e) => {
@@ -222,58 +229,59 @@ function initMobileMenu() {
 }
 
 function initLanguageSwitcher() {
-  const wraps = document.querySelectorAll('.lang-switcher-wrap');
-  if (!wraps.length) return;
-
   const savedLang = localStorage.getItem('site_lang') || 'en';
   updateAllLangUI(savedLang);
 
-  wraps.forEach(wrap => {
-    const toggleBtn = wrap.querySelector('.lang-toggle-btn');
-    const dropdown = wrap.querySelector('.lang-dropdown');
-    if (!toggleBtn || !dropdown) return;
-
-    toggleBtn.addEventListener('click', (e) => {
+  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const wasVisible = dropdown.classList.contains('is-visible');
-      document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
-      if (!wasVisible) dropdown.classList.add('is-visible');
-    });
+      const current = localStorage.getItem('site_lang') || 'en';
+      const newLang = current === 'en' ? 'id' : 'en';
+      localStorage.setItem('site_lang', newLang);
 
-    dropdown.querySelectorAll('.lang-option').forEach(opt => {
-      opt.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const lang = opt.getAttribute('data-lang');
-        localStorage.setItem('site_lang', lang);
-        updateAllLangUI(lang);
-        document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
+      // Trigger vertical flip transition to new language across all language buttons
+      document.querySelectorAll('.lang-toggle-btn').forEach(b => {
+        const flipBack = b.querySelector('.btn-flip-back');
+        if (flipBack) {
+          flipBack.textContent = newLang.toUpperCase();
+        }
+        b.classList.add('is-flipping');
       });
+
+      // After flip animation completes (320ms), finalize labels and clean up classes
+      setTimeout(() => {
+        document.querySelectorAll('.lang-toggle-btn').forEach(b => {
+          const flipFront = b.querySelector('.btn-flip-front');
+          const flipBack = b.querySelector('.btn-flip-back');
+          if (flipFront && flipBack) {
+            b.classList.add('no-transition');
+            flipFront.textContent = newLang.toUpperCase();
+            flipBack.textContent = newLang.toUpperCase();
+            b.classList.remove('is-flipping');
+
+            requestAnimationFrame(() => {
+              b.classList.remove('no-transition');
+            });
+          }
+        });
+        updateAllLangTitles(newLang);
+      }, 320);
     });
   });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('is-visible'));
-    }
-  });
+  function updateAllLangTitles(lang) {
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+      btn.setAttribute('title', lang === 'id' ? 'Bahasa: Indonesia (Klik untuk ganti ke English)' : 'Language: English (Click to switch to Bahasa Indonesia)');
+    });
+  }
 
   function updateAllLangUI(lang) {
-    document.querySelectorAll('.lang-code-badge').forEach(badge => {
-      badge.textContent = lang.toUpperCase();
-    });
+    updateAllLangTitles(lang);
     document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
-      btn.setAttribute('title', lang === 'id' ? 'Bahasa: Indonesia' : 'Language: English');
-    });
-    document.querySelectorAll('.lang-option').forEach(opt => {
-      if (opt.getAttribute('data-lang') === lang) {
-        opt.classList.add('active');
-      } else {
-        opt.classList.remove('active');
-      }
+      const front = btn.querySelector('.btn-flip-front');
+      const back = btn.querySelector('.btn-flip-back');
+      if (front) front.textContent = lang.toUpperCase();
+      if (back) back.textContent = lang.toUpperCase();
     });
   }
 }
@@ -345,25 +353,32 @@ function renderPageContent() {
     `;
   }
 
-  // Render Clients & Collaborators Pill Bar
+  // Render Clients & Collaborators Pill Bar (Infinite Marquee with Gradient Blur Edges)
   const clientsEl = document.getElementById('clients-bar-section');
   if (clientsEl) {
+    const logos = [
+      { text: "logoipsum" },
+      { text: "标识" },
+      { text: "❖ LOGOIPSUM" },
+      { text: "✹ Logoipsum" },
+      { text: "✿ Logoipsum" }
+    ];
+
+    const logosHtml = logos.map(l => `
+      <div class="client-logo-item">
+        <span>${l.text}</span>
+      </div>
+    `).join('');
+
     clientsEl.innerHTML = `
       <div class="clients-bar-wrap reveal-blur">
         <div class="clients-bar">
           <span class="clients-label">Clients & collaborators</span>
-          <div class="clients-logos">
-            <div class="client-logo-item">
-              <span>标识</span>
-            </div>
-            <div class="client-logo-item">
-              <span>❖ LOGOIPSUM</span>
-            </div>
-            <div class="client-logo-item">
-              <span>✹ Logoipsum</span>
-            </div>
-            <div class="client-logo-item">
-              <span>✿ Logoipsum</span>
+          <div class="clients-slider-container">
+            <div class="clients-track">
+              ${logosHtml}
+              ${logosHtml}
+              ${logosHtml}
             </div>
           </div>
         </div>
