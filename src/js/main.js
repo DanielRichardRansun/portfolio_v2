@@ -53,11 +53,16 @@ function renderNavbar() {
   const isAbout = currentPath.includes('about');
   const isProjects = currentPath.includes('all-projects');
   const isContact = currentPath.includes('contact');
+  const is404 = currentPath.includes('404');
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
 
   const navHtml = `
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="mobile-menu-backdrop" aria-hidden="true"></div>
+
     <header class="navbar-wrapper">
       <div class="navbar-container">
+        <!-- Desktop Pill Navigation -->
         <nav class="navbar-left" aria-label="Main Navigation">
           <a href="index.html" class="navbar-avatar" title="${siteConfig.profile.name}">
             <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
@@ -68,6 +73,27 @@ function renderNavbar() {
             <li><a href="contact.html" class="nav-link ${isContact ? 'active' : ''}">Contact</a></li>
           </ul>
         </nav>
+
+        <!-- Mobile & Tablet Morphing Squircle Menu -->
+        <div id="mobile-morph-menu" class="mobile-morph-menu" aria-label="Mobile Navigation">
+          <button type="button" id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="hamburger-bar bar-top"></span>
+            <span class="hamburger-bar bar-bottom"></span>
+          </button>
+
+          <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-menu-avatar" title="${siteConfig.profile.name}">
+              <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
+            </a>
+
+            <nav class="mobile-menu-nav">
+              <a href="about.html" class="mobile-nav-link ${isAbout ? 'active' : ''}">About</a>
+              <a href="all-projects.html" class="mobile-nav-link ${isProjects ? 'active' : ''}">All Projects</a>
+              <a href="contact.html" class="mobile-nav-link ${isContact ? 'active' : ''}">Contact</a>
+              <a href="404.html" class="mobile-nav-link ${is404 ? 'active' : ''}">404</a>
+            </nav>
+          </div>
+        </div>
         
         <div class="navbar-right">
           <a href="${siteConfig.profile.bookingLink}" target="_blank" rel="noopener" class="nav-btn-call">
@@ -88,6 +114,63 @@ function renderNavbar() {
     </header>
   `;
   document.body.insertAdjacentHTML('afterbegin', navHtml);
+  initMobileMenu();
+}
+
+function initMobileMenu() {
+  const morphMenu = document.getElementById('mobile-morph-menu');
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  if (!morphMenu || !toggleBtn) return;
+
+  function openMenu() {
+    morphMenu.classList.add('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    if (backdrop) backdrop.classList.add('is-active');
+  }
+
+  function closeMenu() {
+    morphMenu.classList.remove('is-open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    if (backdrop) backdrop.classList.remove('is-active');
+  }
+
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (morphMenu.classList.contains('is-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeMenu);
+  }
+
+  document.addEventListener('click', (e) => {
+    if (morphMenu.classList.contains('is-open') && !morphMenu.contains(e.target) && e.target !== backdrop) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && morphMenu.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+
+  morphMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 960 && morphMenu.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
 }
 
 function renderPageContent() {

@@ -11,7 +11,8 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         allProjects: resolve(__dirname, 'all-projects.html'),
         contact: resolve(__dirname, 'contact.html'),
-        project: resolve(__dirname, 'project.html')
+        project: resolve(__dirname, 'project.html'),
+        page404: resolve(__dirname, '404.html')
       }
     }
   }
