@@ -38,8 +38,7 @@
    2. HERO CONTENT (Left: Nama Besar, Right: Rating, Tagline, Buttons)
    Fade Up Slow-Mo bersamaan dengan Navigation (No. 1) - Terlihat jelas ketarik dari bawah
    -------------------------------------------------------------------------- */
-.hero-left.hero-fade-up,
-.hero-right.hero-fade-up {
+.hero-fade-up {
   animation: hero-fade-up 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity;
 }
@@ -59,7 +58,7 @@
    3. HERO SCROLLED CAROUSEL (Showcase Marquee)
    Fade Up Ultra Slow-Mo - Delay nyata setelah bagian atas muncul (1.05s delay)
    -------------------------------------------------------------------------- */
-.hero-marquee-wrapper.hero-carousel-fade-up {
+.hero-carousel-fade-up {
   opacity: 0;
   animation: carousel-fade-up 3.0s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: 0.5s;
@@ -81,11 +80,11 @@
    4. TITLE PER-HURUF SEAMLESS BLUR FADE-IN (Framer Style)
    Muncul fade-in per-huruf secara seamless (tanpa translate up)
    -------------------------------------------------------------------------- */
-.section-subtitle.reveal-blur:not(.is-visible) {
+.reveal-blur:not(.is-visible) {
   opacity: 0;
 }
 
-.section-subtitle.reveal-blur.is-visible {
+.reveal-blur.is-visible {
   opacity: 1;
 }
 

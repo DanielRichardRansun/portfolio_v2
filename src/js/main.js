@@ -74,7 +74,7 @@ function renderNavbar() {
         <!-- Desktop Pill Navigation -->
         <nav class="navbar-left" aria-label="Main Navigation">
           <a href="index.html" class="navbar-avatar" title="${siteConfig.profile.name}">
-            <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
+            <img src="${siteConfig.profile.navbarAvatar || siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
           </a>
           <ul class="nav-links">
             <li><a href="all-projects.html" class="nav-link ${isProjects ? 'active' : ''}">Projects</a></li>
@@ -92,7 +92,7 @@ function renderNavbar() {
 
           <div class="mobile-menu-content">
             <a href="index.html" class="mobile-menu-avatar" title="${siteConfig.profile.name}">
-              <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
+              <img src="${siteConfig.profile.navbarAvatar || siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
             </a>
 
             <nav class="mobile-menu-nav">
@@ -528,7 +528,7 @@ function renderProjectDetailPage(container) {
 
   container.innerHTML = `
     <div class="container-narrow">
-      <div class="section-title-wrap reveal-blur" style="text-align: center; align-items: center; gap: 18px; margin-bottom: 36px;">
+      <div class="section-title-wrap hero-fade-up" style="text-align: center; align-items: center; gap: 18px; margin-bottom: 36px;">
         <div class="badge">${project.category} · ${project.year}</div>
         <h1 class="hero-name" style="font-size: clamp(2.5rem, 5vw, 4rem); text-align: center;"><span>${project.title}</span></h1>
         <p class="hero-tagline" style="max-width: 650px; text-align: center;">${project.subtitle}</p>
@@ -538,11 +538,11 @@ function renderProjectDetailPage(container) {
         </a>
       </div>
 
-      <div class="project-thumb reveal-blur" style="height: 500px; border-radius: var(--radius-xl); margin-bottom: 50px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);">
+      <div class="project-thumb hero-carousel-fade-up" style="height: 500px; border-radius: var(--radius-xl); margin-bottom: 50px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);">
         <img src="${project.image}" alt="${project.title}" style="width:100%; height:100%; object-fit: cover;" />
       </div>
 
-      <div class="about-grid reveal-blur" style="margin-bottom: 70px;">
+      <div class="about-grid hero-carousel-fade-up" style="margin-bottom: 70px;">
         <div class="card-item">
           <span class="card-num">01 / CHALLENGE</span>
           <h2 class="card-title">The Problem</h2>
@@ -691,7 +691,7 @@ function initScrollAnimations() {
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.section-subtitle.reveal-blur').forEach(el => {
+  document.querySelectorAll('.reveal-blur').forEach(el => {
     const rect = el.getBoundingClientRect();
     const isInInitialViewport = rect.top < window.innerHeight && rect.bottom > 0;
 

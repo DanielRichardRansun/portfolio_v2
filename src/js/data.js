@@ -18,7 +18,8 @@ export const siteConfig = {
     firstName: "Alex",
     lastName: "Morgan",
     role: "Senior Product Designer & Creative Director",
-    avatar: "./src/assets/images/avatar-profile.png",
+    avatar: "./src/assets/images/profile-image.png",
+    navbarAvatar: "./src/assets/images/profile-navbar.png",
     statusBadge: {
       active: true,
       text: "Available for work"

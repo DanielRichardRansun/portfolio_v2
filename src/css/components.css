@@ -132,16 +132,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f95721 0%, #e04612 100%);
+  background: var(--bg-tertiary);
   flex-shrink: 0;
-  box-shadow: 0 2px 10px rgba(249, 87, 33, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .navbar-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: darken;
 }
 
 .nav-links {
@@ -449,14 +448,14 @@
   height: 48px;
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(135deg, #f95721 0%, #e04612 100%);
+  background: var(--bg-tertiary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(249, 87, 33, 0.28);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 26px;
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--border-subtle);
   transition: transform var(--transition-fast);
 }
 
@@ -468,7 +467,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: darken;
 }
 
 .mobile-menu-nav {
@@ -793,12 +791,12 @@
   width: clamp(56px, 6.5vw, 76px);
   height: clamp(56px, 6.5vw, 76px);
   border-radius: 22px;
-  background: linear-gradient(145deg, #f95721 0%, #e04612 100%);
+  background: var(--bg-tertiary);
   overflow: hidden;
-  box-shadow: 0 10px 28px -4px rgba(249, 87, 33, 0.42), 0 3px 10px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.06);
   vertical-align: middle;
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--border-subtle);
   transition: transform var(--transition-fast);
 }
 
@@ -810,7 +808,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: darken;
 }
 
 .hero-right {
