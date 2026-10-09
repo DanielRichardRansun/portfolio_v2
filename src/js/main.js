@@ -306,8 +306,8 @@ function renderPageContent() {
       <div class="container">
         <div class="hero-grid">
           <!-- Left: Big Name with Inline Avatar Squircle -->
-          <div class="hero-left reveal-blur">
-            <h1 class="hero-name">
+          <div class="hero-left">
+            <h1 class="hero-name reveal-blur">
               <span class="hero-name-row">
                 <span>${siteConfig.profile.firstName}</span>
                 <span class="hero-avatar-badge" title="${siteConfig.profile.name}">
@@ -319,7 +319,7 @@ function renderPageContent() {
           </div>
 
           <!-- Right: Rating Pill, Tagline & CTAs -->
-          <div class="hero-right reveal-blur">
+          <div class="hero-right">
             <div class="rating-pill">
               <span class="rating-badge-star">
                 <span class="rating-star-icon">★</span>
@@ -343,7 +343,7 @@ function renderPageContent() {
         </div>
 
         <!-- Edge-to-Edge Hero Showcase Marquee Carousel -->
-        <div class="hero-marquee-wrapper reveal-blur" id="hero-marquee-wrapper">
+        <div class="hero-marquee-wrapper" id="hero-marquee-wrapper">
           <div class="hero-marquee-track" id="hero-marquee-track">
             ${showcaseCardsHtml}
             ${showcaseCardsHtml}
@@ -371,7 +371,7 @@ function renderPageContent() {
     `).join('');
 
     clientsEl.innerHTML = `
-      <div class="clients-bar-wrap reveal-blur">
+      <div class="clients-bar-wrap">
         <div class="clients-bar">
           <span class="clients-label">Clients & collaborators</span>
           <div class="clients-slider-container">
@@ -390,7 +390,7 @@ function renderPageContent() {
   const statsEl = document.getElementById('stats-grid');
   if (statsEl) {
     statsEl.innerHTML = siteConfig.stats.map(s => `
-      <div class="stat-card reveal-blur">
+      <div class="stat-card">
         <div class="stat-val">${s.value}</div>
         <div class="stat-label">${s.label}</div>
       </div>
@@ -404,8 +404,8 @@ function renderPageContent() {
     const displayProjects = isAll ? siteConfig.projects : siteConfig.projects.filter(p => p.featured);
     
     projectsEl.innerHTML = displayProjects.map(p => `
-      <a href="project.html?id=${p.id}" class="project-card reveal-blur">
-        <div class="project-thumb">
+      <a href="project.html?id=${p.id}" class="project-card">
+        <div class="project-thumb reveal-blur">
           <img src="${p.image}" alt="${p.title}" loading="lazy" />
         </div>
         <div class="project-info">
@@ -427,7 +427,7 @@ function renderPageContent() {
   const timelineEl = document.getElementById('career-timeline');
   if (timelineEl) {
     timelineEl.innerHTML = `
-      <div class="career-container reveal-blur">
+      <div class="career-container">
         <div class="badge-career">
           <span class="dot-orange"></span>
           <span>Career</span>
@@ -451,7 +451,7 @@ function renderPageContent() {
   const skillsEl = document.getElementById('skills-wrap');
   if (skillsEl) {
     skillsEl.innerHTML = siteConfig.skills.map(s => `
-      <span class="skill-tag reveal-blur">${s}</span>
+      <span class="skill-tag">${s}</span>
     `).join('');
   }
 
@@ -459,7 +459,7 @@ function renderPageContent() {
   const processEl = document.getElementById('process-grid');
   if (processEl) {
     processEl.innerHTML = siteConfig.process.map(pr => `
-      <div class="card-item reveal-blur">
+      <div class="card-item">
         <span class="card-num">${pr.step}</span>
         <h3 class="card-title">${pr.title}</h3>
         <p class="card-desc">${pr.desc}</p>
@@ -471,7 +471,7 @@ function renderPageContent() {
   const servicesEl = document.getElementById('services-grid');
   if (servicesEl) {
     servicesEl.innerHTML = siteConfig.services.map(sv => `
-      <div class="card-item reveal-blur">
+      <div class="card-item">
         <h3 class="card-title">${sv.title}</h3>
         <p class="card-desc">${sv.desc}</p>
       </div>
@@ -482,7 +482,7 @@ function renderPageContent() {
   const testimonialsEl = document.getElementById('testimonials-grid');
   if (testimonialsEl) {
     testimonialsEl.innerHTML = siteConfig.testimonials.map(t => `
-      <div class="testimonial-card reveal-blur">
+      <div class="testimonial-card">
         <div class="rating-star-icon" style="font-size: 15px;">★★★★★</div>
         <p class="testimonial-quote">"${t.quote}"</p>
         <div class="testimonial-author">
@@ -500,7 +500,7 @@ function renderPageContent() {
   const faqEl = document.getElementById('faq-list');
   if (faqEl) {
     faqEl.innerHTML = siteConfig.faqs.map(faq => `
-      <div class="faq-item reveal-blur">
+      <div class="faq-item">
         <button class="faq-question" type="button">
           <span>${faq.question}</span>
           <span class="faq-icon">+</span>
@@ -681,15 +681,31 @@ function initButtonFlipEffects() {
 }
 
 function initScrollAnimations() {
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal-blur').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal-blur').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const isInInitialViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+    // Rule 2: Ensure no automatic entrance animation runs on initial page load.
+    // Elements already inside the initial viewport are displayed directly without entrance animation.
+    // Elements below the fold will only trigger when scrolled into view.
+    if (isInInitialViewport && window.scrollY === 0) {
+      el.classList.add('is-visible', 'no-transition');
+      requestAnimationFrame(() => {
+        el.classList.remove('no-transition');
+      });
+    } else {
+      observer.observe(el);
+    }
+  });
 }
 
 function initInteractions() {

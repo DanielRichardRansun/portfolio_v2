@@ -1,13 +1,13 @@
 /* Framer-like Smooth Animations & Blur Reveal Effects */
 
-/* Fade-in & Blur Reveal on Scroll */
+/* Premium Entrance Animation (Scroll-Triggered Blur-Fade-Up) */
 .reveal-blur {
   opacity: 0;
-  filter: blur(12px);
-  transform: translateY(24px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(15px);
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out,
+              filter 0.7s ease-out,
+              transform 0.7s ease-out;
   will-change: opacity, filter, transform;
 }
 
@@ -15,6 +15,20 @@
   opacity: 1;
   filter: blur(0px);
   transform: translateY(0);
+}
+
+.reveal-blur.no-transition,
+.no-transition {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-blur {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Stagger Delay Helper Classes */
@@ -45,12 +59,3 @@
   animation: border-shimmer 4s ease-in-out infinite;
 }
 
-/* Smooth Page Transition */
-body {
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-}
-
-body.page-loaded {
-  opacity: 1;
-}
