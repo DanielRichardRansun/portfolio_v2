@@ -286,6 +286,18 @@ function initLanguageSwitcher() {
   }
 }
 
+function formatTypingText(text, startDelay = 0.05, step = 0.035) {
+  let currentDelay = startDelay;
+  return Array.from(text).map(char => {
+    if (char === ' ') {
+      return `<span class="typing-space">&nbsp;</span>`;
+    }
+    const html = `<span class="typing-char" style="--char-delay: ${currentDelay.toFixed(3)}s;">${char}</span>`;
+    currentDelay += step;
+    return html;
+  }).join('');
+}
+
 function renderPageContent() {
   // Render Hero Section
   const heroEl = document.getElementById('hero-section');
@@ -305,9 +317,9 @@ function renderPageContent() {
     heroEl.innerHTML = `
       <div class="container">
         <div class="hero-grid">
-          <!-- Left: Big Name with Inline Avatar Squircle -->
-          <div class="hero-left">
-            <h1 class="hero-name reveal-blur">
+          <!-- Left: Big Name with Inline Avatar Squircle (Fade up bersamaan dengan kanan & navigation) -->
+          <div class="hero-left hero-fade-up">
+            <h1 class="hero-name">
               <span class="hero-name-row">
                 <span>${siteConfig.profile.firstName}</span>
                 <span class="hero-avatar-badge" title="${siteConfig.profile.name}">
@@ -318,8 +330,8 @@ function renderPageContent() {
             </h1>
           </div>
 
-          <!-- Right: Rating Pill, Tagline & CTAs -->
-          <div class="hero-right">
+          <!-- Right: Rating Pill, Tagline & CTAs (Fade up bersamaan dengan No 1) -->
+          <div class="hero-right hero-fade-up">
             <div class="rating-pill">
               <span class="rating-badge-star">
                 <span class="rating-star-icon">★</span>
@@ -342,8 +354,8 @@ function renderPageContent() {
           </div>
         </div>
 
-        <!-- Edge-to-Edge Hero Showcase Marquee Carousel -->
-        <div class="hero-marquee-wrapper" id="hero-marquee-wrapper">
+        <!-- Edge-to-Edge Hero Showcase Marquee Carousel (Fade up delay dikit setelah No 1 & 2) -->
+        <div class="hero-marquee-wrapper hero-carousel-fade-up" id="hero-marquee-wrapper">
           <div class="hero-marquee-track" id="hero-marquee-track">
             ${showcaseCardsHtml}
             ${showcaseCardsHtml}
@@ -397,7 +409,7 @@ function renderPageContent() {
     `).join('');
   }
 
-  // Render Featured Projects
+  // Render Featured Projects (Gambar statis tanpa animasi)
   const projectsEl = document.getElementById('projects-grid');
   if (projectsEl) {
     const isAll = window.location.pathname.includes('all-projects');
@@ -405,7 +417,7 @@ function renderPageContent() {
     
     projectsEl.innerHTML = displayProjects.map(p => `
       <a href="project.html?id=${p.id}" class="project-card">
-        <div class="project-thumb reveal-blur">
+        <div class="project-thumb">
           <img src="${p.image}" alt="${p.title}" loading="lazy" />
         </div>
         <div class="project-info">
@@ -684,28 +696,33 @@ function initScrollAnimations() {
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        triggerTypingBlur(entry.target);
         entry.target.classList.add('is-visible');
         obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal-blur').forEach(el => {
+  document.querySelectorAll('.section-subtitle.reveal-blur').forEach(el => {
     const rect = el.getBoundingClientRect();
     const isInInitialViewport = rect.top < window.innerHeight && rect.bottom > 0;
 
-    // Rule 2: Ensure no automatic entrance animation runs on initial page load.
-    // Elements already inside the initial viewport are displayed directly without entrance animation.
-    // Elements below the fold will only trigger when scrolled into view.
     if (isInInitialViewport && window.scrollY === 0) {
-      el.classList.add('is-visible', 'no-transition');
-      requestAnimationFrame(() => {
-        el.classList.remove('no-transition');
-      });
+      el.classList.add('is-visible');
     } else {
       observer.observe(el);
     }
   });
+}
+
+function triggerTypingBlur(el) {
+  if (el.dataset.typingDone) return;
+  el.dataset.typingDone = 'true';
+  const text = el.textContent.trim();
+  el.innerHTML = Array.from(text).map((char, i) => {
+    if (char === ' ') return '<span class="typing-space">&nbsp;</span>';
+    return `<span class="typing-char" style="--char-delay: ${(i * 0.022).toFixed(3)}s;">${char}</span>`;
+  }).join('');
 }
 
 function initInteractions() {

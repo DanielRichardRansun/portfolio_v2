@@ -1,41 +1,159 @@
-/* Framer-like Smooth Animations & Blur Reveal Effects */
+/* ==========================================================================
+   PORTFOLICA - LUXURY ENTRANCE & FRAMER-LIKE ANIMATIONS
+   ========================================================================== */
 
-/* Premium Entrance Animation (Scroll-Triggered Blur-Fade-Up) */
-.reveal-blur {
-  opacity: 0;
-  filter: blur(15px);
-  transform: translateY(30px);
-  transition: opacity 0.7s ease-out,
-              filter 0.7s ease-out,
-              transform 0.7s ease-out;
-  will-change: opacity, filter, transform;
+/* --------------------------------------------------------------------------
+   1. NAVIGATION BAR (Fade Down - Slow-Mo & Realistik)
+   -------------------------------------------------------------------------- */
+.header-blur-overlay {
+  animation: blur-overlay-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.reveal-blur.is-visible {
-  opacity: 1;
-  filter: blur(0px);
-  transform: translateY(0);
-}
-
-.reveal-blur.no-transition,
-.no-transition {
-  transition: none !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-blur {
-    opacity: 1 !important;
-    filter: none !important;
-    transform: none !important;
-    transition: none !important;
+@keyframes blur-overlay-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
-/* Stagger Delay Helper Classes */
-.delay-1 { transition-delay: 100ms; }
-.delay-2 { transition-delay: 200ms; }
-.delay-3 { transition-delay: 300ms; }
-.delay-4 { transition-delay: 400ms; }
+.navbar-container {
+  animation: nav-fade-down 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes nav-fade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-42px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. HERO CONTENT (Left: Nama Besar, Right: Rating, Tagline, Buttons)
+   Fade Up Slow-Mo bersamaan dengan Navigation (No. 1) - Terlihat jelas ketarik dari bawah
+   -------------------------------------------------------------------------- */
+.hero-left.hero-fade-up,
+.hero-right.hero-fade-up {
+  animation: hero-fade-up 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. HERO SCROLLED CAROUSEL (Showcase Marquee)
+   Fade Up Ultra Slow-Mo - Delay nyata setelah bagian atas muncul (1.05s delay)
+   -------------------------------------------------------------------------- */
+.hero-marquee-wrapper.hero-carousel-fade-up {
+  opacity: 0;
+  animation: carousel-fade-up 3.0s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.5s;
+  will-change: transform, opacity;
+}
+
+@keyframes carousel-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(90px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. H1 & TITLE TYPING BLUR ANIMATION (Cepat per-huruf, Tanpa Fade Up)
+   -------------------------------------------------------------------------- */
+.typing-char {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(14px);
+  will-change: opacity, filter;
+  animation: type-blur-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--char-delay, 0s);
+}
+
+@keyframes type-blur-in {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.blur-badge {
+  display: inline-flex;
+  opacity: 0;
+  transform: scale(0.86);
+  filter: blur(10px);
+  will-change: opacity, filter, transform;
+  animation: badge-blur-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: var(--badge-delay, 0.2s);
+}
+
+@keyframes badge-blur-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.86);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+.typing-space {
+  display: inline;
+}
+
+.typing-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Scroll Typing Blur Helper for Section Titles */
+.section-subtitle.reveal-blur {
+  min-height: 1.15em;
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .header-blur-overlay,
+  .navbar-container,
+  .hero-left.hero-fade-up,
+  .hero-right.hero-fade-up,
+  .hero-marquee-wrapper.hero-carousel-fade-up,
+  .typing-char,
+  .blur-badge {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
 
 /* Subtle Hero Ambient Floating Animation */
 @keyframes ambient-float {
@@ -58,4 +176,3 @@
 .card-shimmer {
   animation: border-shimmer 4s ease-in-out infinite;
 }
-
