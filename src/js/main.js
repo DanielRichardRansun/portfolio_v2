@@ -55,15 +55,18 @@ function renderNavbar() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
 
   const navHtml = `
-    <!-- Progressive Top Ambient Blur Overlay behind Header -->
-    <div class="header-blur-overlay" aria-hidden="true">
-      <div class="blur-layer layer-1"></div>
-      <div class="blur-layer layer-2"></div>
-      <div class="blur-layer layer-3"></div>
-      <div class="blur-layer layer-4"></div>
-      <div class="blur-layer layer-5"></div>
-      <div class="blur-layer layer-6"></div>
-      <div class="blur-layer layer-tint"></div>
+    <!-- Progressive Top Ambient Blur Overlay behind Header (Framer Exact Component) -->
+    <div class="header-blur-overlay" aria-hidden="true" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 120px; pointer-events: none; z-index: 90;">
+      <div style="position: absolute; inset: 0px; overflow: hidden;">
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 1; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.390625px); -webkit-backdrop-filter: blur(0.390625px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 2; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(0.78125px); -webkit-backdrop-filter: blur(0.78125px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 3; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(1.5625px); -webkit-backdrop-filter: blur(1.5625px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 4; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(3.125px); -webkit-backdrop-filter: blur(3.125px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 5; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(6.25px); -webkit-backdrop-filter: blur(6.25px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 6; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(12.5px); -webkit-backdrop-filter: blur(12.5px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 7; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);"></div>
+        <div style="opacity: 1; position: absolute; inset: 0px; z-index: 8; mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%); -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%); border-radius: 0px; pointer-events: none; backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);"></div>
+      </div>
     </div>
 
     <!-- Mobile Menu Backdrop -->
@@ -409,10 +412,6 @@ function renderPageContent() {
           <img src="${p.image}" alt="${p.title}" loading="lazy" />
         </div>
         <div class="project-info">
-          <div class="project-meta">
-            <span>${p.category}</span>
-            <span>${p.year}</span>
-          </div>
           <div class="project-title">
             <span>${p.title}</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>

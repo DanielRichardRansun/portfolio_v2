@@ -5,18 +5,6 @@
 /* --------------------------------------------------------------------------
    1. NAVIGATION BAR (Fade Down - Slow-Mo & Realistik)
    -------------------------------------------------------------------------- */
-.header-blur-overlay {
-  animation: blur-overlay-fade 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes blur-overlay-fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 .navbar-container {
   animation: nav-fade-down 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;

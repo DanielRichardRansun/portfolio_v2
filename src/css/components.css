@@ -1,14 +1,13 @@
-/* Component Styles - Portfolica Refined Minimalist Design System */
-
 /* =========================================
    TOP PROGRESSIVE GRADIENT BLUR (Header Ambient Blur)
+   Exact Framer 8-Layer Progressive Blur Formula
 ========================================= */
 .header-blur-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 125px;
+  height: 120px;
   pointer-events: none;
   z-index: 90;
   overflow: hidden;
@@ -18,73 +17,80 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  will-change: transform, backdrop-filter;
+  border-radius: 0px;
+  opacity: 1;
 }
 
-/* Layer 1: Lowest blur, extends furthest down to create smooth zero-falloff */
+/* Layer 1: 0.39px */
 .header-blur-overlay .layer-1 {
   z-index: 1;
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%);
+  backdrop-filter: blur(0.390625px);
+  -webkit-backdrop-filter: blur(0.390625px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
 }
 
-/* Layer 2 */
+/* Layer 2: 0.78px */
 .header-blur-overlay .layer-2 {
   z-index: 2;
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 85%);
+  backdrop-filter: blur(0.78125px);
+  -webkit-backdrop-filter: blur(0.78125px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
 }
 
-/* Layer 3 */
+/* Layer 3: 1.56px */
 .header-blur-overlay .layer-3 {
   z-index: 3;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 70%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 70%);
+  backdrop-filter: blur(1.5625px);
+  -webkit-backdrop-filter: blur(1.5625px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
 }
 
-/* Layer 4 */
+/* Layer 4: 3.125px */
 .header-blur-overlay .layer-4 {
   z-index: 4;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 55%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 55%);
+  backdrop-filter: blur(3.125px);
+  -webkit-backdrop-filter: blur(3.125px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
 }
 
-/* Layer 5 */
+/* Layer 5: 6.25px */
 .header-blur-overlay .layer-5 {
   z-index: 5;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,0,0,0) 40%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 18%, rgba(0,0,0,0) 40%);
+  backdrop-filter: blur(6.25px);
+  -webkit-backdrop-filter: blur(6.25px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
 }
 
-/* Layer 6: Maximum blur at top edge behind the floating navigation */
+/* Layer 6: 12.5px */
 .header-blur-overlay .layer-6 {
   z-index: 6;
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,0) 25%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 8%, rgba(0,0,0,0) 25%);
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
 }
 
-/* Layer 7: Subtle ambient tint layer - kept transparent so elements behind show through the blur */
-.header-blur-overlay .layer-tint {
+/* Layer 7: 25px */
+.header-blur-overlay .layer-7 {
   z-index: 7;
-  background: linear-gradient(to bottom, rgba(248, 248, 249, 0.35) 0%, rgba(248, 248, 249, 0.1) 55%, transparent 100%);
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
 }
 
-[data-theme="dark"] .header-blur-overlay .layer-tint {
-  background: linear-gradient(to bottom, rgba(9, 9, 11, 0.45) 0%, rgba(9, 9, 11, 0.12) 55%, transparent 100%);
+/* Layer 8: 50px */
+.header-blur-overlay .layer-8 {
+  z-index: 8;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
 }
 
 /* =========================================
@@ -1332,10 +1338,16 @@
 
 .project-thumb {
   width: 100%;
-  height: 320px;
+  height: 380px;
   background: #ececee;
   overflow: hidden;
   position: relative;
+}
+
+@media (max-width: 640px) {
+  .project-thumb {
+    height: 260px;
+  }
 }
 
 [data-theme="dark"] .project-thumb {
@@ -1354,19 +1366,11 @@
 }
 
 .project-info {
-  padding: 30px;
+  padding: 24px 28px 26px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   flex-grow: 1;
-}
-
-.project-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-  color: var(--text-muted);
 }
 
 .project-title {
@@ -1382,6 +1386,7 @@
 .project-title svg {
   transition: transform var(--transition-fast), color var(--transition-fast);
   color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .project-card:hover .project-title svg {
@@ -1390,7 +1395,7 @@
 }
 
 .project-sub {
-  font-size: 14px;
+  font-size: 14.5px;
   color: var(--text-secondary);
   line-height: 1.55;
 }
