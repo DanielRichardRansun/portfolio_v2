@@ -77,8 +77,8 @@ function renderNavbar() {
             <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
           </a>
           <ul class="nav-links">
+            <li><a href="all-projects.html" class="nav-link ${isProjects ? 'active' : ''}">Projects</a></li>
             <li><a href="about.html" class="nav-link ${isAbout ? 'active' : ''}">About</a></li>
-            <li><a href="all-projects.html" class="nav-link ${isProjects ? 'active' : ''}">All Projects</a></li>
             <li><a href="contact.html" class="nav-link ${isContact ? 'active' : ''}">Contact</a></li>
           </ul>
         </nav>
@@ -96,8 +96,8 @@ function renderNavbar() {
             </a>
 
             <nav class="mobile-menu-nav">
+              <a href="all-projects.html" class="mobile-nav-link ${isProjects ? 'active' : ''}">Projects</a>
               <a href="about.html" class="mobile-nav-link ${isAbout ? 'active' : ''}">About</a>
-              <a href="all-projects.html" class="mobile-nav-link ${isProjects ? 'active' : ''}">All Projects</a>
               <a href="contact.html" class="mobile-nav-link ${isContact ? 'active' : ''}">Contact</a>
             </nav>
 
@@ -284,18 +284,6 @@ function initLanguageSwitcher() {
       if (back) back.textContent = lang.toUpperCase();
     });
   }
-}
-
-function formatTypingText(text, startDelay = 0.05, step = 0.035) {
-  let currentDelay = startDelay;
-  return Array.from(text).map(char => {
-    if (char === ' ') {
-      return `<span class="typing-space">&nbsp;</span>`;
-    }
-    const html = `<span class="typing-char" style="--char-delay: ${currentDelay.toFixed(3)}s;">${char}</span>`;
-    currentDelay += step;
-    return html;
-  }).join('');
 }
 
 function renderPageContent() {
@@ -696,7 +684,7 @@ function initScrollAnimations() {
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        triggerTypingBlur(entry.target);
+        triggerCharBlur(entry.target);
         entry.target.classList.add('is-visible');
         obs.unobserve(entry.target);
       }
@@ -709,20 +697,29 @@ function initScrollAnimations() {
 
     if (isInInitialViewport && window.scrollY === 0) {
       el.classList.add('is-visible');
+      triggerCharBlur(el);
     } else {
       observer.observe(el);
     }
   });
 }
 
-function triggerTypingBlur(el) {
-  if (el.dataset.typingDone) return;
-  el.dataset.typingDone = 'true';
+function triggerCharBlur(el) {
+  if (el.dataset.charBlurDone) return;
+  el.dataset.charBlurDone = 'true';
   const text = el.textContent.trim();
-  el.innerHTML = Array.from(text).map((char, i) => {
-    if (char === ' ') return '<span class="typing-space">&nbsp;</span>';
-    return `<span class="typing-char" style="--char-delay: ${(i * 0.022).toFixed(3)}s;">${char}</span>`;
-  }).join('');
+  const words = text.split(/\s+/);
+  let globalCharIndex = 0;
+
+  el.innerHTML = words.map(word => {
+    const charsHtml = Array.from(word).map(char => {
+      const delay = (globalCharIndex * 0.025).toFixed(3);
+      globalCharIndex++;
+      return `<span class="blur-char" style="--char-delay: ${delay}s;">${char}</span>`;
+    }).join('');
+    globalCharIndex += 1;
+    return `<span class="blur-word">${charsHtml}</span>`;
+  }).join(' ');
 }
 
 function initInteractions() {

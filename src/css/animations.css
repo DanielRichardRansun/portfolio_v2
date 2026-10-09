@@ -78,18 +78,32 @@
 }
 
 /* --------------------------------------------------------------------------
-   4. H1 & TITLE TYPING BLUR ANIMATION (Cepat per-huruf, Tanpa Fade Up)
+   4. TITLE PER-HURUF SEAMLESS BLUR FADE-IN (Framer Style)
+   Muncul fade-in per-huruf secara seamless (tanpa translate up)
    -------------------------------------------------------------------------- */
-.typing-char {
+.section-subtitle.reveal-blur:not(.is-visible) {
+  opacity: 0;
+}
+
+.section-subtitle.reveal-blur.is-visible {
+  opacity: 1;
+}
+
+.blur-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.blur-char {
   display: inline-block;
   opacity: 0;
   filter: blur(14px);
   will-change: opacity, filter;
-  animation: type-blur-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: char-blur-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: var(--char-delay, 0s);
 }
 
-@keyframes type-blur-in {
+@keyframes char-blur-in {
   0% {
     opacity: 0;
     filter: blur(14px);
@@ -98,43 +112,6 @@
     opacity: 1;
     filter: blur(0px);
   }
-}
-
-.blur-badge {
-  display: inline-flex;
-  opacity: 0;
-  transform: scale(0.86);
-  filter: blur(10px);
-  will-change: opacity, filter, transform;
-  animation: badge-blur-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: var(--badge-delay, 0.2s);
-}
-
-@keyframes badge-blur-pop {
-  0% {
-    opacity: 0;
-    transform: scale(0.86);
-    filter: blur(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0px);
-  }
-}
-
-.typing-space {
-  display: inline;
-}
-
-.typing-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-/* Scroll Typing Blur Helper for Section Titles */
-.section-subtitle.reveal-blur {
-  min-height: 1.15em;
 }
 
 /* --------------------------------------------------------------------------
@@ -146,8 +123,7 @@
   .hero-left.hero-fade-up,
   .hero-right.hero-fade-up,
   .hero-marquee-wrapper.hero-carousel-fade-up,
-  .typing-char,
-  .blur-badge {
+  .blur-char {
     animation: none !important;
     opacity: 1 !important;
     filter: none !important;
