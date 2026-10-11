@@ -11,6 +11,12 @@
   will-change: transform, opacity;
 }
 
+.navbar-container.no-nav-anim {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 @keyframes nav-fade-down {
   0% {
     opacity: 0;
@@ -139,3 +145,25 @@
 .card-shimmer {
   animation: border-shimmer 4s ease-in-out infinite;
 }
+
+/* --------------------------------------------------------------------------
+   5. ABOUT PAGE DELAYED PROFILE PHOTO ENTRANCE
+   -------------------------------------------------------------------------- */
+.about-photo-entrance {
+  opacity: 0;
+  animation: photo-entrance-fade-up 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.65s;
+  will-change: transform, opacity;
+}
+
+@keyframes photo-entrance-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(44px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+

@@ -1,7 +1,8 @@
 /**
  * ABOUT PAGE - Dynamic Content & Interactions
- * Exact replica of Portfolica Framer reference layout
- * Data sourced from constants/dictionaries.ts
+ * Exact recreation with clickable career popup modal,
+ * thick-bordered image certificates with slow-mo reveal/hide,
+ * and minimalist popup details.
  */
 
 // ─── Career items from dictionaries.ts ──────────────────────────────────────
@@ -142,164 +143,279 @@ const certItems = [
   { name: "Prompt Engineering: Shaping Better AI Responses", issuer: "IBM SkillsBuild", date: "Mar 2026", image: "./src/assets/images/certificate/cert-12.jpg" },
 ];
 
-let showAllCerts = false;
+const INITIAL_CERT_COUNT = 8;
+let isCertsExpanded = false;
+let isAnimatingCerts = false;
 
-// ─── Render Career History (Pill Cards with Accordion) ───────────────────────
+// ─── Render Career History (Clean Clickable Pill Rows) ──────────────────────
 function renderCareer() {
   const container = document.getElementById('about-career-list');
   if (!container) return;
 
   container.innerHTML = careerItems.map((item, index) => {
-    const isCurrent = item.date.toLowerCase().includes('present');
-    const respItems = item.responsibilities.map(r => `<li>${r}</li>`).join('');
-    const impactItems = item.impacts.map(im => `<li>${im}</li>`).join('');
-
     return `
-      <div class="career-pill-item" id="career-item-${index}">
-        <div 
-          class="career-pill-header" 
-          role="button" 
-          tabindex="0" 
-          aria-expanded="false" 
-          aria-controls="career-body-${index}"
-          onclick="toggleCareer(${index})"
-        >
-          <div class="career-role-title">${item.role}</div>
+      <div 
+        class="career-pill-item" 
+        id="career-item-${index}" 
+        role="button" 
+        tabindex="0" 
+        onclick="openCareerModal(${index})"
+        aria-label="View details for ${item.role} at ${item.company}"
+      >
+        <!-- Left: Role Title -->
+        <div class="career-role-title">${item.role}</div>
 
-          <div class="career-company-col">
-            <div class="career-company-logo">
-              <img 
-                src="${item.logo}" 
-                alt="${item.company}" 
-                loading="lazy" 
-                onerror="this.parentElement.innerHTML='<span style=\\'font-size:12px;font-weight:600;color:var(--accent-orange)\\'>${item.company[0]}</span>'" 
-              />
-            </div>
-            <span class="career-company-name">${item.company}</span>
+        <!-- Center: Company Logo + Name -->
+        <div class="career-company-col">
+          <div class="career-company-logo">
+            <img 
+              src="${item.logo}" 
+              alt="${item.company}" 
+              loading="lazy" 
+              onerror="this.parentElement.innerHTML='<span style=\\'font-size:14px;font-weight:500;color:var(--accent-orange)\\'>${item.company[0]}</span>'" 
+            />
           </div>
-
-          <div class="career-date-col">${item.date}</div>
-
-          <div class="career-arrow-btn" aria-hidden="true">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M6 9l6 6 6-6"/>
-            </svg>
-          </div>
+          <span class="career-company-name">${item.company}</span>
         </div>
 
-        <div class="career-pill-body" id="career-body-${index}" role="region">
-          <div class="career-pill-inner">
-            <div class="career-status-bar">
-              <span class="career-status-tag ${isCurrent ? 'active' : 'completed'}">
-                ${isCurrent ? '<span class="status-dot"></span>' : ''}
-                ${item.type} · ${isCurrent ? 'Active Role' : 'Completed'}
-              </span>
-            </div>
-            <p class="career-item-desc">${item.desc}</p>
-            <div class="career-details-grid">
-              <div class="career-col-block">
-                <h5>Key Responsibilities</h5>
-                <ul>${respItems}</ul>
-              </div>
-              <div class="career-col-block">
-                <h5>Impacts & Achievements</h5>
-                <ul>${impactItems}</ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Right: Date Range (Right-aligned to edge) -->
+        <div class="career-date-col">${item.date}</div>
       </div>
     `;
   }).join('');
 
   // Keyboard accessibility
-  document.querySelectorAll('.career-pill-header').forEach((header, i) => {
-    header.addEventListener('keydown', (e) => {
+  document.querySelectorAll('.career-pill-item').forEach((pill, i) => {
+    pill.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggleCareer(i);
+        openCareerModal(i);
       }
     });
   });
 }
 
-// ─── Toggle Career Accordion ─────────────────────────────────────────────────
-window.toggleCareer = function(index) {
-  const item = document.getElementById(`career-item-${index}`);
+// ─── Career Detail Popup Modal ──────────────────────────────────────────────
+window.openCareerModal = function(index) {
+  const item = careerItems[index];
   if (!item) return;
 
-  const isOpen = item.classList.contains('is-open');
+  const modal = document.getElementById('career-modal');
+  const logo = document.getElementById('career-modal-logo');
+  const status = document.getElementById('career-modal-status');
+  const role = document.getElementById('career-modal-role');
+  const company = document.getElementById('career-modal-company');
+  const date = document.getElementById('career-modal-date');
+  const desc = document.getElementById('career-modal-desc');
+  const respList = document.getElementById('career-modal-resp');
+  const impactList = document.getElementById('career-modal-impact');
 
-  // Close any open item first (clean single accordion)
-  document.querySelectorAll('.career-pill-item.is-open').forEach(el => {
-    el.classList.remove('is-open');
-    const header = el.querySelector('.career-pill-header');
-    if (header) header.setAttribute('aria-expanded', 'false');
-  });
+  if (!modal || !role) return;
 
-  // Toggle clicked item
-  if (!isOpen) {
-    item.classList.add('is-open');
-    const header = item.querySelector('.career-pill-header');
-    if (header) header.setAttribute('aria-expanded', 'true');
-  }
+  logo.src = item.logo;
+  logo.alt = item.company;
+  status.className = `career-modal-status-badge ${item.type.toLowerCase().replace(/[\s-]+/g, '-')}`;
+  status.textContent = item.type;
+  
+  role.textContent = item.role;
+  company.textContent = item.company;
+  date.textContent = item.date;
+  desc.textContent = item.desc;
+
+  respList.innerHTML = item.responsibilities.map(r => `<li>${r}</li>`).join('');
+  impactList.innerHTML = item.impacts.map(im => `<li>${im}</li>`).join('');
+
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
 };
 
-// ─── Render Certificates Showcase ───────────────────────────────────────────
-function renderCertificates() {
+window.closeCareerModal = function() {
+  const modal = document.getElementById('career-modal');
+  if (!modal) return;
+
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+};
+
+// ─── Render Certificates Showcase (Pure Images Only) ─────────────────────────
+function renderCertificates(initial = true) {
   const container = document.getElementById('about-certs-showcase');
   if (!container) return;
 
-  const itemsToRender = showAllCerts ? certItems : certItems.slice(0, 8);
+  const count = isCertsExpanded ? certItems.length : INITIAL_CERT_COUNT;
+  const items = certItems.slice(0, count);
 
-  container.innerHTML = itemsToRender.map(cert => `
-    <div class="cert-card-item">
-      <div class="cert-thumb-wrap">
-        <img 
-          src="${cert.image}" 
-          alt="${cert.name}" 
-          loading="lazy" 
-          onerror="this.src='./src/assets/images/certificate/cert-1.jpg'"
-        />
-      </div>
-      <div class="cert-body-info">
-        <div class="cert-title-text" title="${cert.name}">${cert.name}</div>
-        <div class="cert-meta-row">
-          <span class="cert-issuer-text">${cert.issuer}</span>
-          <span class="cert-date-badge">${cert.date}</span>
+  container.innerHTML = items.map((cert, i) => {
+    const isExtra = i >= INITIAL_CERT_COUNT;
+    const animClass = isExtra && !initial ? 'cert-anim-reveal' : '';
+    // Slow-mo staggered delay per item (0.09s interval)
+    const delay = isExtra ? ((i - INITIAL_CERT_COUNT) * 0.09).toFixed(3) : '0';
+
+    return `
+      <div 
+        class="cert-image-card ${animClass}" 
+        style="--row-delay: ${delay}s;" 
+        onclick="openCertModal(${i})"
+        tabindex="0"
+        role="button"
+        aria-label="View ${cert.name}"
+      >
+        <div class="cert-image-inner">
+          <img 
+            src="${cert.image}" 
+            alt="${cert.name}" 
+            loading="lazy" 
+            onerror="this.src='./src/assets/images/certificate/cert-1.jpg'"
+          />
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
-  // Update button text
+  // Keyboard accessibility for cert cards
+  container.querySelectorAll('.cert-image-card').forEach((card, i) => {
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openCertModal(i);
+      }
+    });
+  });
+
+  updateToggleBtn();
+}
+
+function updateToggleBtn() {
   const toggleBtn = document.getElementById('certs-toggle-btn');
   const toggleText = document.getElementById('certs-toggle-text');
-  if (toggleBtn && toggleText) {
-    if (showAllCerts) {
-      toggleText.textContent = 'Show Less';
-      toggleBtn.classList.add('is-expanded');
-    } else {
-      toggleText.textContent = `Show All Certifications (${certItems.length})`;
-      toggleBtn.classList.remove('is-expanded');
-    }
+  if (!toggleBtn || !toggleText) return;
+
+  if (isCertsExpanded) {
+    toggleText.textContent = 'Hide Extra Certifications';
+    toggleBtn.classList.add('is-expanded');
+  } else {
+    toggleText.textContent = `Show All Certifications (${certItems.length})`;
+    toggleBtn.classList.remove('is-expanded');
   }
 }
 
-// ─── Setup Certificate Toggle Button ────────────────────────────────────────
+// ─── Setup Certificate Toggle Button (Slow-mo with Reverse Hide Animation) ───
 function setupCertsToggle() {
   const toggleBtn = document.getElementById('certs-toggle-btn');
-  if (!toggleBtn) return;
+  const container = document.getElementById('about-certs-showcase');
+  if (!toggleBtn || !container) return;
 
   toggleBtn.addEventListener('click', () => {
-    showAllCerts = !showAllCerts;
-    renderCertificates();
+    if (isAnimatingCerts) return;
+
+    if (!isCertsExpanded) {
+      // Expanding with smooth slow-mo cascade
+      isCertsExpanded = true;
+      renderCertificates(false);
+    } else {
+      // Collapsing with reverse slow-mo cascade
+      isAnimatingCerts = true;
+      const allCards = container.querySelectorAll('.cert-image-card');
+      const extraCards = Array.from(allCards).slice(INITIAL_CERT_COUNT);
+
+      extraCards.reverse().forEach((card, idx) => {
+        card.classList.remove('cert-anim-reveal');
+        card.classList.add('cert-anim-hide');
+        card.style.setProperty('--row-delay', `${(idx * 0.075).toFixed(3)}s`);
+      });
+
+      // After hide animation completes, reset to initial count
+      setTimeout(() => {
+        isCertsExpanded = false;
+        renderCertificates(true);
+        isAnimatingCerts = false;
+
+        // Smooth scroll back to certs section if user was scrolled far below
+        const certSection = document.querySelector('.about-certs-section');
+        if (certSection) {
+          const rect = certSection.getBoundingClientRect();
+          if (rect.top < 0) {
+            certSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, 500);
+    }
+  });
+}
+
+// ─── Minimalist Certificate Detail Popup Modal ───────────────────────────────
+window.openCertModal = function(index) {
+  const cert = certItems[index];
+  if (!cert) return;
+
+  const modal = document.getElementById('cert-modal');
+  const img = document.getElementById('cert-modal-img');
+  const title = document.getElementById('cert-modal-title');
+  const issuer = document.getElementById('cert-modal-issuer');
+  const date = document.getElementById('cert-modal-date');
+
+  if (!modal || !img || !title) return;
+
+  img.src = cert.image;
+  img.alt = cert.name;
+  title.textContent = cert.name;
+  if (issuer) issuer.textContent = `Issued by: ${cert.issuer}`;
+  if (date) date.textContent = cert.date;
+
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeCertModal = function() {
+  const modal = document.getElementById('cert-modal');
+  if (!modal) return;
+
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+};
+
+function setupModalInteractions() {
+  // Career Modal
+  const careerModal = document.getElementById('career-modal');
+  const careerClose = document.getElementById('career-modal-close');
+  if (careerClose) {
+    careerClose.addEventListener('click', closeCareerModal);
+  }
+  if (careerModal) {
+    careerModal.addEventListener('click', (e) => {
+      if (e.target === careerModal) closeCareerModal();
+    });
+  }
+
+  // Cert Modal
+  const certModal = document.getElementById('cert-modal');
+  const certClose = document.getElementById('cert-modal-close');
+  if (certClose) {
+    certClose.addEventListener('click', closeCertModal);
+  }
+  if (certModal) {
+    certModal.addEventListener('click', (e) => {
+      if (e.target === certModal) closeCertModal();
+    });
+  }
+
+  // Global Escape Key Listener
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (careerModal && careerModal.classList.contains('is-open')) closeCareerModal();
+      if (certModal && certModal.classList.contains('is-open')) closeCertModal();
+    }
   });
 }
 
 // ─── Initialize on DOM Load ──────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderCareer();
-  renderCertificates();
+  renderCertificates(true);
   setupCertsToggle();
+  setupModalInteractions();
 });

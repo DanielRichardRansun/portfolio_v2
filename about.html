@@ -19,135 +19,137 @@
 
   <main class="about-main">
 
-    <!-- 1. HERO SECTION (Centered Heading + Large Profile Photo, matching Framer Portfolica reference) -->
+    <!-- 1. HERO SECTION (Centered Heading + Badge + Sequential Line-by-Line Entrance Animation) -->
     <section class="about-hero hero-fade-up">
       <div class="about-container">
-        <!-- Centered Giant Heading -->
-        <h1 class="about-hero-title">
-          <span class="about-hero-row-1">A <span class="highlight-orange">Full Stack Developer</span> <span class="hero-emoji">👨‍💻</span></span>
-          <span class="about-hero-row-2">who builds digital experiences</span>
+        <!-- Top Badge -->
+        <div class="section-pill-badge about-hero-pill-badge">About Me</div>
+
+        <!-- Centered Heading with Line-by-Line Sequential Wave Reveal Blur -->
+        <h1 class="about-hero-title reveal-blur">
+          <span class="about-hero-row-1">A <span class="highlight-orange">Full Stack Developer</span></span>
+          <span class="about-hero-row-2">who builds <span class="hero-muted">digital experiences</span></span>
           <span class="about-hero-row-3">that drive real growth <span class="hero-arrow">↗</span></span>
         </h1>
 
-        <!-- Large Profile Photo Block -->
+        <!-- Large Profile Photo Block (With delayed entrance animation) -->
         <div class="about-hero-media">
-          <div class="about-hero-photo-wrap">
+          <div class="about-hero-photo-wrap about-photo-entrance">
             <img 
               src="./src/assets/images/profile-about.png" 
               alt="Daniel Richard Ransun" 
               class="about-hero-photo"
               loading="eager"
             />
-            <div class="about-hero-badge">
-              <span class="status-dot"></span>
-              <span>Available for work</span>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. CAREER HISTORY & ROLES SECTION -->
+    <!-- 2. CAREER HISTORY & ROLES SECTION (Clean Clickable Pill Rows + Popup Detail) -->
     <section class="about-career-section hero-carousel-fade-up">
       <div class="about-container">
-        <!-- Section Header -->
+        <!-- Section Header (Centered multi-line title) -->
         <div class="about-section-header">
           <div class="section-pill-badge">Experience</div>
           <h2 class="about-section-title">
-            Career history<br>& Roles
+            <span class="about-title-line reveal-blur">Career history</span>
+            <span class="about-title-line reveal-blur" data-blur-delay="0.32">& Roles</span>
           </h2>
         </div>
 
-        <!-- Career Accordion List (Card pills matching reference) -->
+        <!-- Career Clickable List (3-column grid: left role, middle logo/company, right date) -->
         <div id="about-career-list" class="about-career-stack"></div>
       </div>
     </section>
 
-    <!-- 3. TECHNICAL & CREATIVE SKILLS SECTION -->
+    <!-- 3. TECHNICAL & CREATIVE SKILLS SECTION (100% Width Body Grid) -->
     <section class="about-skills-section hero-carousel-fade-up">
       <div class="about-container">
-        <!-- Section Header -->
+        <!-- Section Header with badge 'Skills' -->
         <div class="about-section-header">
-          <div class="section-pill-badge dots">•••</div>
+          <div class="section-pill-badge">Skills</div>
           <h2 class="about-section-title">
-            Technical &<br>creative skills
+            <span class="about-title-line reveal-blur">Technical &</span>
+            <span class="about-title-line reveal-blur" data-blur-delay="0.32">creative skills</span>
           </h2>
         </div>
 
-        <!-- 4 Skills Cards Grid (matching reference) -->
+        <!-- 4 Skills Cards Grid (100% width matching reference) -->
         <div class="about-skills-grid">
-          <!-- Card 1: Web Development -->
+          <!-- Card 1: Web Design -->
           <div class="skill-card">
             <div class="skill-card-visual">
-              <img src="./src/assets/images/porto/MyPortfolio.png" alt="Web Development" loading="lazy" />
+              <img src="./src/assets/images/porto/MyPortfolio.png" alt="Web Design" loading="lazy" />
             </div>
             <div class="skill-card-footer">
               <span class="skill-dot-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               </span>
-              <span class="skill-name">Web Development</span>
+              <span class="skill-name">Web Design</span>
             </div>
           </div>
 
-          <!-- Card 2: App & Mobile Systems -->
+          <!-- Card 2: App Design -->
           <div class="skill-card">
             <div class="skill-card-visual">
-              <img src="./src/assets/images/showcase-vr.png" alt="App & Mobile Systems" loading="lazy" />
+              <img src="./src/assets/images/showcase-vr.png" alt="App Design" loading="lazy" />
             </div>
             <div class="skill-card-footer">
               <span class="skill-dot-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2.5"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
               </span>
-              <span class="skill-name">App & Full Stack</span>
+              <span class="skill-name">App Design</span>
             </div>
           </div>
 
-          <!-- Card 3: CMS & E-Commerce -->
+          <!-- Card 3: Branding -->
           <div class="skill-card">
             <div class="skill-card-visual">
-              <img src="./src/assets/images/porto/Ransite.png" alt="CMS & E-Commerce" loading="lazy" />
+              <img src="./src/assets/images/porto/Ransite.png" alt="Branding" loading="lazy" />
             </div>
             <div class="skill-card-footer">
               <span class="skill-dot-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
               </span>
-              <span class="skill-name">CMS & Platforms</span>
+              <span class="skill-name">Branding</span>
             </div>
           </div>
 
-          <!-- Card 4: SEO & Cloud Infrastructure -->
+          <!-- Card 4: Graphics Design -->
           <div class="skill-card">
             <div class="skill-card-visual">
-              <img src="./src/assets/images/porto/AppleRebrand.png" alt="SEO & Cloud Infrastructure" loading="lazy" />
+              <img src="./src/assets/images/porto/AppleRebrand.png" alt="Graphics Design" loading="lazy" />
             </div>
             <div class="skill-card-footer">
               <span class="skill-dot-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
               </span>
-              <span class="skill-name">SEO & Cloud Setup</span>
+              <span class="skill-name">Graphics Design</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. CERTIFICATES & CREDENTIALS SECTION (Replaces Testimonials, styled like reference cards) -->
+    <!-- 4. CERTIFICATES & CREDENTIALS SECTION (100% Width Body, Thick White Border, Slow-Mo Entrance) -->
     <section class="about-certs-section hero-carousel-fade-up">
       <div class="about-container">
         <!-- Section Header -->
         <div class="about-section-header">
           <div class="section-pill-badge">Credentials</div>
           <h2 class="about-section-title">
-            Certifications<br>& Accreditations
+            <span class="about-title-line reveal-blur">Certifications</span>
+            <span class="about-title-line reveal-blur" data-blur-delay="0.35">& Accreditations</span>
           </h2>
         </div>
 
-        <!-- Certificates Grid Showcase -->
+        <!-- Certificates Grid Showcase (100% width body, clean small rounded images with thick white border) -->
         <div id="about-certs-showcase" class="about-certs-grid"></div>
 
-        <!-- Show More Toggle Button -->
+        <!-- Show All Toggle Button -->
         <div class="certs-more-wrapper">
-          <button type="button" id="certs-toggle-btn" class="btn-secondary certs-toggle-btn">
+          <button type="button" id="certs-toggle-btn" class="certs-toggle-btn">
             <span id="certs-toggle-text">Show All Certifications (14)</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -156,6 +158,67 @@
     </section>
 
   </main>
+
+  <!-- Clean & Spacious Career Detail Popup Modal -->
+  <div id="career-modal" class="career-modal-backdrop" aria-hidden="true">
+    <div class="career-modal-dialog">
+      <button type="button" id="career-modal-close" class="modal-close-btn" aria-label="Close career modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      
+      <div class="career-modal-header">
+        <!-- Left: Clean Big Logo without circle wrapper -->
+        <div class="career-modal-logo-box">
+          <img id="career-modal-logo" src="" alt="Company Logo" />
+        </div>
+
+        <!-- Right of Logo: Role Title, Meta & Status Badge -->
+        <div class="career-modal-header-info">
+          <h3 id="career-modal-role" class="career-modal-role"></h3>
+          <div class="career-modal-meta-row">
+            <span id="career-modal-company" class="career-modal-company"></span>
+            <span class="career-modal-dot">·</span>
+            <span id="career-modal-date" class="career-modal-date"></span>
+            <span id="career-modal-status" class="career-modal-status-badge"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-modal-divider"></div>
+
+      <p id="career-modal-desc" class="career-modal-desc"></p>
+
+      <div class="career-modal-lists">
+        <div class="career-modal-list-col">
+          <h4>Key Responsibilities</h4>
+          <ul id="career-modal-resp"></ul>
+        </div>
+        <div class="career-modal-list-col">
+          <h4>Impacts & Achievements</h4>
+          <ul id="career-modal-impact"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Simple & Minimalist Certificate Detail Popup Modal -->
+  <div id="cert-modal" class="cert-modal-backdrop" aria-hidden="true">
+    <div class="cert-modal-dialog">
+      <button type="button" id="cert-modal-close" class="modal-close-btn" aria-label="Close cert modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="cert-modal-image-wrap">
+        <img id="cert-modal-img" src="" alt="Certificate Preview" />
+      </div>
+      <div class="cert-modal-details">
+        <div class="cert-modal-meta-top">
+          <span id="cert-modal-issuer" class="cert-modal-issuer"></span>
+          <span id="cert-modal-date" class="cert-modal-date"></span>
+        </div>
+        <h3 id="cert-modal-title" class="cert-modal-title"></h3>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="./src/js/main.js"></script>
   <script type="module" src="./src/js/about.js"></script>

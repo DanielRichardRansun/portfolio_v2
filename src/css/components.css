@@ -105,9 +105,8 @@
   display: flex;
   justify-content: center;
   pointer-events: none;
-  padding: 0 40px;
+  padding: 0;
 }
-
 
 .navbar-container {
   pointer-events: auto;
@@ -115,25 +114,29 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1240px;
+  padding: 0 32px;
+  margin: 0 auto;
   gap: 24px;
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 32px; /* Gap yang lumayan besar antara avatar dan link */
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
-  padding: 8px 26px 8px 10px;
+  padding: 0 34px 0 8px; /* Padding di kanan Contact */
+  height: 52px; /* Disesuaikan ke 53px sesuai permintaan */
+  box-sizing: border-box;
   box-shadow: var(--shadow-nav);
   transition: all var(--transition-normal);
 }
 
 .navbar-avatar {
-  width: 44px;
-  height: 44px;
+  width: 37px;
+  height: 37px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
@@ -142,6 +145,12 @@
   background: var(--bg-tertiary);
   flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  border: 0px solid transparent; /* Hilang border orange di selain home */
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.navbar-avatar.is-home {
+  border-color: var(--accent-orange-hover); /* Border orange khusus di home page */
 }
 
 .navbar-avatar img {
@@ -153,32 +162,38 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 34px; /* Gap ekstra antar menu Projects, About, dan Contact */
   list-style: none;
 }
 
+/* Pure Clean Nav Text - No inner pill or border */
 .nav-link {
   font-family: var(--font-heading);
-  font-size: 17.5px;
+  font-size: 16.5px;
   font-weight: 500; /* Max 500 */
   color: var(--text-secondary);
-  padding: 10px 24px;
-  border-radius: var(--radius-full);
-  transition: all var(--transition-fast);
+  padding: 4px 6px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transition: color var(--transition-fast);
   display: inline-flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
 }
 
+/* Active & Hover: Vivid Orange Text Only */
 .nav-link:hover, .nav-link.active {
-  color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.05);
+  color: var(--accent-orange) !important;
+  background: transparent !important;
 }
 
 [data-theme="dark"] .nav-link:hover,
 [data-theme="dark"] .nav-link.active {
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--accent-orange) !important;
+  background: transparent !important;
 }
 
 .navbar-right {
@@ -198,15 +213,18 @@
   font-family: var(--font-heading);
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 500; /* Max 500 */
   color: var(--text-primary);
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  padding: 12px 24px;
+  height: 52px; /* Disesuaikan ke 53px */
+  padding: 0 24px;
   border-radius: var(--radius-full);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-nav);
+  box-sizing: border-box;
   transition: all var(--transition-fast);
   cursor: pointer;
   overflow: hidden;
@@ -219,6 +237,8 @@
 }
 
 .nav-btn-call svg {
+  width: 14px;
+  height: 14px;
   color: currentColor;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: center;
@@ -240,18 +260,24 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  height: 48px;
+  height: 52px; /* Disesuaikan ke 53px */
   padding: 0 16px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
   color: var(--text-secondary);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-nav);
+  box-sizing: border-box;
   transition: all var(--transition-fast);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   user-select: none;
+}
+
+.lang-toggle-btn svg {
+  width: 15px;
+  height: 15px;
 }
 
 .lang-toggle-btn:hover {
@@ -262,7 +288,7 @@
 }
 
 .lang-toggle-btn .btn-flip-text {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 500; /* Max 500 */
   letter-spacing: 0.04em;
   color: var(--text-primary);
@@ -289,15 +315,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px; /* Disesuaikan ke 52px */
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 50%;
   color: var(--text-secondary);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-nav);
+  box-sizing: border-box;
   transition: all var(--transition-fast);
   cursor: pointer;
+}
+
+.theme-toggle-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .theme-toggle-btn:hover {
@@ -574,10 +606,11 @@
 @media (max-width: 960px) {
   .navbar-wrapper {
     top: 20px;
-    padding: 0 20px;
+    padding: 0;
   }
 
   .navbar-container {
+    padding: 0 20px;
     align-items: flex-start;
   }
 
@@ -629,14 +662,14 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13.5px;
+  font-size: 14.5px; /* Tuned slightly smaller as requested */
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.015em;
   color: var(--text-secondary);
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
-  padding: 6px 16px;
+  padding: 8px 22px; /* Slightly refined padding */
   width: fit-content;
   box-shadow: var(--shadow-xs);
 }
@@ -766,7 +799,7 @@
   align-items: center;
   margin: 0;
   padding-top: 25px;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
 }
 
 @media (max-width: 960px) {

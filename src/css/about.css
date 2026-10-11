@@ -1,10 +1,11 @@
+@charset "UTF-8";
 /* =========================================
    ABOUT PAGE - DEDICATED STYLES
-   Exact recreation of Portfolica Framer reference
-   https://portfolica.framer.website/about
+   Minimalist & Luxurious (Strict Font Weight Max 500)
+   Exact Framer Design System Replica
 ========================================= */
 
-/* ─── Global About Page Layout ─── */
+/* ─── Global Page Reset ─── */
 .about-page {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -13,14 +14,20 @@
 
 .about-main {
   width: 100%;
-  padding-bottom: 120px;
 }
 
+/* Exactly matches .container (1240px with 32px padding) */
 .about-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 0 20px;
+  }
 }
 
 /* ─── Section Header (Shared) ─── */
@@ -29,29 +36,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 16px;
+  margin-bottom: 56px;
 }
 
+/* Refined badge size across page */
 .section-pill-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 16px;
+  padding: 8px 22px;
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
-  font-size: 12px;
+  font-size: 14.5px;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.015em;
   color: var(--text-secondary);
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-}
-
-.section-pill-badge.dots {
-  letter-spacing: 0.2em;
-  padding: 4px 14px;
 }
 
 [data-theme="dark"] .section-pill-badge {
@@ -62,84 +65,90 @@
 
 .about-section-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 4vw, 3rem);
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.5rem, 4.5vw, 3.85rem);
+  font-weight: 500; /* Strict max 500 */
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-title-line {
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
 /* =========================================
-   1. HERO SECTION (Centered Heading + Large Photo)
+   1. HERO SECTION (Spacious Top Padding & Tuned Scale)
 ========================================= */
 .about-hero {
-  padding-top: clamp(120px, 15vh, 160px);
-  padding-bottom: clamp(60px, 8vh, 90px);
+  padding-top: clamp(160px, 18vh, 210px); /* Generous breathing room below floating pill navbar */
+  padding-bottom: clamp(90px, 12vh, 130px);
   text-align: center;
+}
+
+.about-hero-pill-badge {
+  margin-bottom: 28px;
 }
 
 .about-hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 5.2vw, 4.2rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
+  font-size: clamp(2.4rem, 4.4vw, 3.85rem); /* Tuned slightly smaller as requested */
+  font-weight: 500; /* Strict max 500 */
+  letter-spacing: -0.025em;
+  line-height: 1.16;
   color: var(--text-primary);
   margin: 0 auto;
-  max-width: 880px;
+  max-width: 960px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .about-hero-row-1 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  display: block;
+  color: var(--text-primary);
 }
 
+/* Solid vivid orange — no transparent clipping */
 .about-hero-title .highlight-orange {
-  color: var(--accent-orange);
-  background: linear-gradient(135deg, #fd6e32 0%, #f64617 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-}
-
-.about-hero-title .hero-emoji {
-  display: inline-block;
-  font-size: 0.9em;
-  vertical-align: middle;
+  color: #fd6e32 !important;
+  font-weight: 500;
+  display: inline;
 }
 
 .about-hero-row-2 {
   display: block;
-  color: var(--text-muted);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
+.about-hero-row-2 .hero-muted {
+  color: var(--text-muted);
+  font-weight: 450;
+}
+
 .about-hero-row-3 {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  display: block;
   color: var(--text-primary);
+  font-weight: 500;
 }
 
 .about-hero-title .hero-arrow {
   display: inline-block;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
   transform: translateY(-2px);
 }
 
-/* Standalone Large Profile Photo Block */
+/* Standalone Large Profile Photo Block (Restored Height + Generous Margin) */
 .about-hero-media {
-  margin: 44px auto 0;
+  margin: 58px auto 0; /* Padding bawah yang lapang agar tidak mepet dengan foto */
   max-width: 720px;
   width: 100%;
   display: flex;
@@ -149,11 +158,11 @@
 .about-hero-photo-wrap {
   position: relative;
   width: 100%;
-  height: clamp(340px, 44vw, 440px);
-  border-radius: 26px;
+  height: clamp(340px, 44vw, 420px); /* Original height restored */
+  border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
   background: #1c130d;
 }
 
@@ -170,372 +179,202 @@
   transform: scale(1.02);
 }
 
-/* Floating status badge on photo */
-.about-hero-badge {
-  position: absolute;
-  bottom: 22px;
-  left: 22px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: var(--radius-full);
-  padding: 8px 18px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  font-family: var(--font-heading);
-  font-size: 13.5px;
-  font-weight: 500;
-  color: #09090b;
-  pointer-events: none;
-}
-
-[data-theme="dark"] .about-hero-badge {
-  background: rgba(18, 18, 21, 0.88);
-  color: #f4f4f5;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+/* Photo Entrance Delay (After 3-line sequential wave finishes) */
+.about-photo-entrance {
+  animation-delay: 1.45s !important;
 }
 
 /* =========================================
    2. CAREER HISTORY & ROLES SECTION
+   Clickable Pill Cards with Centered Middle Column
 ========================================= */
 .about-career-section {
-  padding: clamp(60px, 8vh, 90px) 0;
+  padding: clamp(90px, 13vh, 140px) 0;
 }
 
 .about-career-stack {
-  max-width: 680px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 18px; /* Increased gap between pills */
 }
 
-/* Separate Pill Card for each Career Item */
+/* 3-Column Grid Pill Card: Left Role, Middle Logo/Company, Right Date */
 .career-pill-item {
+  width: 100%;
+  max-width: 860px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 18px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-  overflow: hidden;
-  transition: border-color var(--transition-fast), 
+  border-radius: 20px;
+  padding: 24px 36px; /* Generous padding */
+  display: grid;
+  grid-template-columns: 1.5fr 1.25fr 1fr; /* Optically centered: shifts company column rightward so gaps on both sides are balanced */
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform var(--transition-fast), 
               box-shadow var(--transition-fast), 
-              transform var(--transition-fast);
+              border-color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .career-pill-item:hover {
+  transform: translateY(-2px);
   border-color: var(--border-light);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="dark"] .career-pill-item:hover {
   border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
-.career-pill-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  cursor: pointer;
-  user-select: none;
-  gap: 16px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Left: Role */
+/* Column 1: Role Title (Left-aligned) */
 .career-role-title {
   font-family: var(--font-heading);
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 19.5px; /* Larger role title */
+  font-weight: 500; /* Strict max 500 */
   color: var(--text-primary);
-  flex: 1;
-  min-width: 0;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color var(--transition-fast);
 }
 
-.career-pill-item.is-open .career-role-title {
+.career-pill-item:hover .career-role-title {
   color: var(--accent-orange);
 }
 
-/* Center: Company */
+/* Column 2: Logo + Company (In middle grid column, left-aligned inside) */
 .career-company-col {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
+  gap: 12px;
+  justify-self: start;
+  justify-content: flex-start;
 }
 
+/* Clean Logo: Pure icon without circular background frame */
 .career-company-logo {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: transparent;
+  border: none;
 }
 
 .career-company-logo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  padding: 2px;
+  display: block;
 }
 
 .career-company-name {
-  font-size: 14.5px;
+  font-size: 16.5px; /* Larger company text */
   color: var(--text-secondary);
   font-weight: 450;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Right: Date Range */
+/* Column 3: Date Range (Right-aligned in right column) */
 .career-date-col {
   font-family: var(--font-heading);
-  font-size: 13.5px;
+  font-size: 15.5px; /* Larger date text */
+  font-weight: 450;
   color: var(--text-muted);
   white-space: nowrap;
-  flex-shrink: 0;
+  text-align: right;
+  justify-self: end;
 }
 
-/* Arrow Toggle Button */
-.career-arrow-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: var(--text-muted);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.2s, 
-              color 0.2s, 
-              border-color 0.2s;
-}
-
-.career-pill-item.is-open .career-arrow-btn {
-  transform: rotate(180deg);
-  background: var(--accent-orange);
-  border-color: var(--accent-orange);
-  color: #ffffff;
-}
-
-/* Accordion Body */
-.career-pill-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.career-pill-item.is-open .career-pill-body {
-  max-height: 850px;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.career-pill-inner {
-  padding: 22px 24px 24px;
-  background: rgba(0, 0, 0, 0.015);
-}
-
-[data-theme="dark"] .career-pill-inner {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.career-status-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.career-status-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-heading);
-  font-size: 12px;
-  font-weight: 500;
-  padding: 3px 12px;
-  border-radius: var(--radius-full);
-}
-
-.career-status-tag.active {
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.career-status-tag.completed {
-  color: var(--text-muted);
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
-}
-
-.career-item-desc {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.career-details-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-@media (max-width: 600px) {
-  .career-details-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
-
-.career-col-block h5 {
-  font-family: var(--font-heading);
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.career-col-block ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin: 0;
-  padding: 0;
-}
-
-.career-col-block ul li {
-  font-size: 13.5px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  padding-left: 16px;
-  position: relative;
-}
-
-.career-col-block ul li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent-orange);
-  font-size: 11px;
-  top: 2px;
-}
-
-/* Mobile adjustments for Career Row */
-@media (max-width: 680px) {
-  .career-pill-header {
-    padding: 16px 18px;
-    gap: 12px;
-  }
-
-  .career-company-name {
-    display: none;
-  }
-
-  .career-date-col {
-    font-size: 12.5px;
-  }
-}
-
-@media (max-width: 480px) {
-  .career-pill-header {
+/* Mobile responsive for Career Row */
+@media (max-width: 768px) {
+  .career-pill-item {
+    display: flex;
     flex-wrap: wrap;
-    gap: 8px 12px;
+    gap: 12px;
+    padding: 20px 24px;
   }
 
   .career-role-title {
     width: 100%;
-    flex: none;
   }
 
-  .career-company-col {
-    margin-right: auto;
+  .career-date-col {
+    margin-left: auto;
   }
 }
 
 /* =========================================
    3. TECHNICAL & CREATIVE SKILLS SECTION
-   (Exact 4-Card Visual Grid from Reference)
+   100% Body Width + Larger Text & Icons
 ========================================= */
 .about-skills-section {
-  padding: clamp(60px, 8vh, 90px) 0;
+  padding: clamp(90px, 13vh, 140px) 0;
 }
 
 .about-skills-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 960px;
+  gap: 24px;
+  width: 100%;
   margin: 0 auto;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .about-skills-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 20px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 540px) {
   .about-skills-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
 .skill-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 12px;
+  border-radius: 24px;
+  padding: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   transition: transform var(--transition-fast), 
               box-shadow var(--transition-fast), 
               border-color var(--transition-fast);
 }
 
 .skill-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
   border-color: var(--border-light);
 }
 
 [data-theme="dark"] .skill-card:hover {
   border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
 .skill-card-visual {
   width: 100%;
-  height: 160px;
-  border-radius: 14px;
+  height: 230px;
+  border-radius: 16px;
   overflow: hidden;
-  background: #f0f0f2;
+  background: #f4f4f5;
   position: relative;
   display: flex;
   align-items: center;
@@ -550,23 +389,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .skill-card:hover .skill-card-visual img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .skill-card-footer {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 2px 6px 4px;
+  gap: 12px;
+  padding: 10px 6px 4px 6px;
 }
 
 .skill-dot-icon {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -576,8 +415,8 @@
 
 .skill-name {
   font-family: var(--font-heading);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px; /* Larger label font size */
+  font-weight: 500; /* Strict max 500 */
   color: var(--text-primary);
   white-space: nowrap;
   overflow: hidden;
@@ -585,31 +424,32 @@
 }
 
 /* =========================================
-   4. CERTIFICATIONS & CREDENTIALS SECTION
-   (Replaces Testimonials, matching card design)
+   4. CERTIFICATES & CREDENTIALS SECTION
+   100% Body Width + Extra Thick White Border (7px)
 ========================================= */
 .about-certs-section {
-  padding: clamp(60px, 8vh, 90px) 0;
+  padding: clamp(90px, 13vh, 140px) 0 clamp(100px, 14vh, 160px);
 }
 
 .about-certs-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 1020px;
+  gap: 24px;
+  width: 100%;
   margin: 0 auto;
 }
 
 @media (max-width: 1024px) {
   .about-certs-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 }
 
 @media (max-width: 720px) {
   .about-certs-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 16px;
   }
 }
 
@@ -619,113 +459,108 @@
   }
 }
 
-.cert-card-item {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 20px;
-  padding: 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: transform var(--transition-fast), 
-              box-shadow var(--transition-fast), 
-              border-color var(--transition-fast);
-}
-
-.cert-card-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
-  border-color: var(--border-light);
-}
-
-[data-theme="dark"] .cert-card-item:hover {
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-}
-
-.cert-thumb-wrap {
+/* Pure Image Certificate Card with Fixed Thick Frame & Inner Zoom matching Skills Card */
+.cert-image-card {
+  aspect-ratio: 4 / 3;
   width: 100%;
-  height: 135px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  padding: 9px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
   position: relative;
+  transition: box-shadow var(--transition-fast);
 }
 
-.cert-thumb-wrap img {
+[data-theme="dark"] .cert-image-card {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+.cert-image-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.cert-image-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 13px; /* Rounded corners matching skill card visual */
+  overflow: hidden;
+  position: relative;
+  background: #f4f4f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-theme="dark"] .cert-image-inner {
+  background: #18181c;
+}
+
+.cert-image-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cert-card-item:hover .cert-thumb-wrap img {
-  transform: scale(1.04);
+.cert-image-card:hover .cert-image-inner img {
+  transform: scale(1.06);
 }
 
-.cert-body-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
+/* Slow-Mo Staggered Row Animation on Reveal / Hide */
+.cert-anim-reveal {
+  animation: certRowIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--row-delay, 0s);
 }
 
-.cert-title-text {
-  font-family: var(--font-heading);
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--text-primary);
-  line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.cert-anim-hide {
+  animation: certRowOut 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--row-delay, 0s);
 }
 
-.cert-meta-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  margin-top: auto;
+@keyframes certRowIn {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
 }
 
-.cert-issuer-text {
-  font-size: 11.5px;
-  color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cert-date-badge {
-  font-family: var(--font-heading);
-  font-size: 10.5px;
-  font-weight: 500;
-  color: var(--accent-orange);
-  background: var(--accent-orange-subtle);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  white-space: nowrap;
+@keyframes certRowOut {
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(28px);
+  }
 }
 
 /* Certs Toggle Button */
 .certs-more-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 36px;
+  margin-top: 48px;
 }
 
 .certs-toggle-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--font-heading);
-  font-size: 14.5px;
-  font-weight: 500;
-  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 500; /* Strict max 500 */
+  padding: 12px 28px;
   border-radius: var(--radius-full);
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -742,9 +577,358 @@
 }
 
 .certs-toggle-btn svg {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .certs-toggle-btn.is-expanded svg {
   transform: rotate(180deg);
+}
+
+/* =========================================
+   5. MINIMALIST POPUP MODALS (Career & Certs)
+   Slow-Mo Blur-to-Clear Open & Automatic Reverse Blur Close
+   Uses visibility + transition-delay for seamless close animation
+========================================= */
+.career-modal-backdrop,
+.cert-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0.55s,
+              backdrop-filter 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.career-modal-dialog,
+.cert-modal-dialog {
+  opacity: 0;
+  filter: blur(16px);
+  transform: scale(0.92) translateY(24px);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Active Open State: Slow-Mo Blur to Clear (visibility instant) */
+.career-modal-backdrop.is-open,
+.cert-modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0s,
+              backdrop-filter 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              -webkit-backdrop-filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dialog content: Blur to Clear on open, auto-reverses on close */
+.career-modal-backdrop.is-open .career-modal-dialog,
+.cert-modal-backdrop.is-open .cert-modal-dialog {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1) translateY(0);
+}
+
+/* Career Modal Box Dimensions - Enlarged & Spacious */
+.career-modal-dialog {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 28px;
+  max-width: 920px; /* Spacious width */
+  width: 100%;
+  padding: 48px 56px; /* Generous breathing room */
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .career-modal-dialog {
+    padding: 30px 24px;
+  }
+}
+
+/* Top Right Close Button (Free standing, no overlap with status) */
+.modal-close-btn {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  transform: scale(1.08);
+}
+
+/* Career Modal Header Layout: Left Logo, Right Details */
+.career-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding-right: 54px; /* Free space away from close button */
+}
+
+/* Clean Big Logo: No Circle Wrapper */
+.career-modal-logo-box {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.career-modal-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.career-modal-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.career-modal-role {
+  font-family: var(--font-heading);
+  font-size: 32px; /* Big, clear role title */
+  font-weight: 500; /* Strict max 500 */
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.career-modal-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17.5px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.career-modal-company {
+  font-weight: 450;
+  color: var(--text-secondary);
+}
+
+.career-modal-dot {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Status Badge: Simple status tag (Full-time, Freelance, etc.) placed inline */
+.career-modal-status-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-left: 4px;
+  color: var(--accent-orange);
+  background: var(--accent-orange-subtle);
+  border: 1px solid rgba(253, 110, 50, 0.2);
+}
+
+.career-modal-status-badge.full-time {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.career-modal-status-badge.freelance {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.career-modal-status-badge.internship {
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.career-modal-status-badge.part-time {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.career-modal-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 30px 0 24px 0;
+}
+
+.career-modal-desc {
+  font-size: 17.5px; /* Larger description text */
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.career-modal-lists {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+@media (max-width: 600px) {
+  .career-modal-lists {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.career-modal-list-col h4 {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 500; /* Strict max 500 */
+  color: var(--text-muted);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.career-modal-list-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.career-modal-list-col ul li {
+  font-size: 16px; /* Larger bullet items */
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding-left: 24px;
+  position: relative;
+}
+
+/* Crisp Vector SVG Arrow for List Bullet (No encoding issues) */
+.career-modal-list-col ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fd6e32' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' y1='12' x2='20' y2='12'%3E%3C/line%3E%3Cpolyline points='13 5 20 12 13 19'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Certificate Modal Specifics - Restored to Previous Compact Size */
+.cert-modal-dialog {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  max-width: 680px;
+  width: 100%;
+  padding: 32px 36px;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .cert-modal-dialog {
+    padding: 24px 20px;
+  }
+}
+
+.cert-modal-image-wrap {
+  width: 100%;
+  max-height: 420px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #09090b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+}
+
+.cert-modal-image-wrap img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+}
+
+.cert-modal-details {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cert-modal-meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cert-modal-issuer {
+  font-size: 15px;
+  font-weight: 450;
+  color: var(--text-muted);
+}
+
+.cert-modal-date {
+  font-family: var(--font-heading);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--accent-orange);
+  background: var(--accent-orange-subtle);
+  padding: 4px 13px;
+  border-radius: var(--radius-full);
+}
+
+.cert-modal-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.35;
 }

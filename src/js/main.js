@@ -1,4 +1,5 @@
 import { siteConfig } from './data.js';
+import { smoothScroll } from './smooth-scroll.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Theme (Default Light)
@@ -52,7 +53,15 @@ function renderNavbar() {
   const isAbout = currentPath.includes('about');
   const isProjects = currentPath.includes('all-projects');
   const isContact = currentPath.includes('contact');
+  const isHome = !isAbout && !isProjects && !isContact;
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+
+  // Only animate navbar on initial site entrance in this session
+  const hasAnimatedNav = sessionStorage.getItem('nav_animated');
+  if (!hasAnimatedNav) {
+    sessionStorage.setItem('nav_animated', 'true');
+  }
+  const noAnimClass = hasAnimatedNav ? 'no-nav-anim' : '';
 
   const navHtml = `
     <!-- Progressive Top Ambient Blur Overlay behind Header (Framer Exact Component) -->
@@ -73,10 +82,10 @@ function renderNavbar() {
     <div id="mobile-menu-backdrop" class="mobile-menu-backdrop" aria-hidden="true"></div>
 
     <header class="navbar-wrapper">
-      <div class="navbar-container">
+      <div class="navbar-container ${noAnimClass}">
         <!-- Desktop Pill Navigation -->
         <nav class="navbar-left" aria-label="Main Navigation">
-          <a href="index.html" class="navbar-avatar" title="${siteConfig.profile.name}">
+          <a href="index.html" class="navbar-avatar ${isHome ? 'is-home' : ''}" title="${siteConfig.profile.name}">
             <img src="${siteConfig.profile.navbarAvatar || siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
           </a>
           <ul class="nav-links">
@@ -94,7 +103,7 @@ function renderNavbar() {
           </button>
 
           <div class="mobile-menu-content">
-            <a href="index.html" class="mobile-menu-avatar" title="${siteConfig.profile.name}">
+            <a href="index.html" class="mobile-menu-avatar ${isHome ? 'is-home' : ''}" title="${siteConfig.profile.name}">
               <img src="${siteConfig.profile.navbarAvatar || siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
             </a>
 
@@ -564,11 +573,6 @@ function renderProjectDetailPage(container) {
 }
 
 function renderFooter() {
-  const currentPath = window.location.pathname;
-  if (currentPath.includes('about')) {
-    return;
-  }
-
   const footerHtml = `
     <footer class="footer">
       <div class="container">
@@ -711,19 +715,38 @@ function initScrollAnimations() {
 function triggerCharBlur(el) {
   if (el.dataset.charBlurDone) return;
   el.dataset.charBlurDone = 'true';
-  const text = el.textContent.trim();
-  const words = text.split(/\s+/);
+  const baseDelay = parseFloat(el.dataset.blurDelay || 0);
   let globalCharIndex = 0;
 
-  el.innerHTML = words.map(word => {
-    const charsHtml = Array.from(word).map(char => {
-      const delay = (globalCharIndex * 0.025).toFixed(3);
-      globalCharIndex++;
-      return `<span class="blur-char" style="--char-delay: ${delay}s;">${char}</span>`;
-    }).join('');
-    globalCharIndex += 1;
-    return `<span class="blur-word">${charsHtml}</span>`;
-  }).join(' ');
+  function processNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      if (!text.trim()) return node;
+      const span = document.createElement('span');
+      span.innerHTML = text.split(/(\s+)/).map(part => {
+        if (/^\s+$/.test(part)) return part;
+        const charsHtml = Array.from(part).map(char => {
+          const delay = (baseDelay + globalCharIndex * 0.022).toFixed(3);
+          globalCharIndex++;
+          return `<span class="blur-char" style="--char-delay: ${delay}s;">${char}</span>`;
+        }).join('');
+        return `<span class="blur-word">${charsHtml}</span>`;
+      }).join('');
+      return span;
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      const childNodes = Array.from(node.childNodes);
+      childNodes.forEach(child => {
+        const replacement = processNode(child);
+        if (replacement !== child) {
+          node.replaceChild(replacement, child);
+        }
+      });
+      return node;
+    }
+    return node;
+  }
+
+  processNode(el);
 }
 
 function initInteractions() {
