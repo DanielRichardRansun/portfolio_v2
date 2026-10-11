@@ -105,7 +105,7 @@ function renderNavbar() {
             </nav>
 
             <div class="mobile-menu-bottom">
-              <a href="mailto:${siteConfig.profile.email || 'hello@alexmorgan.design'}" class="nav-btn-call mobile-sidebar-connect" title="Connect with me via email">
+              <a href="mailto:${siteConfig.profile.email || 'hello@danielrichard.design'}" class="nav-btn-call mobile-sidebar-connect" title="Connect with me via email">
                 <span>Connect with me</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
               </a>
@@ -136,7 +136,7 @@ function renderNavbar() {
         </div>
         
         <div class="navbar-right">
-          <a href="mailto:${siteConfig.profile.email || 'hello@alexmorgan.design'}" class="nav-btn-call" title="Connect with me via email">
+          <a href="mailto:${siteConfig.profile.email || 'hello@danielrichard.design'}" class="nav-btn-call" title="Connect with me via email">
             <span>Connect with me</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
           </a>
@@ -569,8 +569,8 @@ function renderFooter() {
       <div class="container">
         <div class="footer-top">
           <div>
-            <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 6px;">${siteConfig.profile.name}</h3>
-            <p style="color: var(--text-muted); font-size: 14px;">${siteConfig.footer.responseGuarantee}</p>
+            <h3 style="font-size: 20px; font-weight: 500; margin-bottom: 6px;">${siteConfig.profile.name}</h3>
+            <p style="color: var(--text-muted); font-size: 15px;">${siteConfig.footer.responseGuarantee}</p>
           </div>
           <div class="footer-socials">
             ${siteConfig.socials.map(s => `

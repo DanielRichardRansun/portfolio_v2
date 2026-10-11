@@ -1,9 +1,11 @@
-:root {
-  --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+@import url('https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap');
 
-  /* Primary Light Theme Palette (Clean & Minimalist) */
-  --bg-primary: #f8f8f9;
+:root {
+  --font-primary: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Clash Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Primary Light Theme Palette (Exact Portfolica Framer Tokens) */
+  --bg-primary: #f4f4f5;
   --bg-surface: #ffffff;
   --bg-surface-elevated: #ffffff;
   --bg-card: #ffffff;
@@ -11,20 +13,20 @@
   --bg-pill: #ffffff;
   --bg-subtle: #f0f0f2;
 
-  --text-primary: #09090b;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
-  --text-dim: #9ca3af;
+  --text-primary: #27272a;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+  --text-dim: #a1a1aa;
 
-  --border-subtle: rgba(0, 0, 0, 0.05);
-  --border-light: rgba(0, 0, 0, 0.09);
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-light: #e4e4e7;
   --border-accent: rgba(0, 0, 0, 0.16);
 
-  /* Vibrant Coral Orange Accent (from Framer reference) */
-  --accent-orange: #f95721;
-  --accent-orange-hover: #e04612;
-  --accent-orange-glow: rgba(249, 87, 33, 0.25);
-  --accent-orange-subtle: rgba(249, 87, 33, 0.08);
+  /* Vibrant Coral Orange Accent (from Framer Portfolica) */
+  --accent-orange: #fd6e32;
+  --accent-orange-hover: #f64617;
+  --accent-orange-glow: rgba(253, 110, 50, 0.25);
+  --accent-orange-subtle: rgba(253, 110, 50, 0.08);
 
   --accent-green: #10b981;
   --accent-green-glow: rgba(16, 185, 129, 0.18);

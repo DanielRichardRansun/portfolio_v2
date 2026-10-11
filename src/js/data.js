@@ -6,20 +6,20 @@
 
 export const siteConfig = {
   meta: {
-    title: "Alex Morgan - Senior Product Designer & Creative Director",
-    description: "Personal Portfolio Website Template - Crafted with precision, sleek interactions, and high conversion design.",
-    author: "Alex Morgan",
-    location: "CDMX, Mexico & Worldwide Remote"
+    title: "Daniel Richard Ransun - Senior Product Designer & Creative Director",
+    description: "Personal Portfolio Website - Crafted with precision, sleek interactions, and high conversion design.",
+    author: "Daniel Richard Ransun",
+    location: "Jakarta, Indonesia & Worldwide Remote"
   },
   
   // Profil & Hero
   profile: {
-    name: "Alex Morgan",
-    firstName: "Alex",
-    lastName: "Morgan",
+    name: "Daniel Richard Ransun",
+    firstName: "Daniel",
+    lastName: "Richard Ransun",
     role: "Senior Product Designer & Creative Director",
     avatar: "./src/assets/images/profile-image.png",
-    navbarAvatar: "./src/assets/images/profile-navbar.png",
+    navbarAvatar: "./src/assets/images/profile-navbar2.png",
     statusBadge: {
       active: true,
       text: "Available for work"
@@ -37,7 +37,7 @@ export const siteConfig = {
       text: "See Projects",
       link: "#projects"
     },
-    email: "hello@alexmorgan.design",
+    email: "hello@danielrichard.design",
     bookingLink: "https://cal.com"
   },
 
@@ -312,7 +312,7 @@ export const siteConfig = {
 
   // Footer & Legal
   footer: {
-    copyright: `© ${new Date().getFullYear()} Alex Morgan. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Daniel Richard Ransun. All rights reserved.`,
     newsletterNote: "Subscribe to get early access to special offers, design insights, and exclusive project updates.",
     responseGuarantee: "We will reach out to you within 24hrs"
   }
