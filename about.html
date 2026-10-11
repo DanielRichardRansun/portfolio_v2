@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - Daniel Richard Ransun</title>
+  <title>About - Daniel Richard Ransun | Full Stack Web Developer</title>
+  <meta name="description" content="Personal portfolio of Daniel Richard Ransun — a Full Stack Web Developer who builds digital experiences that drive real growth.">
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,53 +13,151 @@
   <link rel="stylesheet" href="./src/css/style.css">
   <link rel="stylesheet" href="./src/css/components.css">
   <link rel="stylesheet" href="./src/css/animations.css">
+  <link rel="stylesheet" href="./src/css/about.css">
 </head>
-<body>
+<body class="about-page">
 
-  <main class="container" style="padding-top: 140px;">
-    <!-- About Header -->
-    <div class="section-title-wrap hero-fade-up" style="margin-bottom: 60px;">
-      <div class="badge">About me</div>
-      <h1 class="hero-name" style="font-size: clamp(2.5rem, 6vw, 4.5rem); display: block;">
-        <span class="reveal-blur">Visual designer who builds digital experiences that drive real growth.</span>
-      </h1>
-    </div>
+  <main class="about-main">
 
-    <!-- Career & Skills Grid -->
-    <section class="section" style="padding: 0 0 80px;">
-      <div class="about-grid hero-carousel-fade-up">
-        <div class="about-text-block">
-          <div class="card-item">
-            <h3 class="card-title">Background</h3>
-            <p class="card-desc">Originally from CDMX, I've been designing identities for 7+ years, working with startups, restaurants, hoteliers, & creative founders across Mexico and worldwide.</p>
-          </div>
-          <div class="card-item">
-            <h3 class="card-title">My Approach</h3>
-            <p class="card-desc">I believe good design starts with empathy. I ask questions, listen closely, and build brands that feel as good as they look — honest, beautiful, and built to last.</p>
-          </div>
-        </div>
+    <!-- 1. HERO SECTION (Centered Heading + Large Profile Photo, matching Framer Portfolica reference) -->
+    <section class="about-hero hero-fade-up">
+      <div class="about-container">
+        <!-- Centered Giant Heading -->
+        <h1 class="about-hero-title">
+          <span class="about-hero-row-1">A <span class="highlight-orange">Full Stack Developer</span> <span class="hero-emoji">👨‍💻</span></span>
+          <span class="about-hero-row-2">who builds digital experiences</span>
+          <span class="about-hero-row-3">that drive real growth <span class="hero-arrow">↗</span></span>
+        </h1>
 
-        <div>
-          <div id="career-timeline"></div>
-
-          <div style="margin-top: 36px;">
-            <h4 style="font-size: 17px; font-weight: 500; color: var(--text-secondary); margin-bottom: 14px;">Skills & Competencies</h4>
-            <div id="skills-wrap" class="skills-wrap"></div>
+        <!-- Large Profile Photo Block -->
+        <div class="about-hero-media">
+          <div class="about-hero-photo-wrap">
+            <img 
+              src="./src/assets/images/profile-about.png" 
+              alt="Daniel Richard Ransun" 
+              class="about-hero-photo"
+              loading="eager"
+            />
+            <div class="about-hero-badge">
+              <span class="status-dot"></span>
+              <span>Available for work</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="section">
-      <div class="section-title-wrap" style="margin-bottom: 48px; text-align: center; align-items: center;">
-        <div class="badge">Testimonials</div>
-        <h2 class="section-subtitle reveal-blur">What Clients Say</h2>
+    <!-- 2. CAREER HISTORY & ROLES SECTION -->
+    <section class="about-career-section hero-carousel-fade-up">
+      <div class="about-container">
+        <!-- Section Header -->
+        <div class="about-section-header">
+          <div class="section-pill-badge">Experience</div>
+          <h2 class="about-section-title">
+            Career history<br>& Roles
+          </h2>
+        </div>
+
+        <!-- Career Accordion List (Card pills matching reference) -->
+        <div id="about-career-list" class="about-career-stack"></div>
       </div>
-      <div id="testimonials-grid" class="testimonials-grid"></div>
     </section>
+
+    <!-- 3. TECHNICAL & CREATIVE SKILLS SECTION -->
+    <section class="about-skills-section hero-carousel-fade-up">
+      <div class="about-container">
+        <!-- Section Header -->
+        <div class="about-section-header">
+          <div class="section-pill-badge dots">•••</div>
+          <h2 class="about-section-title">
+            Technical &<br>creative skills
+          </h2>
+        </div>
+
+        <!-- 4 Skills Cards Grid (matching reference) -->
+        <div class="about-skills-grid">
+          <!-- Card 1: Web Development -->
+          <div class="skill-card">
+            <div class="skill-card-visual">
+              <img src="./src/assets/images/porto/MyPortfolio.png" alt="Web Development" loading="lazy" />
+            </div>
+            <div class="skill-card-footer">
+              <span class="skill-dot-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg>
+              </span>
+              <span class="skill-name">Web Development</span>
+            </div>
+          </div>
+
+          <!-- Card 2: App & Mobile Systems -->
+          <div class="skill-card">
+            <div class="skill-card-visual">
+              <img src="./src/assets/images/showcase-vr.png" alt="App & Mobile Systems" loading="lazy" />
+            </div>
+            <div class="skill-card-footer">
+              <span class="skill-dot-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>
+              </span>
+              <span class="skill-name">App & Full Stack</span>
+            </div>
+          </div>
+
+          <!-- Card 3: CMS & E-Commerce -->
+          <div class="skill-card">
+            <div class="skill-card-visual">
+              <img src="./src/assets/images/porto/Ransite.png" alt="CMS & E-Commerce" loading="lazy" />
+            </div>
+            <div class="skill-card-footer">
+              <span class="skill-dot-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              </span>
+              <span class="skill-name">CMS & Platforms</span>
+            </div>
+          </div>
+
+          <!-- Card 4: SEO & Cloud Infrastructure -->
+          <div class="skill-card">
+            <div class="skill-card-visual">
+              <img src="./src/assets/images/porto/AppleRebrand.png" alt="SEO & Cloud Infrastructure" loading="lazy" />
+            </div>
+            <div class="skill-card-footer">
+              <span class="skill-dot-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              </span>
+              <span class="skill-name">SEO & Cloud Setup</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CERTIFICATES & CREDENTIALS SECTION (Replaces Testimonials, styled like reference cards) -->
+    <section class="about-certs-section hero-carousel-fade-up">
+      <div class="about-container">
+        <!-- Section Header -->
+        <div class="about-section-header">
+          <div class="section-pill-badge">Credentials</div>
+          <h2 class="about-section-title">
+            Certifications<br>& Accreditations
+          </h2>
+        </div>
+
+        <!-- Certificates Grid Showcase -->
+        <div id="about-certs-showcase" class="about-certs-grid"></div>
+
+        <!-- Show More Toggle Button -->
+        <div class="certs-more-wrapper">
+          <button type="button" id="certs-toggle-btn" class="btn-secondary certs-toggle-btn">
+            <span id="certs-toggle-text">Show All Certifications (14)</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script type="module" src="./src/js/main.js"></script>
+  <script type="module" src="./src/js/about.js"></script>
 </body>
 </html>

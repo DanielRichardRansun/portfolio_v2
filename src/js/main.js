@@ -564,6 +564,11 @@ function renderProjectDetailPage(container) {
 }
 
 function renderFooter() {
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('about')) {
+    return;
+  }
+
   const footerHtml = `
     <footer class="footer">
       <div class="container">
