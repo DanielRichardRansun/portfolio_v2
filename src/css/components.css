@@ -316,26 +316,45 @@
   align-items: center;
   justify-content: center;
   width: 52px;
-  height: 52px; /* Disesuaikan ke 52px */
+  height: 52px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 50%;
+  border-radius: 999px;
   color: var(--text-secondary);
-  box-shadow: var(--shadow-nav);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
-  transition: all var(--transition-fast);
+  transition: background-color 0.25s ease,
+              border-color 0.25s ease,
+              color 0.25s ease,
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
   cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.theme-toggle-btn svg {
-  width: 18px;
-  height: 18px;
+.theme-toggle-btn .theme-icon-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
 .theme-toggle-btn:hover {
   color: var(--text-primary);
   transform: translateY(-1px);
   border-color: var(--border-light);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.theme-toggle-btn:hover .theme-icon-svg {
+  transform: rotate(18deg) scale(1.08);
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.92);
 }
 
 /* =========================================

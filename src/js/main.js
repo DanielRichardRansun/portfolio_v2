@@ -30,22 +30,99 @@ document.addEventListener('DOMContentLoaded', () => {
   initInteractions();
 });
 
+function getThemeIconSvg(theme) {
+  if (theme === 'dark') {
+    // Dark mode active: show Sun icon to switch to light mode (Exact Framer SVG)
+    return `<svg class="theme-icon-svg sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" stroke-width="1.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>`;
+  } else {
+    // Light mode active: show Moon icon to switch to dark mode (Exact Framer SVG)
+    return `<svg class="theme-icon-svg moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" stroke-width="1.5" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>`;
+  }
+}
+
+function updateAllThemeButtons(theme) {
+  const icon = getThemeIconSvg(theme);
+  const title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    btn.innerHTML = icon;
+    btn.setAttribute('title', title);
+    btn.setAttribute('aria-label', title);
+  });
+}
+
 function initTheme() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
+  updateAllThemeButtons(savedTheme);
 }
 
-function toggleTheme() {
+let isThemeTransitioning = false;
+
+async function toggleTheme(event) {
+  if (isThemeTransitioning) return;
+
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
   const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
+  const btn = (event && event.currentTarget) || document.querySelector('.theme-toggle-btn');
 
-  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-    btn.innerHTML = newTheme === 'dark'
-      ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`
-      : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
-  });
+  const updateDOM = () => {
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateAllThemeButtons(newTheme);
+  };
+
+  // If browser does not support View Transition API, execute direct toggle
+  if (typeof document.startViewTransition !== 'function') {
+    updateDOM();
+    return;
+  }
+
+  isThemeTransitioning = true;
+
+  try {
+    const rect = btn ? btn.getBoundingClientRect() : {
+      left: window.innerWidth - 60,
+      top: 24,
+      width: 52,
+      height: 52
+    };
+
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const rightDist = window.innerWidth - x;
+    const bottomDist = window.innerHeight - y;
+    const maxRadius = Math.hypot(
+      Math.max(x, rightDist),
+      Math.max(y, bottomDist)
+    );
+
+    const transition = document.startViewTransition(() => {
+      updateDOM();
+    });
+
+    await transition.ready;
+
+    // Framer Animated Theme Toggle: expanding circular clip-path mask from button coordinates
+    const animation = document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`
+        ]
+      },
+      {
+        duration: 700,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)'
+      }
+    );
+
+    await animation.finished;
+  } catch (err) {
+    console.debug('Theme view transition:', err);
+  } finally {
+    isThemeTransitioning = false;
+  }
 }
 
 function renderNavbar() {
@@ -133,11 +210,8 @@ function renderNavbar() {
                   </span>
                 </button>
 
-                <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
-                  ${currentTheme === 'dark' ?
-                    `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
-                    `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
-                  }
+                <button type="button" class="theme-toggle-btn" title="${currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}" aria-label="${currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}">
+                  ${getThemeIconSvg(currentTheme)}
                 </button>
               </div>
             </div>
@@ -165,11 +239,8 @@ function renderNavbar() {
               </span>
             </button>
 
-            <button type="button" class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
-              ${currentTheme === 'dark' ?
-                `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>` :
-                `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`
-              }
+            <button type="button" class="theme-toggle-btn" title="${currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}" aria-label="${currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}">
+              ${getThemeIconSvg(currentTheme)}
             </button>
           </div>
         </div>
