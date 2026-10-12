@@ -342,6 +342,28 @@
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
 }
 
+.theme-toggle-btn .sun-icon,
+.theme-toggle-btn .moon-icon {
+  display: none;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+  display: block !important;
+}
+
+[data-theme="dark"] .theme-toggle-btn .moon-icon {
+  display: none !important;
+}
+
+:root:not([data-theme="dark"]) .theme-toggle-btn .sun-icon {
+  display: none !important;
+}
+
+:root:not([data-theme="dark"]) .theme-toggle-btn .moon-icon {
+  display: block !important;
+}
+
 .theme-toggle-btn:hover {
   color: var(--text-primary);
   transform: translateY(-1px);

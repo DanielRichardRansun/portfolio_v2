@@ -30,21 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
   initInteractions();
 });
 
-function getThemeIconSvg(theme) {
-  if (theme === 'dark') {
-    // Dark mode active: show Sun icon to switch to light mode (Exact Framer SVG)
-    return `<svg class="theme-icon-svg sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" stroke-width="1.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>`;
-  } else {
-    // Light mode active: show Moon icon to switch to dark mode (Exact Framer SVG)
-    return `<svg class="theme-icon-svg moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" stroke-width="1.5" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>`;
-  }
+function getThemeIconSvg() {
+  return `
+    <svg class="theme-icon-svg sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" stroke-width="1.5" stroke="currentColor" fill="none"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
+    <svg class="theme-icon-svg moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" stroke-width="1.5" stroke="currentColor" fill="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" /></svg>
+  `;
 }
 
 function updateAllThemeButtons(theme) {
-  const icon = getThemeIconSvg(theme);
   const title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-    btn.innerHTML = icon;
+    if (!btn.querySelector('.sun-icon')) {
+      btn.innerHTML = getThemeIconSvg();
+    }
     btn.setAttribute('title', title);
     btn.setAttribute('aria-label', title);
   });
@@ -66,9 +64,12 @@ async function toggleTheme(event) {
   const btn = (event && event.currentTarget) || document.querySelector('.theme-toggle-btn');
 
   const updateDOM = () => {
+    document.documentElement.classList.add('no-transitions');
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateAllThemeButtons(newTheme);
+    void document.documentElement.offsetHeight;
+    document.documentElement.classList.remove('no-transitions');
   };
 
   // If browser does not support View Transition API, execute direct toggle
@@ -133,12 +134,25 @@ function renderNavbar() {
   const isHome = !isAbout && !isProjects && !isContact;
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
 
-  // Only animate navbar on initial site entrance in this session
-  const hasAnimatedNav = sessionStorage.getItem('nav_animated');
-  if (!hasAnimatedNav) {
-    sessionStorage.setItem('nav_animated', 'true');
+  // If navbar is already statically present in the DOM, do not re-insert!
+  const existingNav = document.querySelector('.navbar-wrapper');
+  if (existingNav) {
+    const navLinks = existingNav.querySelectorAll('.nav-link, .mobile-nav-link');
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href') || '';
+      if (isAbout && href.includes('about')) link.classList.add('active');
+      else if (isProjects && href.includes('all-projects')) link.classList.add('active');
+      else if (isContact && href.includes('contact')) link.classList.add('active');
+    });
+    const avatar = existingNav.querySelector('.navbar-avatar');
+    if (avatar && isHome) avatar.classList.add('is-home');
+
+    initMobileMenu();
+    initLanguageSwitcher();
+    return;
   }
-  const noAnimClass = hasAnimatedNav ? 'no-nav-anim' : '';
+
+  const noAnimClass = 'no-nav-anim';
 
   const navHtml = `
     <!-- Progressive Top Ambient Blur Overlay behind Header (Framer Exact Component) -->

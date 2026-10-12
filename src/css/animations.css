@@ -7,6 +7,11 @@
    -------------------------------------------------------------------------- */
 
 .navbar-container {
+  opacity: 1;
+  transform: none;
+}
+
+.navbar-container.animate-nav-entrance {
   animation: nav-fade-down 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, opacity;
 }
@@ -188,4 +193,11 @@
 html::view-transition-old(root),
 html::view-transition-new(root) {
   background: transparent;
+}
+
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
 }
