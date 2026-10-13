@@ -69,15 +69,45 @@ export const siteConfig = {
     { name: "Logoipsum", icon: "✿" }
   ],
 
-  // About Section
+  // About Section (Framer Interactive Scroll Replica)
   about: {
-    badge: "About me",
-    heading: "Mindset, methods, & experience",
-    intro: "I help brands find clarity and express it through strong, thoughtful design.",
-    backgroundTitle: "Background",
-    backgroundText: "Originally from CDMX, I’ve been designing identities for 7+ years, working with startups, restaurants, hoteliers, & creative founders across Mexico and worldwide.",
-    approachTitle: "My Approach",
-    approachText: "I believe good design starts with empathy. I ask questions, listen closely, and build brands that feel as good as they look — honest, beautiful, and built to last."
+    badge: "About",
+    portraitImage: "./src/assets/images/profile-about.png",
+    statusText: "Open for new projects",
+    heading: "Eight years of making complicated software easier to use.",
+    bio1: "Since 2018 I’ve designed software for small teams in analytics, finance, health and developer tools. Most projects start with a workflow everyone agrees is painful and nobody has had time to fix.",
+    bio2: "I cover the whole path: talking to users, sketching flows, designing in Figma and building the production front end. Because one person does both, nothing gets lost between the mockup and what ships.",
+    ctaText: "Book a 20-minute call",
+    ctaLink: "#contact",
+    rolesLabel: "Where I’ve worked",
+    roles: [
+      {
+        period: "2023 – now",
+        role: "Independent",
+        company: "Lisbon",
+        desc: "Design and front-end builds for early-stage teams."
+      },
+      {
+        period: "2020 – 2023",
+        role: "Senior product designer",
+        company: "Loopcraft",
+        desc: "Led the design system and the redesign of the core editor."
+      },
+      {
+        period: "2018 – 2020",
+        role: "Product designer",
+        company: "Tallyhive",
+        desc: "First design hire. Shaped invoicing and onboarding from the ground up."
+      }
+    ],
+    toolkit: [
+      "Figma",
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Tailwind CSS",
+      "Framer"
+    ]
   },
 
   // Statistik & Metrics

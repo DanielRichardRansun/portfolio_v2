@@ -148,7 +148,6 @@
       <div class="section-header-center">
         <div class="badge">Featured Works</div>
         <h2 class="section-subtitle reveal-blur">Selected Projects</h2>
-        <p class="section-desc">Selected projects that reflect my approach to design, development, and execution.</p>
       </div>
       <div id="projects-grid" class="projects-grid"></div>
       <div class="projects-view-all-wrap">
@@ -159,36 +158,113 @@
       </div>
     </section>
 
-    <!-- Stats Grid (Moved below Featured Works) -->
-    <section class="section" style="padding: 60px 0 60px;">
+    <!-- Stats Grid Section (Above Section About with generous top and bottom padding) -->
+    <section class="section" style="padding: 50px 0 50px;">
       <div id="stats-grid" class="stats-grid"></div>
     </section>
 
-    <!-- About / Mindset Section -->
-    <section id="about" class="section">
-      <div class="about-grid">
-        <div class="about-text-block">
-          <div class="badge">About me</div>
-          <h2 class="section-subtitle reveal-blur">Mindset, methods, & experience</h2>
-          <p class="about-paragraph">I help brands find clarity and express it through strong, thoughtful design.</p>
-          <div class="card-item">
-            <h3 class="card-title">Background</h3>
-            <p class="card-desc">Originally from CDMX, I’ve been designing identities for 7+ years, working with startups, restaurants, hoteliers, & creative founders across Mexico and worldwide.</p>
+    <!-- About Section (Interactive Overlapping Portrait & Sheet - Framer Replica) -->
+    <section id="about" class="about-interactive-section">
+      <div class="section-header-center" style="margin-bottom: 56px;">
+        <div class="badge">About Me</div>
+        <h2 class="section-subtitle reveal-blur">Mindset, Methods, & Experience</h2>
+      </div>
+
+      <div class="about-interactive-stage">
+        
+        <!-- Sticky Portrait Card -->
+        <div class="about-portrait-card">
+          <div class="about-portrait-bg">
+            <img 
+              src="./src/assets/images/profile-about.png" 
+              alt="Daniel Richard Ransun" 
+              class="about-portrait-img" 
+              loading="lazy" 
+            />
           </div>
-          <div class="card-item">
-            <h3 class="card-title">My Approach</h3>
-            <p class="card-desc">I believe good design starts with empathy. I ask questions, listen closely, and build brands that feel as good as they look — honest, beautiful, and built to last.</p>
+          <div class="about-status-pill">
+            <span class="status-dot"></span>
+            <span class="status-pill-text">Open for new projects</span>
           </div>
         </div>
 
-        <div>
-          <div id="career-timeline"></div>
+        <!-- Overlapping Story Sheet (Glides smoothly over the sticky portrait upon scrolling) -->
+        <div class="about-story-sheet">
 
-          <div style="margin-top: 36px;">
-            <h4 style="font-size: 17px; font-weight: 500; color: var(--text-secondary); margin-bottom: 14px;">Core Capabilities</h4>
-            <div id="skills-wrap" class="skills-wrap"></div>
+          <!-- What I do Card -->
+          <div class="about-card-block">
+            <div class="about-card-tag">
+              <span class="dot-orange"></span>
+              <span>What I do</span>
+            </div>
+            <p class="about-huge-statement">
+              I help brands find clarity and express it through strong, thoughtful design.
+            </p>
           </div>
+
+          <!-- Background Card -->
+          <div class="about-card-block">
+            <div class="about-card-tag">
+              <span class="dot-orange"></span>
+              <span>Background</span>
+            </div>
+            <p class="about-huge-statement">
+              Originally from CDMX, I’ve been designing identities for 7+ years, working with startups, restaurants, hoteliers, & creative founders across Mexico.
+            </p>
+          </div>
+
+          <!-- My Approach Card -->
+          <div class="about-card-block">
+            <div class="about-card-tag">
+              <span class="dot-orange"></span>
+              <span>My Approach</span>
+            </div>
+            <p class="about-huge-statement">
+              I believe good design starts with empathy. I ask questions, listen closely, and build brands that feel as good as they look, honest, beautiful, and built to last.
+            </p>
+          </div>
+
+          <!-- Career Card -->
+          <div class="about-card-block">
+            <div class="about-card-tag">
+              <span class="dot-orange"></span>
+              <span>Career</span>
+            </div>
+            <div id="about-huge-career" class="about-huge-career-list">
+              <div class="about-huge-career-row">
+                <span class="about-huge-career-role">Design Director</span>
+                <span class="about-huge-career-period">2025 - Now</span>
+              </div>
+              <div class="about-huge-career-row">
+                <span class="about-huge-career-role">Sr. Product Designer</span>
+                <span class="about-huge-career-period">2024 - 2025</span>
+              </div>
+              <div class="about-huge-career-row">
+                <span class="about-huge-career-role">Product Designer</span>
+                <span class="about-huge-career-period">2015 - 2024</span>
+              </div>
+              <div class="about-huge-career-row">
+                <span class="about-huge-career-role">UI/UX Designer</span>
+                <span class="about-huge-career-period">2012 - 2015</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Button to About Page -->
+          <div class="about-sheet-cta-wrap">
+            <a href="about.html" class="btn-secondary about-sheet-cta-btn">
+              <span class="btn-flip-wrapper">
+                <span class="btn-flip-text">
+                  <span class="btn-flip-front">Read My Full Story</span>
+                  <span class="btn-flip-back" aria-hidden="true">Read My Full Story</span>
+                </span>
+              </span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
         </div>
+
       </div>
     </section>
 

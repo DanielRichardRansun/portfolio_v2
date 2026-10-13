@@ -969,9 +969,9 @@
 
 .hero-tagline {
   font-family: var(--font-primary);
-  font-size: clamp(1.18rem, 1.55vw, 1.35rem);
+  font-size: clamp(1.02rem, 1.25vw, 1.15rem);
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.55;
   font-weight: 400;
   max-width: 520px;
 }
@@ -1812,8 +1812,294 @@
 }
 
 /* =========================================
-   9. ABOUT & SKILLS
+   9. INTERACTIVE ABOUT SECTION (Framer Scroll Overlay - Huge Text)
 ========================================= */
+.about-interactive-section {
+  padding: 80px 0 100px;
+  position: relative;
+  width: 100%;
+}
+
+.about-interactive-stage {
+  width: 100%;
+  max-width: 780px; /* Widened container */
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─── Sticky Portrait Card (Taller image, no shadow) ─── */
+.about-portrait-card {
+  position: sticky;
+  top: 96px;
+  width: 100%;
+  height: clamp(620px, 80vh, 760px);
+  border-radius: 28px;
+  overflow: hidden;
+  z-index: 1;
+  background: #181411;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  box-shadow: none; /* No shadow on image as requested */
+  will-change: transform;
+}
+
+.about-portrait-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.about-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+.about-status-pill {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(18, 21, 28, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+}
+
+.about-status-pill .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.22);
+  display: inline-block;
+  animation: pulseGreen 2s infinite ease-in-out;
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 5px rgba(74, 222, 128, 0.4);
+  }
+}
+
+.about-status-pill .status-pill-text {
+  color: #eef0f4;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ─── Overlapping Story Sheet (Scrolls up and covers portrait) ─── */
+.about-story-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin-top: 48px;
+  z-index: 2;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 28px;
+  padding: 44px 44px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02); /* Extremely subtle thin shadow */
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+[data-theme="dark"] .about-story-sheet {
+  background-color: #0b0d12;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25); /* Subtle thin shadow in dark mode */
+}
+
+/* ─── Inner Cards / Blocks (Matches User Screenshot) ─── */
+.about-card-block {
+  width: 100%;
+  background: var(--bg-surface-elevated, #ffffff);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.015);
+  transition: all var(--transition-fast);
+}
+
+[data-theme="dark"] .about-card-block {
+  background: #12151c;
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+}
+
+.about-card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 16.5px;
+  font-weight: 500;
+  color: var(--accent-orange, #fd6e32);
+}
+
+.about-card-tag .dot-orange,
+.about-card-tag .dot-muted {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--accent-orange, #fd6e32);
+  box-shadow: none !important;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.about-card-tag .dot-orange::after,
+.about-card-tag .dot-muted::after {
+  display: none !important;
+  content: none !important;
+  animation: none !important;
+}
+
+/* ─── Statement Text (Slightly larger, rich dark color) ─── */
+.about-huge-statement {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 2.2vw, 21.5px);
+  line-height: 1.54;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.012em;
+  margin: 0;
+}
+
+[data-theme="dark"] .about-huge-statement {
+  color: #f1f2f5;
+}
+
+/* ─── Huge Clean Career List (Matches Screenshot) ─── */
+.about-huge-career-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.about-huge-career-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.about-huge-career-row:first-child {
+  border-top: none;
+  padding-top: 4px;
+}
+
+[data-theme="dark"] .about-huge-career-row {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.about-huge-career-role {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 2.2vw, 21.5px);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  transition: none;
+}
+
+.about-huge-career-period {
+  font-family: var(--font-heading);
+  font-size: clamp(15.5px, 1.8vw, 18.5px);
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Career row does NOT change color on hover on homepage */
+.about-huge-career-row:hover .about-huge-career-role {
+  color: var(--text-primary);
+}
+
+/* ─── CTA Call Button (Aligned with btn-secondary design) ─── */
+.about-sheet-cta-wrap {
+  width: 100%;
+}
+
+.about-sheet-cta-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 16px 28px;
+  font-size: 15.5px;
+}
+
+/* Mobile & Tablet Adjustments */
+@media (max-width: 768px) {
+  .about-portrait-card {
+    height: 480px;
+    top: 80px;
+    border-radius: 20px;
+  }
+  .about-story-sheet {
+    padding: 26px 18px;
+    border-radius: 22px;
+    margin-top: 32px;
+    gap: 24px;
+  }
+  .about-card-block {
+    padding: 24px 18px;
+    border-radius: 16px;
+    gap: 16px;
+  }
+  .about-huge-statement {
+    font-size: 20px;
+  }
+  .about-huge-career-row {
+    padding: 14px 0;
+  }
+  .about-huge-career-role {
+    font-size: 17px;
+  }
+  .about-huge-career-period {
+    font-size: 15px;
+  }
+  .about-status-pill {
+    bottom: 16px;
+    left: 16px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+  }
+}
+
+/* Legacy support for other pages */
 .about-grid {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -1842,7 +2128,6 @@
   color: var(--text-primary);
 }
 
-/* Skills Pills */
 .skills-wrap {
   display: flex;
   flex-wrap: wrap;
