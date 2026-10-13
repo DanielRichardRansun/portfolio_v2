@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 9. Initialize Interactive Elements (FAQ, Form, Theme Toggle)
   initInteractions();
+
+  // 10. Initialize Floating Chatbot FAB (Lottie Animation)
+  initChatbotFab();
 });
 
 function getThemeIconSvg() {
@@ -446,6 +449,30 @@ function renderPageContent() {
             ${showcaseCardsHtml}
           </div>
         </div>
+
+        <!-- 4-Column Quick Info Strip directly below Carousel (Exact Portfolica Reference) -->
+        <div class="hero-info-strip-wrap hero-carousel-fade-up">
+          <div class="hero-info-strip">
+            <div class="info-strip-col">
+              <span class="info-strip-label">ROLE</span>
+              <span class="info-strip-val">${siteConfig.quickInfo?.role || 'Designer and front-end engineer'}</span>
+            </div>
+            <div class="info-strip-col">
+              <span class="info-strip-label">BASED IN</span>
+              <span class="info-strip-val">${siteConfig.quickInfo?.basedIn || 'Lisbon, remote-friendly'}</span>
+            </div>
+            <div class="info-strip-col">
+              <span class="info-strip-label">PREVIOUSLY</span>
+              <span class="info-strip-val">${siteConfig.quickInfo?.previously || 'Loopcraft, Tallyhive'}</span>
+            </div>
+            <div class="info-strip-col">
+              <span class="info-strip-label">AVAILABILITY</span>
+              <span class="info-strip-val">
+                <span class="info-dot-green"></span>${siteConfig.quickInfo?.availability || 'Open for projects from November'}
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     `;
   }
@@ -498,19 +525,22 @@ function renderPageContent() {
   const projectsEl = document.getElementById('projects-grid');
   if (projectsEl) {
     const isAll = window.location.pathname.includes('all-projects');
-    const displayProjects = isAll ? siteConfig.projects : siteConfig.projects.filter(p => p.featured);
+    const displayProjects = isAll ? siteConfig.projects : siteConfig.projects.filter(p => p.featured).slice(0, 4);
     
     projectsEl.innerHTML = displayProjects.map(p => `
-      <a href="project.html?id=${p.id}" class="project-card">
+      <a href="project.html?id=${p.id}" class="project-card" aria-label="${p.title} - ${p.year || '2024'}">
         <div class="project-thumb">
           <img src="${p.image}" alt="${p.title}" loading="lazy" />
         </div>
-        <div class="project-info">
-          <div class="project-title">
-            <span>${p.title}</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-          </div>
-          <p class="project-sub">${p.subtitle}</p>
+        <div class="project-badge">
+          <span class="project-badge-title">${p.title}</span>
+          <span class="project-badge-slash">/</span>
+          <span class="project-badge-year">${p.year || '2024'}</span>
+        </div>
+        <div class="project-action-btn" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </div>
       </a>
     `).join('');
@@ -734,7 +764,7 @@ function initHeroMarquee() {
  * Enhance All Buttons with Vertical Rolling Flip Text Effect
  */
 function initButtonFlipEffects() {
-  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link, .mobile-nav-link');
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link, .mobile-nav-link, .certs-toggle-btn');
   
   buttons.forEach(btn => {
     if (btn.querySelector('.btn-flip-wrapper')) return;
@@ -879,4 +909,54 @@ function initInteractions() {
       }, 1000);
     });
   }
+}
+
+/**
+ * Floating Chatbot FAB with Lottie Animation
+ * Renders a fixed bottom-right animated chatbot icon using lottie-web.
+ */
+function initChatbotFab() {
+  // Don't render if already present
+  if (document.getElementById('chatbot-fab')) return;
+
+  // Create FAB button element
+  const fab = document.createElement('button');
+  fab.id = 'chatbot-fab';
+  fab.className = 'chatbot-fab';
+  fab.setAttribute('aria-label', 'Chat with AI Assistant');
+  fab.setAttribute('type', 'button');
+  fab.innerHTML = '<div class="chatbot-lottie" id="chatbot-lottie"></div>';
+  document.body.appendChild(fab);
+
+  // After entrance animation ends, add idle floating
+  fab.addEventListener('animationend', () => {
+    fab.classList.add('is-idle');
+  }, { once: true });
+
+  // Load lottie-web dynamically from CDN
+  if (typeof lottie !== 'undefined') {
+    initLottieAnimation();
+    return;
+  }
+
+  const lottieScript = document.createElement('script');
+  lottieScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+  lottieScript.async = true;
+  lottieScript.onload = initLottieAnimation;
+  document.head.appendChild(lottieScript);
+}
+
+function initLottieAnimation() {
+  if (typeof lottie === 'undefined') return;
+
+  const container = document.getElementById('chatbot-lottie');
+  if (!container) return;
+
+  lottie.loadAnimation({
+    container: container,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '/chat-bot-icon.json'
+  });
 }

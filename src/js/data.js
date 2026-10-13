@@ -19,7 +19,7 @@ export const siteConfig = {
     lastName: "Richard Ransun",
     role: "Senior Product Designer & Creative Director",
     avatar: "./src/assets/images/profile-image.png",
-    navbarAvatar: "./src/assets/images/profile-navbar2.png",
+    navbarAvatar: "./src/assets/images/profile-navbar.png",
     statusBadge: {
       active: true,
       text: "Available for work"
@@ -52,6 +52,14 @@ export const siteConfig = {
     { image: "./src/assets/images/project-medilink.png", title: "Health Device", projectId: "medilink" },
     { image: "./src/assets/images/project-travelio.png", title: "Spatial Studio", projectId: "travelio" }
   ],
+
+  // Quick Info Strip under Showcase Marquee (Exact Portfolica Reference)
+  quickInfo: {
+    role: "Designer and front-end engineer",
+    basedIn: "Lisbon, remote-friendly",
+    previously: "Loopcraft, Tallyhive",
+    availability: "Open for projects from November"
+  },
 
   // Collaborators & Clients
   collaborators: [

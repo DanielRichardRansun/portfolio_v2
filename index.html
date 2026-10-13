@@ -51,7 +51,7 @@
       <!-- Desktop Pill Navigation -->
       <nav class="navbar-left" aria-label="Main Navigation">
         <a href="index.html" class="navbar-avatar is-home" title="Daniel Richard Ransun">
-          <img src="./src/assets/images/profile-navbar2.png" alt="Daniel Richard Ransun" />
+          <img src="./src/assets/images/profile-navbar.png" alt="Daniel Richard Ransun" />
         </a>
         <ul class="nav-links">
           <li><a href="all-projects.html" class="nav-link">Projects</a></li>
@@ -69,7 +69,7 @@
 
         <div class="mobile-menu-content">
           <a href="index.html" class="mobile-menu-avatar is-home" title="Daniel Richard Ransun">
-            <img src="./src/assets/images/profile-navbar2.png" alt="Daniel Richard Ransun" />
+            <img src="./src/assets/images/profile-navbar.png" alt="Daniel Richard Ransun" />
           </a>
 
           <nav class="mobile-menu-nav">
@@ -143,29 +143,26 @@
   <!-- Main Container -->
   <main class="container">
 
-    <!-- Stats Grid -->
-    <section class="section" style="padding: 20px 0 60px;">
-      <div id="stats-grid" class="stats-grid"></div>
-    </section>
-
     <!-- Featured Projects Section -->
-    <section id="projects" class="section">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="badge">Featured Works</div>
-          <h2 class="section-subtitle reveal-blur">Selected Projects</h2>
-          <p class="section-desc">Selected projects that reflect my approach to design, development, and execution.</p>
-        </div>
+    <section id="projects" class="section" style="padding: 140px 0 30px;">
+      <div class="section-header-center">
+        <div class="badge">Featured Works</div>
+        <h2 class="section-subtitle reveal-blur">Selected Projects</h2>
+        <p class="section-desc">Selected projects that reflect my approach to design, development, and execution.</p>
+      </div>
+      <div id="projects-grid" class="projects-grid"></div>
+      <div class="projects-view-all-wrap">
         <a href="all-projects.html" class="btn-secondary">
           <span>View All Projects</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <div id="projects-grid" class="projects-grid"></div>
     </section>
 
-    <!-- Clients & Collaborators Pill Bar (Moved above About me) -->
-    <div id="clients-bar-section"></div>
+    <!-- Stats Grid (Moved below Featured Works) -->
+    <section class="section" style="padding: 60px 0 60px;">
+      <div id="stats-grid" class="stats-grid"></div>
+    </section>
 
     <!-- About / Mindset Section -->
     <section id="about" class="section">
