@@ -909,10 +909,10 @@
 
 .hero-name {
   font-family: var(--font-heading);
-  font-size: 96px;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 1;
+  font-size: clamp(3.2rem, 5.8vw, 5.4rem);
+  font-weight: 500; /* Exact Framer Portfolica: Medium weight */
+  letter-spacing: -0.010em;
+  line-height: 1.18; /* Line-height agak tinggi dan lapang seperti referensi */
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
@@ -923,6 +923,10 @@
   align-items: center;
   gap: 14px;
   flex-wrap: nowrap;
+}
+
+.hero-name > span:last-child {
+  white-space: nowrap;
 }
 
 .hero-avatar-badge {
@@ -954,21 +958,12 @@
   border-radius: 11px;
 }
 
-@media (max-width: 1199px) and (min-width: 810px) {
+@media (max-width: 640px) {
   .hero-name {
-    font-size: 96px;
+    font-size: clamp(2.35rem, 9vw, 3.4rem);
     font-weight: 500;
-    line-height: 1;
-    letter-spacing: 0em;
-  }
-}
-
-@media (max-width: 809px) {
-  .hero-name {
-    font-size: clamp(52px, 15vw, 76px);
-    font-weight: 500;
-    line-height: 1;
-    letter-spacing: 0em;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
     gap: 8px;
   }
   .hero-name-row {
@@ -981,6 +976,9 @@
     border-radius: 17px;
     border: 3px solid #ffffff;
   }
+}
+
+@media (max-width: 809px) {
   .hero-tagline {
     font-size: 18px;
   }
