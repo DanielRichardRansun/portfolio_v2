@@ -414,7 +414,7 @@ function renderPageContent() {
                   <img src="${siteConfig.profile.avatar}" alt="${siteConfig.profile.name}" />
                 </span>
               </span>
-              <span>${siteConfig.profile.lastName}</span>
+              <span class="hero-name-last">${siteConfig.profile.lastName}</span>
             </h1>
           </div>
 
