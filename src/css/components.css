@@ -1571,12 +1571,12 @@
 
 .stat-val {
   font-family: var(--font-heading);
-  font-size: 64px;
+  font-size: 54px;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 1.1;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
 .stat-label {
