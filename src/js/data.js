@@ -273,18 +273,22 @@ export const siteConfig = {
   // Services
   services: [
     {
+      icon: "figma",
       title: "UX-UI & Creative",
-      desc: "Crafting clean, user-friendly sites and apps that reflect your brand & deliver a seamless experience."
+      desc: "Crafting clean, user-friendly sites that reflect your brand & deliver a seamless experience."
     },
     {
+      icon: "code",
       title: "Web Development",
-      desc: "Building fast, high-performance websites that are easy to manage and optimized for every device."
+      desc: "Building fast, no-code websites that are easy to manage and optimized for every device."
     },
     {
+      icon: "brand",
       title: "Brand Identity",
-      desc: "Cohesive visual systems — from logos to typography and colors — make your brand instantly recognizable."
+      desc: "Cohesive visual systems — from logos to colors — make your brand instantly recognizable."
     },
     {
+      icon: "consultation",
       title: "Design Consultation",
       desc: "Offering strategic guidance to help you plan, refine, and execute your design ideas effectively."
     }

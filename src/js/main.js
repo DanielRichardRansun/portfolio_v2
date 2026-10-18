@@ -590,13 +590,64 @@ function renderPageContent() {
     `).join('');
   }
 
+function getServiceIconSvg(iconName, isGlow = false) {
+  const cls = isGlow ? 'service-icon-glow' : 'service-icon-svg';
+  switch (iconName) {
+    case 'figma':
+      return `
+        <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 0 3.5 C 0 1.567 1.567 0 3.5 0 L 7 0 L 7 7 L 3.5 7 C 1.567 7 0 5.433 0 3.5 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(5 2)"/>
+          <path d="M 0 0 L 3.5 0 C 5.433 0 7 1.567 7 3.5 C 7 5.433 5.433 7 3.5 7 L 0 7 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(12 2)"/>
+          <path d="M 0 3.5 C 0 1.567 1.567 0 3.5 0 C 5.433 0 7 1.567 7 3.5 C 7 5.433 5.433 7 3.5 7 L 0 7 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(12 9)"/>
+          <path d="M 0 3.5 C 0 1.567 1.567 0 3.5 0 L 7 0 L 7 3.5 C 7 5.433 5.433 7 3.5 7 C 1.567 7 0 5.433 0 3.5 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(5 16)"/>
+          <path d="M 0 3.5 C 0 1.567 1.567 0 3.5 0 L 7 0 L 7 7 L 3.5 7 C 1.567 7 0 5.433 0 3.5 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(5 9)"/>
+        </svg>
+      `;
+    case 'code':
+      return `
+        <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 0 12 L 6 6 L 0 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(16 6)"/>
+          <path d="M 6 0 L 0 6 L 6 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(2 6)"/>
+        </svg>
+      `;
+    case 'brand':
+    case 'dribbble':
+      return `
+        <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 0 10 C 0 4.477 4.477 0 10 0 C 15.523 0 20 4.477 20 10 C 20 15.523 15.523 20 10 20 C 4.477 20 0 15.523 0 10 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(2 2)"/>
+          <path d="M 16.88 0 C 12.97 4.05 7.75 5.35 0 5.85" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(2.25 5.09)"/>
+          <path d="M 16.38 0.396 C 9.76 -1.014 4.24 1.396 0 6.716" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(5.37 12.444)"/>
+          <path d="M 0 0 C 4.37 6 6 9.42 8 17.72" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(8.56 2.75)"/>
+        </svg>
+      `;
+    case 'consultation':
+      return `
+        <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 4.123 0.69 C 4.258 0.274 4.648 -0.005 5.086 0 C 5.523 0.006 5.906 0.295 6.032 0.714 L 6.769 2.166 C 6.914 2.452 7.188 2.651 7.506 2.701 L 9.14 2.957 C 9.571 2.959 9.953 3.237 10.087 3.647 C 10.22 4.058 10.075 4.508 9.728 4.763 L 8.556 5.931 C 8.328 6.158 8.223 6.48 8.274 6.797 L 8.533 8.41 C 8.679 8.825 8.537 9.287 8.182 9.548 C 7.828 9.809 7.344 9.807 6.992 9.544 L 5.527 8.794 C 5.24 8.647 4.901 8.647 4.615 8.794 L 3.15 9.544 C 2.797 9.805 2.315 9.805 1.962 9.545 C 1.609 9.285 1.466 8.825 1.611 8.411 L 1.869 6.798 C 1.919 6.481 1.814 6.159 1.587 5.932 L 0.431 4.779 C 0.071 4.53 -0.085 4.075 0.046 3.658 C 0.177 3.24 0.565 2.956 1.003 2.957 L 2.636 2.701 C 2.953 2.651 3.227 2.452 3.373 2.166 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(11.928 11.926)"/>
+          <path d="M 5 0 L 4 0 C 1.791 0 0 1.791 0 4 L 0 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(3 15)"/>
+          <path d="M 0 4 C 0 1.791 1.791 0 4 0 C 6.209 0 8 1.791 8 4 C 8 6.209 6.209 8 4 8 C 1.791 8 0 6.209 0 4 Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(6 3)"/>
+        </svg>
+      `;
+    default:
+      return '';
+  }
+}
+
   // Render Services
   const servicesEl = document.getElementById('services-grid');
   if (servicesEl) {
     servicesEl.innerHTML = siteConfig.services.map(sv => `
-      <div class="card-item">
-        <h3 class="card-title">${sv.title}</h3>
-        <p class="card-desc">${sv.desc}</p>
+      <div class="service-card">
+        <div class="service-card-header">
+          <div class="service-card-icon-wrap" aria-hidden="true">
+            ${getServiceIconSvg(sv.icon, false)}
+            ${getServiceIconSvg(sv.icon, true)}
+          </div>
+          <div class="service-card-title-wrap">
+            <h3 class="service-card-title">${sv.title}</h3>
+          </div>
+        </div>
+        <p class="service-card-desc">${sv.desc}</p>
       </div>
     `).join('');
   }
