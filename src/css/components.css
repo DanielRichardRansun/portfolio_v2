@@ -980,7 +980,7 @@
 
 @media (max-width: 809px) {
   .hero-tagline {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -1694,6 +1694,12 @@
   font-weight: 400;
 }
 
+@media (max-width: 809px) {
+  .section-desc {
+    font-size: 16px;
+  }
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2100,7 +2106,7 @@
 .about-huge-career-role {
   font-family: var(--font-heading);
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.3;
   color: var(--text-primary);
   letter-spacing: 0em;
@@ -2488,9 +2494,18 @@
 }
 
 .testimonial-quote {
-  font-size: 15.5px;
-  line-height: 1.6;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0em;
   color: var(--text-secondary);
+}
+
+@media (max-width: 809px) {
+  .testimonial-quote {
+    font-size: 16px;
+  }
 }
 
 .testimonial-author {
@@ -2526,7 +2541,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  max-width: 840px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -2548,14 +2563,22 @@
   width: 100%;
   background: transparent;
   color: var(--text-primary);
-  font-size: 17.5px;
-  font-weight: 500; /* Max 500 */
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0em;
   text-align: left;
   padding: 22px 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+}
+
+@media (max-width: 809px) {
+  .faq-question {
+    font-size: 17px;
+  }
 }
 
 .faq-icon {
@@ -2573,10 +2596,19 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height var(--transition-normal), padding var(--transition-normal);
+  font-family: var(--font-heading);
   color: var(--text-secondary);
-  font-size: 16px; /* Larger comfortable text for big image layout */
-  line-height: 1.65;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0em;
   padding: 0 28px;
+}
+
+@media (max-width: 809px) {
+  .faq-answer {
+    font-size: 16px;
+  }
 }
 
 .faq-item.active .faq-answer {
@@ -2586,47 +2618,78 @@
 
 /* =========================================
    13. CONTACT FORM
+   Exact 720px max-width alignment with FAQ Cards
 ========================================= */
 .contact-wrap {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 44px 38px;
-  max-width: 620px;
+  padding: 42px 38px;
+  max-width: 720px;
   margin: 0 auto;
   box-shadow: var(--shadow-card);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 809px) {
   .contact-wrap {
-    padding: 28px 20px;
+    padding: 32px 24px;
+    border-radius: var(--radius-lg);
   }
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 18px;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
 .form-label {
   font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 500; /* Max 500 */
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0em;
   color: var(--text-primary);
 }
 
+@media (max-width: 809px) {
+  .form-label {
+    font-size: 16px;
+  }
+}
+
 .form-input, .form-textarea {
-  font-family: var(--font-primary);
+  font-family: var(--font-heading), var(--font-primary), sans-serif;
   width: 100%;
   background: #f9f9fa;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 14px 18px;
-  font-size: 15.5px;
+  padding: 16px 20px;
+  font-size: 18px;
+  line-height: 1.4;
   color: var(--text-primary);
   transition: all var(--transition-fast);
+}
+
+@media (max-width: 809px) {
+  .form-input, .form-textarea {
+    font-size: 16px;
+    padding: 14px 16px;
+  }
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-dim);
+  font-size: 17px;
+}
+
+@media (max-width: 809px) {
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    font-size: 15px;
+  }
 }
 
 [data-theme="dark"] .form-input,
@@ -2646,7 +2709,7 @@
 }
 
 .form-textarea {
-  min-height: 140px;
+  min-height: 160px;
   resize: vertical;
 }
 
@@ -3070,11 +3133,19 @@
 
 .project-explore-title {
   font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
-  font-size: 40px;
+  font-size: 64px;
   font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0em;
   text-align: center;
   color: var(--text-primary);
   margin: 0 0 48px 0;
+}
+
+@media (max-width: 1199px) and (min-width: 810px) {
+  .project-explore-title {
+    font-size: 52px;
+  }
 }
 
 .explore-more-grid {
@@ -3099,7 +3170,7 @@
 /* Responsive (Mobile & Tablet) */
 @media (max-width: 809px) {
   .project-detail-title {
-    font-size: 44px;
+    font-size: 40px;
   }
 
   .project-detail-subtitle {
@@ -3151,7 +3222,7 @@
   }
 
   .project-explore-title {
-    font-size: 32px;
+    font-size: 40px;
     margin-bottom: 32px;
   }
 

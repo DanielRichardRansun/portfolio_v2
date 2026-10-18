@@ -21,8 +21,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/main-lG8rOqiO.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-BGAcsyT7.css">
+  <script type="module" crossorigin src="/assets/main-VP6zXvTJ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DsviDqXY.css">
 </head>
 <body>
 
@@ -137,16 +137,13 @@
   <main class="container" style="padding-top: 140px;">
     <!-- Contact Form Section -->
     <section class="section" style="padding-top: 0;">
-      <div class="contact-wrap">
-        <div class="section-title-wrap hero-fade-up" style="text-align: center; align-items: center; margin-bottom: 36px;">
-          <div class="badge">Let's Connect</div>
-          <h1 class="hero-name" style="font-size: clamp(2.5rem, 5vw, 4rem); display: block;">
-            <span class="reveal-blur">Start a Project</span>
-          </h1>
-          <p class="section-desc" style="text-align: center;">Have a vision for your product? Leave a message and let's bring it to life.</p>
-        </div>
+      <div class="section-header-center hero-fade-up" style="margin-bottom: 48px;">
+        <div class="badge">Contact</div>
+        <h1 class="section-subtitle reveal-blur">Have a project <br>in mind?</h1>
+      </div>
 
-        <form id="contact-form" class="hero-carousel-fade-up">
+      <div class="contact-wrap hero-carousel-fade-up">
+        <form id="contact-form">
           <div class="form-group">
             <label class="form-label" for="name">Your Name</label>
             <input class="form-input" type="text" id="name" required placeholder="Alex Johnson" />
@@ -159,9 +156,14 @@
             <label class="form-label" for="message">Project Information</label>
             <textarea class="form-textarea" id="message" required placeholder="Tell me about your project, timeline, and goals..."></textarea>
           </div>
-          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 12px;">
-            <span>Submit Message</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 16px; height: 54px; font-size: 17px;">
+            <span class="btn-flip-wrapper">
+              <span class="btn-flip-text">
+                <span class="btn-flip-front">Submit Message</span>
+                <span class="btn-flip-back" aria-hidden="true">Submit Message</span>
+              </span>
+            </span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </form>
       </div>
