@@ -2185,7 +2185,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 48px;
+  gap: 32px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.015), 0 4px 16px rgba(0, 0, 0, 0.025);
   transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
   position: relative;
@@ -2739,5 +2739,342 @@
   .chatbot-fab .chatbot-lottie {
     width: 46px;
     height: 46px;
+  }
+}
+
+/* ==========================================================================
+   PROJECT DETAILS PAGE - FRAMER PORTFOLICA EXACT MATCH
+   ========================================================================== */
+
+.project-detail-layout {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Header Section */
+.project-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.project-detail-title {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+.project-detail-subtitle {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #52525b;
+  max-width: 650px;
+  margin: 0 auto 32px auto;
+  text-align: center;
+}
+
+[data-theme="dark"] .project-detail-subtitle {
+  color: #a1a1aa;
+}
+
+/* Visit Live Site Button (Pill with Flip text and Orange Arrow) */
+.project-live-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 50px;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  color: #18181b;
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .project-live-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-live-btn:hover {
+  background: #f4f4f5;
+  border-color: #d4d4d8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .project-live-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-live-btn-arrow {
+  display: inline-block;
+  color: #ff5500;
+  stroke: #ff5500;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-live-btn:hover .project-live-btn-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* 2. Hero Cover Image */
+.project-cover-wrap {
+  width: 100%;
+  margin-bottom: 56px;
+}
+
+.project-cover-inner {
+  width: 100%;
+  aspect-ratio: 1.9;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
+  background: #f4f4f5;
+}
+
+[data-theme="dark"] .project-cover-inner {
+  background: #18181b;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 3. Project Info Strip (3 Rows with Dividers) */
+.project-info-strip {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 96px;
+}
+
+.project-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.project-info-label {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #71717a;
+}
+
+[data-theme="dark"] .project-info-label {
+  color: #a1a1aa;
+}
+
+.project-info-val {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.project-info-divider {
+  width: 100%;
+  height: 1px;
+  background: #e4e4e7;
+}
+
+[data-theme="dark"] .project-info-divider {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 4 & 5. Dual Feature Sections (Challenge & Approach) */
+.project-feature-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+  margin-bottom: 100px;
+}
+
+.project-feature-media {
+  flex: 1;
+  max-width: 546px;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
+  background: #f4f4f5;
+}
+
+[data-theme="dark"] .project-feature-media {
+  background: #18181b;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-feature-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-feature-title {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0 0 24px 0;
+}
+
+.project-feature-para {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #52525b;
+  margin: 0 0 20px 0;
+}
+
+.project-feature-para:last-child {
+  margin-bottom: 0;
+}
+
+[data-theme="dark"] .project-feature-para {
+  color: #a1a1aa;
+}
+
+/* 6. Explore More Like This One Section */
+.project-explore-section {
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: 120px;
+}
+
+.project-explore-title {
+  font-family: 'Clash Grotesk', var(--font-heading), sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--text-primary);
+  margin: 0 0 48px 0;
+}
+
+.explore-more-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* Scroll entrance animation for feature blocks */
+.anim-scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.anim-scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive (Mobile & Tablet) */
+@media (max-width: 809px) {
+  .project-detail-title {
+    font-size: 44px;
+  }
+
+  .project-detail-subtitle {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .project-cover-inner {
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+  }
+
+  .project-info-strip {
+    margin-bottom: 64px;
+  }
+
+  .project-info-row {
+    padding: 16px 0;
+  }
+
+  .project-info-label,
+  .project-info-val {
+    font-size: 17px;
+  }
+
+  .project-feature-section {
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 72px;
+  }
+
+  .project-feature-section.feature-reverse {
+    flex-direction: column-reverse;
+  }
+
+  .project-feature-media {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .project-feature-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .project-feature-para {
+    font-size: 18px;
+  }
+
+  .project-explore-title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  .explore-more-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }

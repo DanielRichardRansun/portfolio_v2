@@ -164,13 +164,21 @@ export const siteConfig = {
       id: "connecto",
       title: "Connecto",
       year: "2023",
-      category: "Web Design",
-      industry: "SaaS / Collaboration",
-      subtitle: "A collaboration platform for remote teams to stay aligned, track progress, and communicate seamlessly.",
-      description: "Connecto is a unified workspace app built to eliminate communication silos across distributed teams.",
-      challenge: "Connecto needed a redesigned dashboard and workflow interface that reduced cognitive overload, making task updates and team chats intuitive without sacrificing speed.",
-      approach: "We streamlined the layout with focus modes, standardized design tokens, and crafted a distraction-free user flow for real-time collaboration.",
+      category: "Telecom",
+      industry: "Telecom",
+      subtitle: "This project solves common e-commerce usability challenges by delivering a seamless shopping experience focused on higher sales conversions.",
+      description: "Connecto is a telecom app for recharges, tracking, support, and seamless everyday mobile management, designed for modern users.",
+      challengeParas: [
+        "Connecto is a telecom app for recharges, tracking, support, & seamless everyday mobile management.",
+        "I worked across product design and system refinement, focusing on simplifying core user flows, improving usability, and ensuring a consistent experience across key features."
+      ],
+      approachParas: [
+        "This project tackles core challenge by building a intuitive digital experience focused on maximizing conversions.",
+        "I approached the project with a focus on clarity and usability, mapping key user journeys before translating them into simple, scalable interface patterns. The goal was to reduce friction in everyday tasks while maintaining consistency."
+      ],
       image: "./src/assets/images/project-connecto.png",
+      featureImage1: "./src/assets/images/project-connecto-feat1.png",
+      featureImage2: "./src/assets/images/project-connecto-feat2.png",
       featured: true,
       liveUrl: "https://connecto.example.com"
     },
@@ -178,41 +186,65 @@ export const siteConfig = {
       id: "paynest",
       title: "PayNest",
       year: "2024",
-      category: "Fintech / App",
+      category: "Fintech",
       industry: "Fintech",
-      subtitle: "This project solves common financial usability challenges by delivering a seamless mobile wallet experience.",
+      subtitle: "This project solves common e-commerce usability challenges by delivering a seamless shopping experience focused on higher sales conversions.",
       description: "PayNest is a digital wallet app for instant transfers, bill payments, expense tracking, and secure daily transactions.",
-      challenge: "PayNest faced friction during multi-step checkout and wallet funding, causing drop-offs among first-time fintech users.",
-      approach: "I worked across product design and system refinement, simplifying core user flows, adding clear visual feedback, and implementing biometric quick-pay.",
+      challengeParas: [
+        "PayNest is a digital wallet app for instant transfers, bill payments, expense tracking, and secure daily transactions.",
+        "I worked across product design and system refinement, focusing on simplifying core user flows, improving usability, and ensuring a consistent experience across key features."
+      ],
+      approachParas: [
+        "This project solves core usability problems by delivering a fast, intuitive, and conversion-optimized experience.",
+        "I approached the project with a focus on clarity and usability, mapping key user journeys before translating them into simple, scalable interface patterns. The goal was to reduce friction in everyday tasks while maintaining consistency."
+      ],
       image: "./src/assets/images/project-paynest.png",
+      featureImage1: "./src/assets/images/project-paynest-feat1.png",
+      featureImage2: "./src/assets/images/project-paynest-feat2.png",
       featured: true,
       liveUrl: "https://paynest.example.com"
     },
     {
       id: "shopora",
       title: "Shopora",
-      year: "2024",
-      category: "E-Commerce",
-      industry: "E-Commerce & Retail",
-      subtitle: "Elevating the shopping experience with intuitive search, smart filtering, and rapid single-page checkout.",
-      description: "Shopora is a high-growth luxury retail marketplace offering curated fashion and lifestyle collections.",
-      challenge: "Catalog browsing was sluggish and checkout abandonment rates were high on mobile devices.",
-      approach: "Re-architected the product discovery pages, added instant variant preview modals, and streamlined mobile checkout to 2 steps.",
+      year: "2014",
+      category: "E-commerce",
+      industry: "E-commerce",
+      subtitle: "This project solves common e-commerce usability challenges by delivering a seamless shopping experience focused on higher sales conversions.",
+      description: "Shopora is an e-commerce app for browsing, cart management, secure checkout, and fast product delivery.",
+      challengeParas: [
+        "Shopora is an e-commerce app for browsing, cart management, secure checkout, and fast product delivery.",
+        "I worked across product design and system refinement, focusing on simplifying core user flows, improving usability, and ensuring a consistent experience across key features."
+      ],
+      approachParas: [
+        "This project focuses on simplifying the buying journey with a fast, user-friendly, and conversion-driven interface.",
+        "I approached the project with a focus on clarity, mapping key user journeys before translating them into simple, scalable interface patterns. The goal was to reduce friction in everyday tasks while maintaining consistency across the product as features expanded."
+      ],
       image: "./src/assets/images/project-shopora.png",
+      featureImage1: "./src/assets/images/project-shopora-feat1.png",
+      featureImage2: "./src/assets/images/project-shopora-feat2.png",
       featured: true,
       liveUrl: "https://shopora.example.com"
     },
     {
       id: "edunova",
       title: "EduNova",
-      year: "2024",
-      category: "EdTech",
-      industry: "Education & Learning",
-      subtitle: "An interactive learning management ecosystem connecting students, educators, and course creators.",
-      description: "EduNova empowers learners worldwide with bite-sized video courses, interactive quizzes, and cohort discussions.",
-      challenge: "Learners struggled to keep track of their course milestones and interact with mentors effectively.",
-      approach: "Designed a personalized dashboard with progress tracking, streak rewards, and synchronized video note-taking.",
+      year: "2026",
+      category: "Education",
+      industry: "Education",
+      subtitle: "This project solves common e-commerce usability challenges by delivering a seamless shopping experience focused on higher sales conversions.",
+      description: "EduNova is an online learning platform for courses, progress tracking, live sessions, and smart learning management built for modern students.",
+      challengeParas: [
+        "EduNova is an online learning platform for courses, progress tracking, live sessions, and smart learning management built for modern students.",
+        "I worked across product design and system refinement, focusing on simplifying core user flows, improving usability, and ensuring a consistent experience across key features."
+      ],
+      approachParas: [
+        "This project focuses on improving usability & learning flow while maximizing conversion through clean UX design.",
+        "I approached the project with a focus on clarity and usability, mapping key user journeys before translating them into simple, scalable interface patterns. The goal was to reduce friction in tasks while maintaining consistency across the product as features expanded."
+      ],
       image: "./src/assets/images/project-edunova.png",
+      featureImage1: "./src/assets/images/project-edunova-feat1.png",
+      featureImage2: "./src/assets/images/project-edunova-feat2.png",
       featured: true,
       liveUrl: "https://edunova.example.com"
     },
@@ -220,27 +252,43 @@ export const siteConfig = {
       id: "medilink",
       title: "MediLink",
       year: "2026",
-      category: "HealthTech",
+      category: "Healthcare",
       industry: "Healthcare",
-      subtitle: "Connecting patients with verified specialists and telehealth consultations in minutes.",
-      description: "MediLink is a digital healthcare platform providing secure appointment bookings, lab reports, and telehealth.",
-      challenge: "Patients found booking consultations complicated and medical history data hard to parse on small screens.",
-      approach: "Built an accessible, high-contrast UI with clear doctor rating cards, real-time availability slots, and encrypted records.",
+      subtitle: "This project solves common e-commerce usability challenges by delivering a seamless shopping experience focused on higher sales conversions.",
+      description: "MediLink is a healthcare app for doctor appointments, medical reports, consultations, and patient management built for modern users.",
+      challengeParas: [
+        "MediLink is a healthcare app for doctor appointments, medical reports, consultations, and patient management built for modern users.",
+        "I worked across product design and system refinement, focusing on simplifying core user flows, improving usability, and ensuring a consistent experience across key features."
+      ],
+      approachParas: [
+        "This project focuses on simplifying patient journeys and increasing conversions through intelligent UX.",
+        "I approached the project with a focus on clarity and usability, mapping key user journeys before translating them into scalable interface patterns. The goal was to reduce friction in everyday tasks while maintaining consistency across the product as features expanded."
+      ],
       image: "./src/assets/images/project-medilink.png",
+      featureImage1: "./src/assets/images/project-medilink-feat1.png",
+      featureImage2: "./src/assets/images/project-medilink-feat2.png",
       featured: true,
       liveUrl: "https://medilink.example.com"
     },
     {
       id: "travelio",
       title: "Travelio",
-      year: "2025",
-      category: "Travel & Lifestyle",
-      industry: "Travel",
-      subtitle: "Smart itinerary planning and curated local travel experiences worldwide.",
-      description: "Travelio is an all-in-one travel companion for discovering hidden gems, booking stays, and sharing custom itineraries.",
-      challenge: "Users needed a seamless way to collaborate with friends on trip itineraries and split expenses on the go.",
-      approach: "Created a collaborative drag-and-drop itinerary board with integrated map view and instant currency conversion.",
+      year: "2026",
+      category: "Travel & Tourism",
+      industry: "Travel & Tourism",
+      subtitle: "This project solves common e-commerce usability challenges by delivering a seamless shopping experience focused on higher sales conversions.",
+      description: "Travelio is a travel booking app for flights, hotels, trip planning, and real-time journey tracking designed for users.",
+      challengeParas: [
+        "Travelio is a travel booking app for flights, hotels, trip planning, and real-time journey tracking designed for users.",
+        "I worked across product design and system refinement, focusing on simplifying core user flows, improving usability, and ensuring a consistent experience across key features."
+      ],
+      approachParas: [
+        "This project tackles core challenge by building a intuitive digital experience focused on maximizing conversions.",
+        "I approached the project with focus on clarity and usability, mapping key user journeys before turning them into scalable interface patterns. The goal was to reduce friction in tasks while keeping consistency across the product as features grew."
+      ],
       image: "./src/assets/images/project-travelio.png",
+      featureImage1: "./src/assets/images/project-travelio-feat1.png",
+      featureImage2: "./src/assets/images/project-travelio-feat2.png",
       featured: true,
       liveUrl: "https://travelio.example.com"
     }

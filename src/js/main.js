@@ -700,42 +700,104 @@ function renderProjectDetailPage(container) {
 
   document.title = `${project.title} - ${siteConfig.meta.author}`;
 
+  // Pick next 2 related projects cyclically
+  const allProjects = siteConfig.projects;
+  const currentIndex = Math.max(0, allProjects.findIndex(p => p.id === project.id));
+  const otherProjects = allProjects.filter(p => p.id !== project.id);
+  const relatedProjects = [
+    otherProjects[currentIndex % otherProjects.length],
+    otherProjects[(currentIndex + 1) % otherProjects.length]
+  ];
+
+  const challengeParas = project.challengeParas || [project.challenge || project.description];
+  const approachParas = project.approachParas || [project.approach || project.description];
+
   container.innerHTML = `
-    <div class="container-narrow">
-      <div class="section-title-wrap hero-fade-up" style="text-align: center; align-items: center; gap: 18px; margin-bottom: 36px;">
-        <div class="badge">${project.category} · ${project.year}</div>
-        <h1 class="hero-name" style="font-size: clamp(2.5rem, 5vw, 4rem); text-align: center;"><span>${project.title}</span></h1>
-        <p class="hero-tagline" style="max-width: 650px; text-align: center;">${project.subtitle}</p>
-        <a href="${project.liveUrl}" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 8px;">
+    <article class="project-detail-layout">
+      <!-- 1. Header Section -->
+      <header class="project-detail-header hero-fade-up">
+        <h1 class="project-detail-title reveal-blur" data-blur-delay="0.05">${project.title}</h1>
+        <p class="project-detail-subtitle">${project.subtitle || project.description}</p>
+        <a href="${project.liveUrl || '#'}" target="_blank" rel="noopener" class="project-live-btn" aria-label="Visit Live Site">
           <span>Visit Live Site</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+          <svg class="project-live-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M 0 0 L 10 0 L 10 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(7 7)"/><path d="M 0 10 L 10 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(7 7)"/></svg>
         </a>
-      </div>
+      </header>
 
-      <div class="project-thumb hero-carousel-fade-up" style="height: 500px; border-radius: var(--radius-xl); margin-bottom: 50px; border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card);">
-        <img src="${project.image}" alt="${project.title}" style="width:100%; height:100%; object-fit: cover;" />
-      </div>
-
-      <div class="about-grid hero-carousel-fade-up" style="margin-bottom: 70px;">
-        <div class="card-item">
-          <span class="card-num">01 / CHALLENGE</span>
-          <h2 class="card-title">The Problem</h2>
-          <p class="card-desc">${project.challenge}</p>
-        </div>
-        <div class="card-item">
-          <span class="card-num">02 / SOLUTION</span>
-          <h2 class="card-title">Our Approach</h2>
-          <p class="card-desc">${project.approach}</p>
+      <!-- 2. Hero Cover Image (Framer slow-mo fade up) -->
+      <div class="project-cover-wrap hero-carousel-fade-up">
+        <div class="project-cover-inner">
+          <img src="${project.image}" alt="${project.title} Cover" class="project-cover-img" />
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 50px;">
-        <a href="all-projects.html" class="btn-secondary">
-          <span>← Back to All Projects</span>
-        </a>
+      <!-- 3. Project Info Strip (Title, Industry, Date) -->
+      <div class="project-info-strip hero-fade-up">
+        <div class="project-info-row">
+          <span class="project-info-label">Title</span>
+          <span class="project-info-val">${project.title}</span>
+        </div>
+        <div class="project-info-divider"></div>
+        <div class="project-info-row">
+          <span class="project-info-label">Industry</span>
+          <span class="project-info-val">${project.industry || project.category || 'Technology'}</span>
+        </div>
+        <div class="project-info-divider"></div>
+        <div class="project-info-row">
+          <span class="project-info-label">Date</span>
+          <span class="project-info-val">${project.year || '2024'}</span>
+        </div>
       </div>
-    </div>
+
+      <!-- 4. Feature 1: Challenge (Left Image, Right Content) -->
+      <section class="project-feature-section feature-challenge anim-scroll-reveal">
+        <div class="project-feature-media">
+          <img src="${project.featureImage1 || project.image}" alt="${project.title} Challenge" loading="lazy" />
+        </div>
+        <div class="project-feature-content">
+          <h2 class="project-feature-title">Challenge</h2>
+          ${challengeParas.map(p => `<p class="project-feature-para">${p}</p>`).join('')}
+        </div>
+      </section>
+
+      <!-- 5. Feature 2: Approach (Left Content, Right Image) -->
+      <section class="project-feature-section feature-approach feature-reverse anim-scroll-reveal">
+        <div class="project-feature-content">
+          <h2 class="project-feature-title">Approach</h2>
+          ${approachParas.map(p => `<p class="project-feature-para">${p}</p>`).join('')}
+        </div>
+        <div class="project-feature-media">
+          <img src="${project.featureImage2 || project.image}" alt="${project.title} Approach" loading="lazy" />
+        </div>
+      </section>
+
+      <!-- 6. Explore More Like This One Section -->
+      <section class="project-explore-section">
+        <h2 class="project-explore-title reveal-blur" data-blur-delay="0.1">Explore more like this one</h2>
+        <div class="explore-more-grid">
+          ${relatedProjects.map(p => `
+            <a href="project.html?id=${p.id}" class="project-card" aria-label="${p.title} - ${p.year || '2024'}">
+              <div class="project-thumb">
+                <img src="${p.image}" alt="${p.title}" loading="lazy" />
+              </div>
+              <div class="project-badge">
+                <span class="project-badge-title">${p.title}</span>
+                <span class="project-badge-slash">/</span>
+                <span class="project-badge-year">${p.year || '2024'}</span>
+              </div>
+              <div class="project-action-btn" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+      </section>
+    </article>
   `;
+
+  // Re-trigger button flip effect & scroll animations on dynamically loaded content
+  initButtonFlipEffects();
+  initScrollAnimations();
 }
 
 function renderFooter() {
@@ -815,7 +877,7 @@ function initHeroMarquee() {
  * Enhance All Buttons with Vertical Rolling Flip Text Effect
  */
 function initButtonFlipEffects() {
-  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link, .mobile-nav-link, .certs-toggle-btn');
+  const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-btn-call, .social-link, .nav-link, .mobile-nav-link, .certs-toggle-btn, .project-live-btn');
   
   buttons.forEach(btn => {
     if (btn.querySelector('.btn-flip-wrapper')) return;
@@ -855,7 +917,7 @@ function initButtonFlipEffects() {
 }
 
 function initScrollAnimations() {
-  const observer = new IntersectionObserver((entries, obs) => {
+  const blurObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         triggerCharBlur(entry.target);
@@ -873,7 +935,27 @@ function initScrollAnimations() {
       el.classList.add('is-visible');
       triggerCharBlur(el);
     } else {
-      observer.observe(el);
+      blurObserver.observe(el);
+    }
+  });
+
+  const scrollObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.anim-scroll-reveal').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const isInInitialViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isInInitialViewport && window.scrollY === 0) {
+      el.classList.add('is-visible');
+    } else {
+      scrollObserver.observe(el);
     }
   });
 }
