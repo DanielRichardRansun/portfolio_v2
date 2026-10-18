@@ -925,7 +925,7 @@
   flex-wrap: nowrap;
 }
 
-.hero-name > span:last-child {
+#hero-section .hero-name > span:last-child {
   white-space: nowrap;
 }
 
