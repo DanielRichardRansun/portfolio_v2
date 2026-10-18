@@ -771,9 +771,12 @@ function renderProjectDetailPage(container) {
         </div>
       </section>
 
-      <!-- 6. Explore More Like This One Section -->
+      <!-- 6. Explore More Related Projects Section -->
       <section class="project-explore-section">
-        <h2 class="project-explore-title reveal-blur" data-blur-delay="0.1">Explore more like this one</h2>
+        <div class="section-header-center" style="margin-bottom: 52px;">
+          <div class="badge">Other Projects</div>
+          <h2 class="section-subtitle reveal-blur" data-blur-delay="0.1">Explore more related projects</h2>
+        </div>
         <div class="explore-more-grid">
           ${relatedProjects.map(p => `
             <a href="project.html?id=${p.id}" class="project-card" aria-label="${p.title} - ${p.year || '2024'}">

@@ -2591,15 +2591,15 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 64px 48px;
-  max-width: 760px;
+  padding: 44px 38px;
+  max-width: 620px;
   margin: 0 auto;
   box-shadow: var(--shadow-card);
 }
 
 @media (max-width: 600px) {
   .contact-wrap {
-    padding: 34px 20px;
+    padding: 28px 20px;
   }
 }
 
