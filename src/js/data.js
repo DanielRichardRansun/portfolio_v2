@@ -6,10 +6,10 @@
 
 export const siteConfig = {
   meta: {
-    title: "Daniel Richard Ransun - Senior Product Designer & Creative Director",
-    description: "Personal Portfolio Website - Crafted with precision, sleek interactions, and high conversion design.",
+    title: "Daniel Richard Ransun - Full Stack Web Developer",
+    description: "Portfolio of Daniel Richard Ransun — Full Stack Web Developer building useful and impactful digital solutions.",
     author: "Daniel Richard Ransun",
-    location: "Jakarta, Indonesia & Worldwide Remote"
+    location: "Surabaya, Indonesia"
   },
   
   // Profil & Hero
@@ -17,7 +17,7 @@ export const siteConfig = {
     name: "Daniel Richard Ransun",
     firstName: "Daniel",
     lastName: "Richard Ransun",
-    role: "Senior Product Designer & Creative Director",
+    role: "Full Stack Web Developer",
     avatar: "./src/assets/images/profile-image.png",
     navbarAvatar: "./src/assets/images/profile-navbar.png",
     statusBadge: {
@@ -26,16 +26,16 @@ export const siteConfig = {
     },
     rating: {
       score: "4.9 / 5",
-      count: "Helped 120+ businesses & counting"
+      count: "15+ production-ready projects launched"
     },
-    tagline: "I build digital experiences that drive real growth for your business. Let's partner to create work that gets results.",
+    tagline: "I build web systems and digital solutions that solve real problems and drive real growth for your business.",
     ctaPrimary: {
-      text: "Start a Project",
-      link: "#contact"
+      text: "See My Work",
+      link: "all-projects.html"
     },
     ctaSecondary: {
-      text: "See Projects",
-      link: "#projects"
+      text: "Contact Me",
+      link: "contact.html"
     },
     email: "hello@danielrichard.design",
     bookingLink: "https://cal.com"
@@ -55,10 +55,10 @@ export const siteConfig = {
 
   // Quick Info Strip under Showcase Marquee (Exact Portfolica Reference)
   quickInfo: {
-    role: "Designer and front-end engineer",
-    basedIn: "Lisbon, remote-friendly",
-    previously: "Loopcraft, Tallyhive",
-    availability: "Open for projects from November"
+    role: "Full Stack Web Developer",
+    basedIn: "Surabaya, Indonesia",
+    previously: "PT Muda Karya Krya, Billstone",
+    availability: "Open for new projects"
   },
 
   // Collaborators & Clients
@@ -74,88 +74,88 @@ export const siteConfig = {
     badge: "About",
     portraitImage: "./src/assets/images/profile-about.png",
     statusText: "Open for new projects",
-    heading: "Eight years of making complicated software easier to use.",
-    bio1: "Since 2018 I’ve designed software for small teams in analytics, finance, health and developer tools. Most projects start with a workflow everyone agrees is painful and nobody has had time to fix.",
-    bio2: "I cover the whole path: talking to users, sketching flows, designing in Figma and building the production front end. Because one person does both, nothing gets lost between the mockup and what ships.",
+    heading: "4+ years building functional and impactful web solutions.",
+    bio1: "Since 2021 I've been developing web apps for corporate and global environments. Most projects start with a real business problem that needs a reliable digital solution.",
+    bio2: "I handle the full stack: from coding in Laravel and React to deployment, DNS, SEO, and production. One developer covering the full cycle means nothing falls through the cracks.",
     ctaText: "Book a 20-minute call",
-    ctaLink: "#contact",
+    ctaLink: "contact.html",
     rolesLabel: "Where I’ve worked",
     roles: [
       {
-        period: "2023 – now",
-        role: "Independent",
-        company: "Lisbon",
-        desc: "Design and front-end builds for early-stage teams."
+        period: "2025 – Present",
+        role: "Full-Stack Web Developer",
+        company: "PT Muda Karya Krya",
+        desc: "Driving digital transformation and managing scalable web infrastructure."
       },
       {
-        period: "2020 – 2023",
-        role: "Senior product designer",
-        company: "Loopcraft",
-        desc: "Led the design system and the redesign of the core editor."
+        period: "2026 – 2027",
+        role: "Freelance Tech Support",
+        company: "Billstone Official",
+        desc: "Technical maintenance, performance optimization, and migration."
       },
       {
-        period: "2018 – 2020",
-        role: "Product designer",
-        company: "Tallyhive",
-        desc: "First design hire. Shaped invoicing and onboarding from the ground up."
+        period: "2024 – 2025",
+        role: "Web Developer Intern",
+        company: "PT Muda Karya Krya",
+        desc: "Building professional CMS websites while honing UI/UX and web skills."
       }
     ],
     toolkit: [
-      "Figma",
+      "Laravel",
       "React",
-      "TypeScript",
-      "Next.js",
-      "Tailwind CSS",
-      "Framer"
+      "WordPress",
+      "JavaScript",
+      "PHP",
+      "MySQL"
     ]
   },
 
   // Statistik & Metrics
   stats: [
     { value: "100%", label: "Client Satisfaction Rate" },
-    { value: "50+", label: "Projects Completed" },
-    { value: "4X", label: "Client Growth" },
-    { value: "7+", label: "Years of Experience" }
+    { value: "15+", label: "Projects Launched" },
+    { value: "2000+", label: "Monthly Visitors" },
+    { value: "4+", label: "Years of Experience" }
   ],
 
   // Riwayat Karir
   career: [
     {
-      role: "Design Director",
-      company: "Solvix",
-      period: "2025 - Now",
-      desc: "Leading design vision, team mentorship, and scalable multi-platform design systems."
+      role: "Full-Stack Web Developer",
+      company: "PT Muda Karya Krya",
+      period: "2025 - Present",
+      desc: "Driving digital transformation and managing scalable web infrastructure for global operations."
     },
     {
-      role: "Sr. Product Designer",
-      company: "Coreva",
+      role: "Freelance Tech Support",
+      company: "Billstone Official",
+      period: "2026 - 2027",
+      desc: "Technical website maintenance, performance optimization, and infrastructure migration."
+    },
+    {
+      role: "Web Developer Intern",
+      company: "PT Muda Karya Krya",
       period: "2024 - 2025",
-      desc: "Spearheaded user research, conversion optimization, and core mobile app features."
+      desc: "Building professional CMS-based websites while honing UI/UX and communication skills."
     },
     {
-      role: "Product Designer",
-      company: "Belvo",
-      period: "2015 - 2024",
-      desc: "Designed intuitive fintech dashboards, APIs documentation UI, and checkout flows."
-    },
-    {
-      role: "UI/UX Designer",
-      company: "Arvion",
-      period: "2012 - 2015",
-      desc: "Created modern brand identities, responsive web layouts, and interactive prototypes."
+      role: "Freelance Web Developer",
+      company: "Ransite Official",
+      period: "2024 - Present",
+      desc: "Freelance web development services for business and e-commerce clients."
     }
   ],
 
   // Skills & Capabilities
   skills: [
-    "UX-UI Design",
-    "Product Strategy",
-    "Design Systems",
     "Web Development",
-    "Mobile Apps",
-    "Brand Identity",
-    "Interaction Design",
-    "Prototyping"
+    "Full-Stack",
+    "Laravel & PHP",
+    "React & Next.js",
+    "WordPress & CMS",
+    "SEO Optimization",
+    "Database Management",
+    "Deployment & DevOps"
   ],
 
   // Daftar Proyek
@@ -321,24 +321,24 @@ export const siteConfig = {
   // Services
   services: [
     {
-      icon: "figma",
-      title: "UX-UI & Creative",
-      desc: "Crafting clean, user-friendly sites that reflect your brand & deliver a seamless experience."
-    },
-    {
       icon: "code",
       title: "Web Development",
-      desc: "Building fast, no-code websites that are easy to manage and optimized for every device."
+      desc: "Building fast, responsive websites and web apps using Laravel, React, and modern web technologies."
     },
     {
       icon: "brand",
-      title: "Brand Identity",
-      desc: "Cohesive visual systems — from logos to colors — make your brand instantly recognizable."
+      title: "SEO & Optimization",
+      desc: "Implementing SEO strategies and performance optimization to boost organic traffic and conversions."
+    },
+    {
+      icon: "figma",
+      title: "CMS Solutions",
+      desc: "Creating and managing WordPress and Wix websites that are easy to update and maintain."
     },
     {
       icon: "consultation",
-      title: "Design Consultation",
-      desc: "Offering strategic guidance to help you plan, refine, and execute your design ideas effectively."
+      title: "Technical Setup",
+      desc: "Handling hosting, domain, DNS configuration, business email setup, and production deployment."
     }
   ],
 
@@ -346,21 +346,21 @@ export const siteConfig = {
   testimonials: [
     {
       rating: 5.0,
-      quote: "Alex truly understood my vision & turned it into impactful designs, the results went way beyond my expectations!",
+      quote: "Richard truly understood my vision & turned it into an impactful web application, the results went way beyond expectations!",
       author: "Marcus Rivera",
       role: "Founder at NovaTech",
       avatar: "./src/assets/images/testimonial-marcus.png"
     },
     {
       rating: 4.9,
-      quote: "As a small business owner, the entire process felt effortless thanks to Alex’s clear guidance & design excellence.",
+      quote: "As a business owner, the entire development process felt effortless thanks to Richard’s clear guidance & technical excellence.",
       author: "Sophia Laurent",
       role: "CEO at VibeStudio",
       avatar: "./src/assets/images/testimonial-sophia.png"
     },
     {
       rating: 4.8,
-      quote: "Running a startup is challenging, but Alex Morgan made this entire product rebranding smooth and completely hassle-free.",
+      quote: "Running a business is challenging, but Richard made our entire web platform development smooth and completely hassle-free.",
       author: "Daniel Zhang",
       role: "Product Lead at FlowScale",
       avatar: "./src/assets/images/testimonial-daniel.png"
@@ -371,33 +371,32 @@ export const siteConfig = {
   faqs: [
     {
       question: "How do we get started?",
-      answer: "Simply fill out the project form below or book a quick 30-minute discovery call. We will discuss your goals, scope, timeline, and deliverables."
+      answer: "Simply fill out the contact form or send me an email. We'll discuss your goals, scope, timeline, and deliverables to get the project rolling."
     },
     {
-      question: "Can you redesign my existing website or app?",
-      answer: "Yes! I conduct a thorough UX audit of your current product, pinpointing friction points and redesigning the experience to maximize usability and conversions."
+      question: "What technologies do you work with?",
+      answer: "I primarily work with Laravel, React, Next.js, PHP, JavaScript, WordPress, and Wix. For databases, I use MySQL and PostgreSQL."
     },
     {
-      question: "Do you also handle development or just design?",
-      answer: "Both. I provide end-to-end services from Figma prototypes to fully responsive, clean, and production-ready code."
+      question: "Can you redesign or improve my existing website?",
+      answer: "Yes! I can audit your current site, fix performance issues, improve SEO, and redesign the experience to maximize usability and conversions."
     },
     {
-      question: "What tools do you use for design?",
-      answer: "Framer, Figma, Adobe Suite, Webflow, and modern web development technologies (HTML, Modern CSS, JavaScript, React)."
+      question: "Do you handle hosting and deployment?",
+      answer: "Absolutely. I handle full-cycle deployment including hosting setup, domain & DNS configuration, business email, SSL, and production launch."
     },
     {
-      question: "Can I request additional revisions?",
-      answer: "Absolutely. Every project includes dedicated feedback cycles to ensure you are 100% satisfied with the outcome before final handoff."
+      question: "Can I request revisions after delivery?",
+      answer: "Of course. Every project includes feedback cycles to ensure you're 100% satisfied with the outcome before final handoff."
     }
   ],
 
   // Social Links
   socials: [
-    { name: "Dribbble", url: "https://dribbble.com" },
-    { name: "Behance", url: "https://behance.net" },
-    { name: "Figma", url: "https://figma.com" },
-    { name: "Twitter / X", url: "https://x.com" },
-    { name: "LinkedIn", url: "https://linkedin.com" }
+    { name: "GitHub", url: "https://github.com/DanielRichardRansun" },
+    { name: "LinkedIn", url: "https://linkedin.com/in/danielrichardransun" },
+    { name: "Instagram", url: "https://instagram.com/danielrichardransun" },
+    { name: "Email", url: "mailto:hello@danielrichard.design" }
   ],
 
   // Footer & Legal
