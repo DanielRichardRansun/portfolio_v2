@@ -391,7 +391,7 @@ function renderPageContent() {
   const heroEl = document.getElementById('hero-section');
   if (heroEl) {
     const showcaseCardsHtml = siteConfig.showcase.map(item => `
-      <a href="project.html?id=${item.projectId || 'connecto'}" class="marquee-card">
+      <a href="project.html?id=${item.projectId || 'icia-app'}" class="marquee-card">
         <div class="marquee-card-img-wrap">
           <img src="${item.image}" alt="${item.title}" loading="lazy" />
         </div>
@@ -711,7 +711,8 @@ function getServiceIconSvg(iconName, isGlow = false) {
 
 function renderProjectDetailPage(container) {
   const urlParams = new URLSearchParams(window.location.search);
-  const projectId = urlParams.get('id') || 'connecto';
+  const defaultId = siteConfig.projects && siteConfig.projects.length ? siteConfig.projects[0].id : 'icia-app';
+  const projectId = urlParams.get('id') || defaultId;
   const project = siteConfig.projects.find(p => p.id === projectId) || siteConfig.projects[0];
 
   document.title = `${project.title} - ${siteConfig.meta.author}`;
@@ -725,8 +726,10 @@ function renderProjectDetailPage(container) {
     otherProjects[(currentIndex + 1) % otherProjects.length]
   ];
 
-  const challengeParas = project.challengeParas || [project.challenge || project.description];
-  const approachParas = project.approachParas || [project.approach || project.description];
+  const keyFeaturesParas = project.keyFeaturesParas || project.challengeParas || [project.challenge || project.description];
+  const outcomeParas = project.outcomeParas || project.approachParas || [project.approach || project.description];
+
+  const hasLiveUrl = project.liveUrl && project.liveUrl !== '#' && !project.liveUrl.includes('example.com');
 
   container.innerHTML = `
     <article class="project-detail-layout">
@@ -734,20 +737,22 @@ function renderProjectDetailPage(container) {
       <header class="project-detail-header hero-fade-up">
         <h1 class="project-detail-title reveal-blur" data-blur-delay="0.05">${project.title}</h1>
         <p class="project-detail-subtitle">${project.subtitle || project.description}</p>
-        <a href="${project.liveUrl || '#'}" target="_blank" rel="noopener" class="project-live-btn" aria-label="Visit Live Site">
-          <span>Visit Live Site</span>
-          <svg class="project-live-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M 0 0 L 10 0 L 10 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(7 7)"/><path d="M 0 10 L 10 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(7 7)"/></svg>
-        </a>
+        ${hasLiveUrl ? `
+          <a href="${project.liveUrl}" target="_blank" rel="noopener" class="project-live-btn" aria-label="Visit Live Site">
+            <span>Visit Live Site</span>
+            <svg class="project-live-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M 0 0 L 10 0 L 10 10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(7 7)"/><path d="M 0 10 L 10 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(7 7)"/></svg>
+          </a>
+        ` : ''}
       </header>
 
       <!-- 2. Hero Cover Image (Framer slow-mo fade up) -->
       <div class="project-cover-wrap hero-carousel-fade-up">
         <div class="project-cover-inner">
-          <img src="${project.image}" alt="${project.title} Cover" class="project-cover-img" />
+          <img src="${project.coverImage || project.image}" alt="${project.title} Cover" class="project-cover-img" />
         </div>
       </div>
 
-      <!-- 3. Project Info Strip (Title, Industry, Date) -->
+      <!-- 3. Project Info Strip (Title, Industry, Date, Tech Stack) -->
       <div class="project-info-strip hero-fade-up">
         <div class="project-info-row">
           <span class="project-info-label">Title</span>
@@ -756,34 +761,61 @@ function renderProjectDetailPage(container) {
         <div class="project-info-divider"></div>
         <div class="project-info-row">
           <span class="project-info-label">Industry</span>
-          <span class="project-info-val">${project.industry || project.category || 'Technology'}</span>
+          <span class="project-info-val">${project.industry || project.category || 'Web Application'}</span>
         </div>
         <div class="project-info-divider"></div>
         <div class="project-info-row">
           <span class="project-info-label">Date</span>
           <span class="project-info-val">${project.year || '2024'}</span>
         </div>
+        ${project.tech && project.tech.length ? `
+          <div class="project-info-divider"></div>
+          <div class="project-info-row">
+            <span class="project-info-label">Technologies</span>
+            <span class="project-info-val">${project.tech.join(' · ')}</span>
+          </div>
+        ` : ''}
       </div>
 
-      <!-- 4. Feature 1: Challenge (Left Image, Right Content) -->
+      <!-- 4. Feature 1: Key Features (Left Image, Right Content) -->
       <section class="project-feature-section feature-challenge anim-scroll-reveal">
         <div class="project-feature-media">
-          <img src="${project.featureImage1 || project.image}" alt="${project.title} Challenge" loading="lazy" />
+          <img src="${project.featureImage1 || project.image}" alt="${project.title} Key Features" loading="lazy" />
         </div>
         <div class="project-feature-content">
-          <h2 class="project-feature-title">Challenge</h2>
-          ${challengeParas.map(p => `<p class="project-feature-para">${p}</p>`).join('')}
+          <h2 class="project-feature-title">Key Features</h2>
+          ${keyFeaturesParas.map(p => `<p class="project-feature-para">${p}</p>`).join('')}
+          ${project.features && project.features.length ? `
+            <ul class="project-feature-bullet-list">
+              ${project.features.map(f => `
+                <li class="project-feature-bullet-item">
+                  <span class="feature-bullet-dot"></span>
+                  <span>${f}</span>
+                </li>
+              `).join('')}
+            </ul>
+          ` : ''}
         </div>
       </section>
 
-      <!-- 5. Feature 2: Approach (Left Content, Right Image) -->
+      <!-- 5. Feature 2: Outcome (Left Content, Right Image) -->
       <section class="project-feature-section feature-approach feature-reverse anim-scroll-reveal">
         <div class="project-feature-content">
-          <h2 class="project-feature-title">Approach</h2>
-          ${approachParas.map(p => `<p class="project-feature-para">${p}</p>`).join('')}
+          <h2 class="project-feature-title">Outcome</h2>
+          ${outcomeParas.map(p => `<p class="project-feature-para">${p}</p>`).join('')}
+          ${project.outcomes && project.outcomes.length ? `
+            <ul class="project-feature-bullet-list">
+              ${project.outcomes.map(o => `
+                <li class="project-feature-bullet-item">
+                  <span class="feature-bullet-dot"></span>
+                  <span>${o}</span>
+                </li>
+              `).join('')}
+            </ul>
+          ` : ''}
         </div>
         <div class="project-feature-media">
-          <img src="${project.featureImage2 || project.image}" alt="${project.title} Approach" loading="lazy" />
+          <img src="${project.featureImage2 || project.image}" alt="${project.title} Outcome" loading="lazy" />
         </div>
       </section>
 
