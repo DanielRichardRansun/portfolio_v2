@@ -344,12 +344,12 @@ export const en = {
       },
       {
         shortTitle: "Freelance",
-        role: "Freelance Web Developer",
+        role: "Freelance Web & Design",
         company: "Ransite Official",
-        date: "Nov 2024 - Present",
+        date: "Jan 2021 - Present",
         type: "Freelance",
         logo: "/images/logo/ransite.png",
-        desc: "Providing freelance web development services for business and e-commerce clients.",
+        desc: "Providing freelance web development and design services for business and e-commerce clients.",
         responsibilities: [
           "Developed and delivered 3+ business and e-commerce websites.",
           "Built websites using WordPress and custom coding based on client needs.",

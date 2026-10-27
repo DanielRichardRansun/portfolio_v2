@@ -17,7 +17,7 @@ export const siteConfig = {
     name: "Daniel Richard Ransun",
     firstName: "Daniel",
     lastName: "Richard Ransun",
-    role: "Full Stack Web Developer",
+    role: "Web & Digital Solutions Developer",
     avatar: "./src/assets/images/profile-image.png",
     navbarAvatar: "./src/assets/images/profile-navbar.png",
     statusBadge: {
@@ -26,7 +26,7 @@ export const siteConfig = {
     },
     rating: {
       score: "4.9 / 5",
-      count: "15+ production-ready projects launched"
+      count: "Helped 50+ Businesses & Clients"
     },
     tagline: "I build web systems and digital solutions that solve real problems and drive real growth for your business.",
     ctaPrimary: {
@@ -55,7 +55,7 @@ export const siteConfig = {
 
   // Quick Info Strip under Showcase Marquee (Exact Portfolica Reference)
   quickInfo: {
-    role: "Full Stack Web Developer",
+    role: "Web & Digital Solutions Developer",
     basedIn: "Surabaya, Indonesia",
     previously: "PT Muda Karya Krya, Billstone",
     availability: "Open for new projects"
@@ -112,10 +112,10 @@ export const siteConfig = {
 
   // Statistik & Metrics
   stats: [
-    { value: "100%", label: "Client Satisfaction Rate" },
-    { value: "15+", label: "Projects Launched" },
-    { value: "2000+", label: "Monthly Visitors" },
-    { value: "4+", label: "Years of Experience" }
+    { value: "5", label: "Years of Experience" },
+    { value: "20", label: "Projects Launched" },
+    { value: "100k+", label: "Global Users Reached" },
+    { value: "18", label: "Professional Certifications" }
   ],
 
   // Riwayat Karir
@@ -139,10 +139,10 @@ export const siteConfig = {
       desc: "Building professional CMS-based websites while honing UI/UX and communication skills."
     },
     {
-      role: "Freelance Web Developer",
+      role: "Freelance Web & Design",
       company: "Ransite Official",
-      period: "2024 - Present",
-      desc: "Freelance web development services for business and e-commerce clients."
+      period: "2021 - Present",
+      desc: "Freelance web development and design services for business and e-commerce clients."
     }
   ],
 
@@ -318,27 +318,26 @@ export const siteConfig = {
     }
   ],
 
-  // Services
   services: [
     {
       icon: "code",
       title: "Web Development",
-      desc: "Building fast, responsive websites and web apps using Laravel, React, and modern web technologies."
-    },
-    {
-      icon: "brand",
-      title: "SEO & Optimization",
-      desc: "Implementing SEO strategies and performance optimization to boost organic traffic and conversions."
+      desc: "Building fast, responsive web applications modern UI/UX and clean design using React, Next.js, Laravel, and modern technology."
     },
     {
       icon: "figma",
-      title: "CMS Solutions",
-      desc: "Creating and managing WordPress and Wix websites that are easy to update and maintain."
+      title: "CMS & Social Media",
+      desc: "Developing and managing WordPress, Shopify, and Wix websites while executing visual design and social media content planning."
     },
     {
-      icon: "consultation",
-      title: "Technical Setup",
-      desc: "Handling hosting, domain, DNS configuration, business email setup, and production deployment."
+      icon: "marketing",
+      title: "Digital Marketing & Automation",
+      desc: "Designing email marketing automation, running digital ad campaigns, and building measurable lead generation strategies."
+    },
+    {
+      icon: "seo",
+      title: "SEO & Technical Setup",
+      desc: "Implementing SEO strategies and performance optimization, alongside handling VPS hosting, DNS domain, database, business email, and deployment."
     }
   ],
 

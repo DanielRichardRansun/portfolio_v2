@@ -620,6 +620,22 @@ function getServiceIconSvg(iconName, isGlow = false) {
           <path d="M 0 0 C 4.37 6 6 9.42 8 17.72" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" transform="translate(8.56 2.75)"/>
         </svg>
       `;
+    case 'marketing':
+    case 'automation':
+      return `
+        <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"/>
+        </svg>
+      `;
+    case 'seo':
+    case 'server':
+      return `
+        <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" stroke-width="2" stroke="currentColor"/>
+          <line x1="2" y1="12" x2="22" y2="12" stroke-width="2" stroke="currentColor"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-width="2" stroke="currentColor"/>
+        </svg>
+      `;
     case 'consultation':
       return `
         <svg class="${cls}" viewBox="0 0 24 24" fill="none" role="presentation" xmlns="http://www.w3.org/2000/svg">
