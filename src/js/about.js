@@ -4,6 +4,7 @@
  * thick-bordered image certificates with slow-mo reveal/hide,
  * and minimalist popup details.
  */
+import { setupImageSkeleton, initImageSkeletonLoading } from './image-loader.js';
 
 // ─── Career items from dictionaries.ts ──────────────────────────────────────
 const careerItems = [
@@ -358,8 +359,12 @@ window.openCertModal = function(index) {
 
   if (!modal || !img || !title) return;
 
+  img.classList.remove('is-loaded', 'is-instant');
+  if (img.parentElement) img.parentElement.classList.remove('is-loaded');
+  img.dataset.skeletonInit = '';
   img.src = cert.image;
   img.alt = cert.name;
+  setupImageSkeleton(img);
   title.textContent = cert.name;
   if (issuer) issuer.textContent = `Issued by: ${cert.issuer}`;
   if (date) date.textContent = cert.date;
@@ -416,6 +421,7 @@ function setupModalInteractions() {
 document.addEventListener('DOMContentLoaded', () => {
   renderCareer();
   renderCertificates(true);
+  initImageSkeletonLoading(document);
   setupCertsToggle();
   setupModalInteractions();
 });

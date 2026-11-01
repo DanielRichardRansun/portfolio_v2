@@ -1,5 +1,6 @@
 import { siteConfig } from './data.js';
 import { smoothScroll } from './smooth-scroll.js';
+import { initSkeletonObserver, initImageSkeletonLoading } from './image-loader.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Theme (Default Light)
@@ -31,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 10. Initialize Floating Chatbot FAB (Lottie Animation)
   initChatbotFab();
+
+  // 11. Initialize Skeleton Shimmer & Progressive Blur-Up Image Loading
+  initSkeletonObserver();
 });
 
 function getThemeIconSvg() {
@@ -846,6 +850,7 @@ function renderProjectDetailPage(container) {
   // Re-trigger button flip effect & scroll animations on dynamically loaded content
   initButtonFlipEffects();
   initScrollAnimations();
+  initImageSkeletonLoading(container);
 }
 
 function renderFooter() {
