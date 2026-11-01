@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import fs from 'fs';
 
 export default defineConfig({
   root: './',
@@ -15,5 +16,20 @@ export default defineConfig({
         page404: resolve(__dirname, '404.html')
       }
     }
-  }
+  },
+  plugins: [
+    {
+      name: 'copy-src-assets',
+      closeBundle() {
+        const srcDir = resolve(__dirname, 'src/assets/images');
+        const destDir = resolve(__dirname, 'dist/src/assets/images');
+        const destImages = resolve(__dirname, 'dist/images');
+        if (fs.existsSync(srcDir)) {
+          fs.cpSync(srcDir, destDir, { recursive: true });
+          fs.cpSync(srcDir, destImages, { recursive: true });
+          console.log('✓ Successfully copied src/assets/images to dist/src/assets/images and dist/images');
+        }
+      }
+    }
+  ]
 });
