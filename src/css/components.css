@@ -1714,12 +1714,12 @@
   overflow: hidden;
   isolation: isolate;
   background: #ececee;
-  border: 1px solid var(--border-subtle);
+  border: none;
+  outline: none;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  box-shadow: var(--shadow-card);
-  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: none;
 }
 
 [data-theme="dark"] .project-card {
@@ -1727,8 +1727,8 @@
 }
 
 .project-card:hover {
-  border-color: var(--border-light);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  border: none;
+  box-shadow: none;
 }
 
 .project-thumb {

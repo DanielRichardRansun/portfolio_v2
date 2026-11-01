@@ -110,7 +110,7 @@ Semua tipografi diatur menggunakan preset standar yang diekstrak langsung dari k
   * Project Title (`.project-badge-title`): `14px`, weight `500`, line-height `1.2em`
   * Slash (`.project-badge-slash`): `14px`, weight `500`, line-height `1.2em`
   * Year (`.project-badge-year`): `14px`, weight `500`, line-height `1.2em`
-* **Card Container**: `border-radius: 28px` (Mobile: `20px`) | `aspect-ratio: 4 / 3`
+* **Card Container**: `border-radius: 28px` (Mobile: `20px`) | `aspect-ratio: 4 / 3` | `border: none` | `box-shadow: none`
 * **Action Button**: Circular `48px`, floating bottom-right with arrow icon.
 
 ### E. Stats Grid

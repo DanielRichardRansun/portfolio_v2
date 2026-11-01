@@ -43,7 +43,7 @@ export const siteConfig = {
 
   // Hero Showcase Strip / Infinite Auto-scrolling Marquee
   showcase: [
-    { image: "./src/assets/images/porto/ICIA_App/ICIA_App.jpg", title: "ICIA App", projectId: "icia-app" },
+    { image: "./src/assets/images/porto/ICIA_App/ICIA_App_Thumbnail.webp", title: "ICIA App", projectId: "icia-app" },
     { image: "./src/assets/images/porto/MyPortfolio/MyPortfolio.png", title: "My Portfolio", projectId: "my-portfolio" },
     { image: "./src/assets/images/porto/ICIA_Judging/ICIA_Judging_Thumbnail.webp", title: "Judging System", projectId: "judging-website" },
     { image: "./src/assets/images/porto/AppleRebrand/AppleRebrand.png", title: "Apple GSAP Web", projectId: "apple-gsap" },
@@ -169,9 +169,10 @@ export const siteConfig = {
       industry: "Event & Education",
       subtitle: "A global event management platform supporting international innovation competitions worldwide.",
       description: "A comprehensive digital management platform developed to handle large-scale international competitions with automated attendee tracking and project submissions.",
-      image: "./src/assets/images/porto/ICIA_App/ICIA_App.jpg",
-      featureImage1: "./src/assets/images/porto/ICIA_App/ICIA_App.jpg",
-      featureImage2: "./src/assets/images/porto/ICIA_App/ICIA_App.jpg",
+      image: "./src/assets/images/porto/ICIA_App/ICIA_App_Thumbnail.webp",
+      coverImage: "./src/assets/images/porto/ICIA_App/ICIA_App.jpg",
+      featureImage1: "./src/assets/images/porto/ICIA_App/ICIA_App_Thumbnail.webp",
+      featureImage2: "./src/assets/images/porto/ICIA_App/ICIA_APP2.webp",
       keyFeaturesParas: [
         "Built with Laravel and MySQL, ICIA App replaces traditional paperwork with a real-time QR code attendance scanning system, multi-tier team management, and secure online project submission workflows.",
         "The platform features an intuitive administrator dashboard equipped with automated participant verification, live event notifications, and streamlined data export tools."
@@ -310,41 +311,39 @@ export const siteConfig = {
       liveUrl: "https://macbook-landingpage-gsap.vercel.app/"
     },
     {
-      id: "hooptourney",
-      title: "HoopTourney",
+      id: "akusila",
+      title: "Akusila",
       year: "2024",
-      category: "Sports Website",
-      industry: "Sports & Events",
-      subtitle: "A centralized tournament platform connecting organizers, basketball teams, and players with live analytics.",
-      description: "A full-featured sports management web application offering dynamic tournament bracket generation, match scheduling, and advanced player statistical analytics.",
-      image: "./src/assets/images/porto/HoopTourney/HoopTourney.png",
-      featureImage1: "./src/assets/images/porto/HoopTourney/HoopTourney.png",
-      featureImage2: "./src/assets/images/porto/HoopTourney/HoopTourney.png",
+      category: "E-Commerce",
+      industry: "Sustainable Fashion",
+      subtitle: "An artisanal e-commerce storefront for handcrafted eco-friendly jute bag collections.",
+      description: "An online boutique built to empower local craftspeople by taking traditional sustainable products to modern domestic and international buyers.",
+      image: "./src/assets/images/porto/Akusila/Akusila.png",
+      featureImage1: "./src/assets/images/porto/Akusila/Akusila.png",
+      featureImage2: "./src/assets/images/porto/Akusila/Akusila.png",
       keyFeaturesParas: [
-        "Features an interactive visual bracket system, live game schedule updates, and detailed player performance profiles powered by Player Efficiency Rating (PER) formulas.",
-        "Equipped with organizer dashboards for rapid game scoring entry, foul tracking, standings recalculation, and team roster administration."
+        "Configured with a clean WooCommerce product catalog, automated payment gateways, cart management, and responsive mobile checkout flows.",
+        "Includes targeted category taxonomies, high-resolution product carousels, and localized shipping rate calculators."
       ],
       features: [
-        "Visual tournament bracket system",
-        "Match scheduling management",
-        "Player statistics tracking",
-        "Player Efficiency Rating (PER) calculation",
-        "Team & player profile management",
-        "Admin dashboard for competition control"
+        "Product catalog management",
+        "Online payment integration",
+        "Checkout system",
+        "SEO optimization",
+        "Responsive design"
       ],
       outcomeParas: [
-        "Selected as the official competition system for the Ubaya Engineering Basketball Cup, handling multi-court schedules without conflict.",
-        "Replaced manual spreadsheets with an automated digital hub that gave players and supporters instant access to real-time box scores and standings."
+        "Successfully launched direct-to-consumer online shopping, enabling seamless end-to-end digital transactions.",
+        "Created an accessible digital showcase for traditional handicrafts, elevating product visibility across regional search rankings."
       ],
       outcomes: [
-        "Official platform for Ubaya Engineering Basketball Cup",
-        "Integrated tournament operations into a centralized system",
-        "Enabled player performance tracking using PER methodology",
-        "Simplified competition management for organizers"
+        "Successfully processed online retail transactions",
+        "Established digital market presence for traditional crafts",
+        "Improved product visibility through search optimization"
       ],
-      tech: ["Laravel", "Tailwind", "PHP", "Supabase", "Vercel", "GitHub"],
+      tech: ["WordPress", "WooCommerce", "Elementor", "Hostinger"],
       featured: true,
-      liveUrl: "https://hooptourney.vercel.app/"
+      liveUrl: "https://akusila.com/"
     },
     {
       id: "gyis-admin",
@@ -491,39 +490,41 @@ export const siteConfig = {
       liveUrl: "https://mocraft3d.com/"
     },
     {
-      id: "akusila",
-      title: "Akusila",
+      id: "hooptourney",
+      title: "HoopTourney",
       year: "2024",
-      category: "E-Commerce",
-      industry: "Sustainable Fashion",
-      subtitle: "An artisanal e-commerce storefront for handcrafted eco-friendly jute bag collections.",
-      description: "An online boutique built to empower local craftspeople by taking traditional sustainable products to modern domestic and international buyers.",
-      image: "./src/assets/images/porto/Akusila/Akusila.png",
-      featureImage1: "./src/assets/images/porto/Akusila/Akusila.png",
-      featureImage2: "./src/assets/images/porto/Akusila/Akusila.png",
+      category: "Sports Website",
+      industry: "Sports & Events",
+      subtitle: "A centralized tournament platform connecting organizers, basketball teams, and players with live analytics.",
+      description: "A full-featured sports management web application offering dynamic tournament bracket generation, match scheduling, and advanced player statistical analytics.",
+      image: "./src/assets/images/porto/HoopTourney/HoopTourney.png",
+      featureImage1: "./src/assets/images/porto/HoopTourney/HoopTourney.png",
+      featureImage2: "./src/assets/images/porto/HoopTourney/HoopTourney.png",
       keyFeaturesParas: [
-        "Configured with a clean WooCommerce product catalog, automated payment gateways, cart management, and responsive mobile checkout flows.",
-        "Includes targeted category taxonomies, high-resolution product carousels, and localized shipping rate calculators."
+        "Features an interactive visual bracket system, live game schedule updates, and detailed player performance profiles powered by Player Efficiency Rating (PER) formulas.",
+        "Equipped with organizer dashboards for rapid game scoring entry, foul tracking, standings recalculation, and team roster administration."
       ],
       features: [
-        "Product catalog management",
-        "Online payment integration",
-        "Checkout system",
-        "SEO optimization",
-        "Responsive design"
+        "Visual tournament bracket system",
+        "Match scheduling management",
+        "Player statistics tracking",
+        "Player Efficiency Rating (PER) calculation",
+        "Team & player profile management",
+        "Admin dashboard for competition control"
       ],
       outcomeParas: [
-        "Successfully launched direct-to-consumer online shopping, enabling seamless end-to-end digital transactions.",
-        "Created an accessible digital showcase for traditional handicrafts, elevating product visibility across regional search rankings."
+        "Selected as the official competition system for the Ubaya Engineering Basketball Cup, handling multi-court schedules without conflict.",
+        "Replaced manual spreadsheets with an automated digital hub that gave players and supporters instant access to real-time box scores and standings."
       ],
       outcomes: [
-        "Successfully processed online retail transactions",
-        "Established digital market presence for traditional crafts",
-        "Improved product visibility through search optimization"
+        "Official platform for Ubaya Engineering Basketball Cup",
+        "Integrated tournament operations into a centralized system",
+        "Enabled player performance tracking using PER methodology",
+        "Simplified competition management for organizers"
       ],
-      tech: ["WordPress", "WooCommerce", "Elementor", "Hostinger"],
+      tech: ["Laravel", "Tailwind", "PHP", "Supabase", "Vercel", "GitHub"],
       featured: false,
-      liveUrl: "https://akusila.com/"
+      liveUrl: "https://hooptourney.vercel.app/"
     },
     {
       id: "krya-global",

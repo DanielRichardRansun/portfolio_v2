@@ -435,9 +435,6 @@ function renderPageContent() {
                 <span>${siteConfig.profile.ctaPrimary.text}</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
-              <a href="${siteConfig.profile.ctaSecondary.link}" class="btn-secondary">
-                <span>${siteConfig.profile.ctaSecondary.text}</span>
-              </a>
             </div>
           </div>
         </div>
