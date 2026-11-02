@@ -663,12 +663,12 @@ export const siteConfig = {
     {
       icon: "code",
       title: "Web Development",
-      desc: "Building fast, responsive web applications modern UI/UX and clean design using React, Next.js, Laravel, and modern technology."
+      desc: "Building fast and responsive web applications with modern and clean UI/UX design using React, Next.js, Laravel, and modern technologies."
     },
     {
       icon: "figma",
       title: "CMS & Social Media",
-      desc: "Developing and managing WordPress, Shopify, and Wix websites while executing visual design and social media content planning."
+      desc: "Developing and managing WordPress, Shopify, and Wix websites while executing visual design and social media content management."
     },
     {
       icon: "marketing",
@@ -678,7 +678,7 @@ export const siteConfig = {
     {
       icon: "seo",
       title: "SEO & Technical Setup",
-      desc: "Implementing SEO strategies and performance optimization, alongside handling VPS hosting, DNS domain, database, business email, and deployment."
+      desc: "Implementing SEO and performance optimization, while managing VPS, domains, databases, and full deployment."
     }
   ],
 

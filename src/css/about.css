@@ -407,6 +407,7 @@
   align-items: center;
   gap: 12px;
   padding: 10px 6px 4px 6px;
+  min-height: 52px;
 }
 
 .skill-dot-icon {
@@ -423,10 +424,9 @@
   font-family: var(--font-heading);
   font-size: 18px; /* Larger label font size */
   font-weight: 500; /* Strict max 500 */
+  line-height: 1.25;
   color: var(--text-primary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-break: normal;
 }
 
 /* =========================================
