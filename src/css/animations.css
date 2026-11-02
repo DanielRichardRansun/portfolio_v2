@@ -216,18 +216,19 @@ html::view-transition-new(root) {
   }
 }
 
-/* Skeleton Placeholder Containers */
-.skeleton-wrap,
-.project-thumb,
-.marquee-card-img-wrap,
-.project-cover-inner,
-.project-feature-media,
-.cert-image-inner,
-.cert-modal-image-wrap,
-.skill-card-visual,
-.about-portrait-bg,
-.about-hero-photo-wrap {
-  position: relative;
+/* Skeleton Placeholder Containers using ::after overlay (prevents overriding container animations) */
+.skeleton-wrap:not(.is-loaded)::after,
+.project-thumb:not(.is-loaded)::after,
+.marquee-card-img-wrap:not(.is-loaded)::after,
+.project-cover-inner:not(.is-loaded)::after,
+.project-feature-media:not(.is-loaded)::after,
+.cert-image-inner:not(.is-loaded)::after,
+.cert-modal-image-wrap:not(.is-loaded)::after,
+.skill-card-visual:not(.is-loaded)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   background-color: #ededf0;
   background-image: linear-gradient(
     90deg,
@@ -237,19 +238,17 @@ html::view-transition-new(root) {
   );
   background-size: 200% 100%;
   animation: skeleton-shimmer-wave 1.8s infinite ease-in-out;
-  overflow: hidden;
+  pointer-events: none;
 }
 
-[data-theme="dark"] .skeleton-wrap,
-[data-theme="dark"] .project-thumb,
-[data-theme="dark"] .marquee-card-img-wrap,
-[data-theme="dark"] .project-cover-inner,
-[data-theme="dark"] .project-feature-media,
-[data-theme="dark"] .cert-image-inner,
-[data-theme="dark"] .cert-modal-image-wrap,
-[data-theme="dark"] .skill-card-visual,
-[data-theme="dark"] .about-portrait-bg,
-[data-theme="dark"] .about-hero-photo-wrap {
+[data-theme="dark"] .skeleton-wrap:not(.is-loaded)::after,
+[data-theme="dark"] .project-thumb:not(.is-loaded)::after,
+[data-theme="dark"] .marquee-card-img-wrap:not(.is-loaded)::after,
+[data-theme="dark"] .project-cover-inner:not(.is-loaded)::after,
+[data-theme="dark"] .project-feature-media:not(.is-loaded)::after,
+[data-theme="dark"] .cert-image-inner:not(.is-loaded)::after,
+[data-theme="dark"] .cert-modal-image-wrap:not(.is-loaded)::after,
+[data-theme="dark"] .skill-card-visual:not(.is-loaded)::after {
   background-color: #17171b;
   background-image: linear-gradient(
     90deg,
@@ -257,21 +256,6 @@ html::view-transition-new(root) {
     rgba(255, 255, 255, 0.05) 50%,
     rgba(23, 23, 27, 0) 100%
   );
-}
-
-/* When image finishes loading: stop shimmer wave and clear background */
-.skeleton-wrap.is-loaded,
-.project-thumb.is-loaded,
-.marquee-card-img-wrap.is-loaded,
-.project-cover-inner.is-loaded,
-.project-feature-media.is-loaded,
-.cert-image-inner.is-loaded,
-.cert-modal-image-wrap.is-loaded,
-.skill-card-visual.is-loaded,
-.about-portrait-bg.is-loaded,
-.about-hero-photo-wrap.is-loaded {
-  animation: none !important;
-  background-image: none !important;
 }
 
 /* Progressive Blur & Dissolve Image */
@@ -284,16 +268,14 @@ html::view-transition-new(root) {
               transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Target images before JS initializes to avoid premature pop-in */
+/* Target content images before JS initializes to avoid premature pop-in */
 .project-thumb img:not(.is-loaded),
 .marquee-card img:not(.is-loaded),
 .project-cover-img:not(.is-loaded),
 .project-feature-media img:not(.is-loaded),
 .cert-image-inner img:not(.is-loaded),
 .cert-modal-image-wrap img:not(.is-loaded),
-.skill-card-visual img:not(.is-loaded),
-.about-portrait-img:not(.is-loaded),
-.about-hero-photo:not(.is-loaded) {
+.skill-card-visual img:not(.is-loaded) {
   opacity: 0;
   filter: blur(14px);
   transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
@@ -308,9 +290,7 @@ html::view-transition-new(root) {
 .project-feature-media img.is-loaded,
 .cert-image-inner img.is-loaded,
 .cert-modal-image-wrap img.is-loaded,
-.skill-card-visual img.is-loaded,
-.about-portrait-img.is-loaded,
-.about-hero-photo.is-loaded {
+.skill-card-visual img.is-loaded {
   opacity: 1;
   filter: blur(0px);
 }
@@ -324,16 +304,14 @@ html::view-transition-new(root) {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skeleton-wrap,
-  .project-thumb,
-  .marquee-card-img-wrap,
-  .project-cover-inner,
-  .project-feature-media,
-  .cert-image-inner,
-  .cert-modal-image-wrap,
-  .skill-card-visual,
-  .about-portrait-bg,
-  .about-hero-photo-wrap {
+  .skeleton-wrap::after,
+  .project-thumb::after,
+  .marquee-card-img-wrap::after,
+  .project-cover-inner::after,
+  .project-feature-media::after,
+  .cert-image-inner::after,
+  .cert-modal-image-wrap::after,
+  .skill-card-visual::after {
     animation: none !important;
   }
   .skeleton-img,
@@ -342,9 +320,7 @@ html::view-transition-new(root) {
   .project-cover-img,
   .project-feature-media img,
   .cert-image-inner img,
-  .skill-card-visual img,
-  .about-portrait-img,
-  .about-hero-photo {
+  .skill-card-visual img {
     transition: opacity 0.2s ease !important;
     filter: none !important;
   }

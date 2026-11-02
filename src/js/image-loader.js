@@ -8,6 +8,12 @@ export function setupImageSkeleton(img) {
   if (!img || img.dataset.skeletonInit === 'true') return;
   img.dataset.skeletonInit = 'true';
 
+  // Do not interfere with special animated hero photo in about page (has its own delayed entrance)
+  if (img.classList.contains('about-hero-photo') || img.closest('.about-photo-entrance')) {
+    img.classList.add('is-loaded');
+    return;
+  }
+
   img.classList.add('skeleton-img');
 
   const parent = img.parentElement;
@@ -81,4 +87,3 @@ export function initSkeletonObserver() {
     });
   }
 }
-

@@ -173,7 +173,7 @@
 .about-hero-photo-wrap {
   position: relative;
   width: 100%;
-  height: clamp(340px, 44vw, 420px); /* Original height restored */
+  height: clamp(400px, 52vw, 500px);
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid var(--border-subtle);
