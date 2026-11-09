@@ -2761,12 +2761,13 @@
   justify-content: center;
   padding: 0;
   outline: none;
+  overflow: hidden;
   transition:
     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.35s ease,
     border-color 0.35s ease;
   animation: chatbot-fab-entrance 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  animation-delay: 1.2s;
+  animation-delay: 0.4s;
 }
 
 [data-theme="dark"] .chatbot-fab {
@@ -2802,7 +2803,19 @@
 .chatbot-fab .chatbot-lottie {
   width: 58px;
   height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.chatbot-fab .chatbot-lottie svg,
+.chatbot-fab .chatbot-lottie img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  display: block;
 }
 
 /* Entrance animation: scale up + bounce in from below */

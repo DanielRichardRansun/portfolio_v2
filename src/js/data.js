@@ -43,7 +43,7 @@ export const siteConfig = {
 
   // Hero Showcase Strip / Infinite Auto-scrolling Marquee
   showcase: [
-    { image: "./src/assets/images/porto/ICIA_App/ICIA_App_Thumbnail.webp", title: "ICIA App", projectId: "icia-app" },
+    { image: "./src/assets/images/porto/ICIA_App/ICIA_App3.webp", title: "ICIA App", projectId: "icia-app" },
     { image: "./src/assets/images/porto/MyPortfolio/MyPortfolio.png", title: "My Portfolio", projectId: "my-portfolio" },
     { image: "./src/assets/images/porto/ICIA_Judging/ICIA_Judging_Thumbnail.webp", title: "Judging System", projectId: "judging-website" },
     { image: "./src/assets/images/porto/AppleRebrand/AppleRebrand.png", title: "Apple GSAP Web", projectId: "apple-gsap" },
@@ -169,10 +169,10 @@ export const siteConfig = {
       industry: "Event & Education",
       subtitle: "A global event management platform supporting international innovation competitions worldwide.",
       description: "A comprehensive digital management platform developed to handle large-scale international competitions with automated attendee tracking and project submissions.",
-      image: "./src/assets/images/porto/ICIA_App/ICIA_App_Thumbnail.webp",
+      image: "./src/assets/images/porto/ICIA_App/ICIA_App3.webp",
       coverImage: "./src/assets/images/porto/ICIA_App/ICIA_App.jpg",
-      featureImage1: "./src/assets/images/porto/ICIA_App/ICIA_App_Thumbnail.webp",
-      featureImage2: "./src/assets/images/porto/ICIA_App/ICIA_APP2.webp",
+      featureImage1: "./src/assets/images/porto/ICIA_App/ICIA_APP2.webp",
+      featureImage2: "./src/assets/images/porto/ICIA_App/ICIA_App4.webp",
       keyFeaturesParas: [
         "Built with Laravel and MySQL, ICIA App replaces traditional paperwork with a real-time QR code attendance scanning system, multi-tier team management, and secure online project submission workflows.",
         "The platform features an intuitive administrator dashboard equipped with automated participant verification, live event notifications, and streamlined data export tools."
@@ -207,8 +207,8 @@ export const siteConfig = {
       subtitle: "A modern interactive portfolio built to showcase development expertise, case studies, and digital solutions.",
       description: "An ultra-clean personal portfolio engineered with React and modern web animation frameworks, optimized for high performance, smooth interactivity, and client conversions.",
       image: "./src/assets/images/porto/MyPortfolio/MyPortfolio.png",
-      featureImage1: "./src/assets/images/porto/MyPortfolio/MyPortfolio.png",
-      featureImage2: "./src/assets/images/porto/MyPortfolio/MyPortfolio.png",
+      featureImage1: "./src/assets/images/porto/MyPortfolio/MyPortfolio1.webp",
+      featureImage2: "./src/assets/images/porto/MyPortfolio/MyPortfolio2.webp",
       keyFeaturesParas: [
         "Architected with a mobile-first philosophy, incorporating fluid micro-animations, theme toggling, and structured case study layouts that highlight engineering process and business impact.",
         "Engineered with strict SEO metadata, fast asset delivery, and contact integrations to ensure maximum discoverability and frictionless client inquiries."

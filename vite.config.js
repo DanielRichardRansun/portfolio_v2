@@ -29,6 +29,12 @@ export default defineConfig({
           fs.cpSync(srcDir, destImages, { recursive: true });
           console.log('✓ Successfully copied src/assets/images to dist/src/assets/images and dist/images');
         }
+        const srcLottie = resolve(__dirname, 'src/assets/lottie.min.js');
+        const destLottie = resolve(__dirname, 'dist/src/assets/lottie.min.js');
+        if (fs.existsSync(srcLottie)) {
+          fs.mkdirSync(resolve(__dirname, 'dist/src/assets'), { recursive: true });
+          fs.copyFileSync(srcLottie, destLottie);
+        }
       }
     }
   ]

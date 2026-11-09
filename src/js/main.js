@@ -1,6 +1,7 @@
 import { siteConfig } from './data.js';
 import { smoothScroll } from './smooth-scroll.js';
 import { initSkeletonObserver, initImageSkeletonLoading } from './image-loader.js';
+import { chatbotAnimationData } from './chatbot-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Theme (Default Light)
@@ -1098,20 +1099,25 @@ function initInteractions() {
 }
 
 /**
- * Floating Chatbot FAB with Lottie Animation
- * Renders a fixed bottom-right animated chatbot icon using lottie-web.
+ * Floating Chatbot FAB with Animated Icon (Lottie Vector + Seamless GIF Fallback)
+ * Renders a fixed bottom-right animated chatbot icon.
  */
 function initChatbotFab() {
   // Don't render if already present
   if (document.getElementById('chatbot-fab')) return;
 
-  // Create FAB button element
+  // Create FAB button element with the animated icon present immediately
   const fab = document.createElement('button');
   fab.id = 'chatbot-fab';
   fab.className = 'chatbot-fab';
-  fab.setAttribute('aria-label', 'Chat with AI Assistant');
+  fab.setAttribute('aria-label', 'Chat with Ribot AI Assistant');
+  fab.setAttribute('title', 'Chat with Ribot AI Assistant');
   fab.setAttribute('type', 'button');
-  fab.innerHTML = '<div class="chatbot-lottie" id="chatbot-lottie"></div>';
+  fab.innerHTML = `
+    <div class="chatbot-lottie" id="chatbot-lottie">
+      <img src="./src/assets/images/chat-bot/chat-bot-icon.gif" alt="AI Assistant" class="chatbot-icon-gif" style="width: 100%; height: 100%; object-fit: contain; display: block;" />
+    </div>
+  `;
   document.body.appendChild(fab);
 
   // After entrance animation ends, add idle floating
@@ -1119,30 +1125,53 @@ function initChatbotFab() {
     fab.classList.add('is-idle');
   }, { once: true });
 
-  // Load lottie-web dynamically from CDN
-  if (typeof lottie !== 'undefined') {
-    initLottieAnimation();
-    return;
-  }
+  // Failsafe timer to ensure idle float activates even if animationend event is skipped
+  setTimeout(() => {
+    fab.classList.add('is-idle');
+  }, 1200);
 
-  const lottieScript = document.createElement('script');
-  lottieScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
-  lottieScript.async = true;
-  lottieScript.onload = initLottieAnimation;
-  document.head.appendChild(lottieScript);
+  // Progressive enhancement: upgrade to crisp vector Lottie animation
+  initLottieAnimation();
 }
 
 function initLottieAnimation() {
-  if (typeof lottie === 'undefined') return;
-
   const container = document.getElementById('chatbot-lottie');
   if (!container) return;
 
-  lottie.loadAnimation({
-    container: container,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/chat-bot-icon.json'
-  });
+  const renderVector = () => {
+    if (typeof lottie === 'undefined' || !lottie || typeof lottie.loadAnimation !== 'function') return;
+    try {
+      container.innerHTML = '';
+      lottie.loadAnimation({
+        container: container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData: chatbotAnimationData
+      });
+    } catch (err) {
+      console.warn('Lottie render error, keeping animated GIF:', err);
+      container.innerHTML = `<img src="./src/assets/images/chat-bot/chat-bot-icon.gif" alt="AI Assistant" class="chatbot-icon-gif" style="width: 100%; height: 100%; object-fit: contain; display: block;" />`;
+    }
+  };
+
+  // If lottie is already available in window
+  if (typeof lottie !== 'undefined') {
+    renderVector();
+    return;
+  }
+
+  // Load local lottie script first, fallback to CDN
+  const localScript = document.createElement('script');
+  localScript.src = './src/assets/lottie.min.js';
+  localScript.async = true;
+  localScript.onload = renderVector;
+  localScript.onerror = () => {
+    const cdnScript = document.createElement('script');
+    cdnScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+    cdnScript.async = true;
+    cdnScript.onload = renderVector;
+    document.head.appendChild(cdnScript);
+  };
+  document.head.appendChild(localScript);
 }
